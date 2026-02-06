@@ -1,0 +1,22 @@
+{
+  "buildCommand": "pip install -r requirements.txt",
+  "functions": {
+    "api/**/*.py": {
+      "memory": 3008,
+      "maxDuration": 30
+    }
+  },
+  "env": {
+    "MONGO_URI": "@MONGO_URI"
+  },
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "/api/$1"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/index.html"
+    }
+  ]
+}
