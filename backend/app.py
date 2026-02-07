@@ -11,16 +11,24 @@ from bson.objectid import ObjectId
 import numpy as np
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
+import certifi
 
 load_dotenv()
 
 app = Flask(__name__)
 CORS(app)
 
-# MongoDB Configuration
-app.config['MONGO_URI'] = os.getenv('MONGO_URI')
-if not app.config['MONGO_URI']:
+# MongoDB Configuration with SSL certificate
+mongo_uri = os.getenv('MONGO_URI')
+if not mongo_uri:
     raise ValueError("MONGO_URI not found in environment variables. Please set it in your .env file.")
+
+# Add tlsCAFile parameter for SSL certificate
+if '?' in mongo_uri:
+    app.config['MONGO_URI'] = f"{mongo_uri}&tlsCAFile={certifi.where()}"
+else:
+    app.config['MONGO_URI'] = f"{mongo_uri}?tlsCAFile={certifi.where()}"
+
 mongo = PyMongo(app)
 
 # RAG Knowledge Base (using TF-IDF for lightweight deployment)
@@ -103,8 +111,17 @@ class PortfolioRAG:
     
     def search(self, query, top_k=3):
         """Retrieve relevant portfolio information using TF-IDF similarity"""
+        query_lower = query.lower()
         query_vector = self.vectorizer.transform([query])
         similarities = cosine_similarity(query_vector, self.tfidf_matrix)[0]
+        
+        # Boost scores for keyword matches in category names
+        for idx, doc in enumerate(self.knowledge_base):
+            category = doc['category'].lower().replace('_', ' ')
+            content_lower = doc['content'].lower()
+            # Boost if query word appears in category or content
+            if any(word in category or word in content_lower for word in query_lower.split()):
+                similarities[idx] = max(similarities[idx], 0.3)  # Ensure minimum score for keyword matches
         
         top_indices = np.argsort(similarities)[-top_k:][::-1]
         results = [
@@ -113,7 +130,7 @@ class PortfolioRAG:
                 "category": self.knowledge_base[idx]['category'],
                 "score": float(similarities[idx])
             }
-            for idx in top_indices if similarities[idx] > 0.05
+            for idx in top_indices if similarities[idx] > 0.01
         ]
         return results
 
@@ -280,7 +297,7 @@ def chat():
         # Search knowledge base using RAG
         relevant_docs = rag.search(user_message, top_k=3)
         
-        if not relevant_docs or all(doc['score'] < 0.2 for doc in relevant_docs):
+        if not relevant_docs or all(doc['score'] < 0.05 for doc in relevant_docs):
             response = "I'm not sure about that. I can help you learn more about my background, skills, projects, experience, or how to contact me. What would you like to know?"
         else:
             # Build response from retrieved documents
@@ -305,6 +322,10 @@ def generate_response(user_query, context, relevant_docs):
     if any(word in query_lower for word in ['hi', 'hello', 'hey', 'greetings']):
         return f"Hi there! I'm Aaryan Gole's portfolio assistant. {context.split('.')[0]}. How can I help you learn more about me?"
     
+    # Why hire / strengths questions
+    if any(phrase in query_lower for phrase in ['hire', 'why should', 'strengths', 'best', 'good at', 'capable']):
+        return f"Aaryan brings a unique combination of AI/ML expertise and full-stack development skills. {context.split('.')[0]}. He has hands-on experience building production-grade AI systems, RAG chatbots, and scalable web applications. His projects demonstrate problem-solving abilities and technical depth."
+    
     # Project-specific responses
     if 'project' in query_lower or 'built' in query_lower or 'created' in query_lower:
         if relevant_docs:
@@ -316,6 +337,14 @@ def generate_response(user_query, context, relevant_docs):
     # Skills responses
     if any(word in query_lower for word in ['skill', 'expertise', 'know', 'experience', 'technology', 'tech']):
         return f"My key competencies include: {context}"
+    
+    # Contact responses
+    if any(word in query_lower for word in ['contact', 'reach', 'email', 'phone', 'linkedin', 'github']):
+        return f"Here's how you can reach me: {context}"
+    
+    # Education responses
+    if any(word in query_lower for word in ['education', 'study', 'college', 'university', 'degree', 'gpa']):
+        return f"About my education: {context}"
     
     # Default conversational response
     return f"Based on my portfolio: {context}"
