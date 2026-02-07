@@ -2,7 +2,8 @@ Flask==2.3.2
 Flask-CORS==4.0.0
 Flask-PyMongo==2.3.0
 python-dotenv==1.0.0
-pymongo==4.5.0
+pymongo[srv]==4.5.0
+certifi
 numpy
 scikit-learn
 gunicorn==21.2.0
