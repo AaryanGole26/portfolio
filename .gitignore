@@ -26,6 +26,7 @@ wheels/
 # Virtual Environment
 .venv
 env/
+env.example/
 venv/
 ENV/
 env.bak/
@@ -45,3 +46,4 @@ Thumbs.db
 # Environment variables
 .env
 .env.local
+.env.example
