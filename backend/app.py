@@ -12,6 +12,7 @@ import numpy as np
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 import certifi
+import requests
 
 load_dotenv()
 
@@ -30,6 +31,10 @@ else:
     app.config['MONGO_URI'] = f"{mongo_uri}?tlsCAFile={certifi.where()}"
 
 mongo = PyMongo(app)
+
+# Groq API for AI responses (free tier available)
+GROQ_API_KEY = os.getenv('GROQ_API_KEY')
+GROQ_API_URL = "https://api.groq.com/openai/v1/chat/completions"
 
 # RAG Knowledge Base (using TF-IDF for lightweight deployment)
 class PortfolioRAG:
@@ -315,39 +320,63 @@ def chat():
         return jsonify({'error': str(e)}), 500
 
 def generate_response(user_query, context, relevant_docs):
-    """Generate conversational response from retrieved context"""
+    """Generate AI response using Groq API with RAG context"""
+    
+    # If Groq API key is available, use AI
+    if GROQ_API_KEY:
+        try:
+            system_prompt = """You are a helpful portfolio assistant for Aaryan Gole. 
+Answer questions about Aaryan based ONLY on the provided context. 
+Be conversational, friendly, and concise (2-3 sentences max).
+If the context doesn't contain relevant information, politely say you can help with questions about Aaryan's background, skills, projects, experience, or contact info.
+Always refer to Aaryan in third person (he/him) unless the user is clearly talking to Aaryan directly."""
+
+            user_prompt = f"""Context about Aaryan:
+{context}
+
+User question: {user_query}
+
+Answer based on the context:"""
+
+            headers = {
+                "Authorization": f"Bearer {GROQ_API_KEY}",
+                "Content-Type": "application/json"
+            }
+            
+            payload = {
+                "model": "llama-3.1-8b-instant",
+                "messages": [
+                    {"role": "system", "content": system_prompt},
+                    {"role": "user", "content": user_prompt}
+                ],
+                "max_tokens": 200,
+                "temperature": 0.7
+            }
+            
+            response = requests.post(GROQ_API_URL, headers=headers, json=payload, timeout=10)
+            
+            if response.status_code == 200:
+                return response.json()['choices'][0]['message']['content'].strip()
+        except Exception as e:
+            print(f"Groq API error: {e}")
+    
+    # Fallback to rule-based responses if no API key or API fails
     query_lower = user_query.lower()
     
     # Greeting responses
     if any(word in query_lower for word in ['hi', 'hello', 'hey', 'greetings']):
-        return f"Hi there! I'm Aaryan Gole's portfolio assistant. {context.split('.')[0]}. How can I help you learn more about me?"
+        return f"Hi there! I'm Aaryan Gole's portfolio assistant. {context.split('.')[0]}. How can I help you learn more about him?"
     
     # Why hire / strengths questions
     if any(phrase in query_lower for phrase in ['hire', 'why should', 'strengths', 'best', 'good at', 'capable']):
-        return f"Aaryan brings a unique combination of AI/ML expertise and full-stack development skills. {context.split('.')[0]}. He has hands-on experience building production-grade AI systems, RAG chatbots, and scalable web applications. His projects demonstrate problem-solving abilities and technical depth."
+        return f"Aaryan brings a unique combination of AI/ML expertise and full-stack development skills. {context.split('.')[0]}. He has hands-on experience building production-grade AI systems, RAG chatbots, and scalable web applications."
     
     # Project-specific responses
     if 'project' in query_lower or 'built' in query_lower or 'created' in query_lower:
-        if relevant_docs:
-            doc = relevant_docs[0]
-            if 'project_' in doc['category']:
-                return f"Great question! {context.split('.')[0]}. This project demonstrates my expertise in {doc['category'].replace('project_', '').upper()}."
-        return f"I've worked on several interesting projects: {context}"
-    
-    # Skills responses
-    if any(word in query_lower for word in ['skill', 'expertise', 'know', 'experience', 'technology', 'tech']):
-        return f"My key competencies include: {context}"
-    
-    # Contact responses
-    if any(word in query_lower for word in ['contact', 'reach', 'email', 'phone', 'linkedin', 'github']):
-        return f"Here's how you can reach me: {context}"
-    
-    # Education responses
-    if any(word in query_lower for word in ['education', 'study', 'college', 'university', 'degree', 'gpa']):
-        return f"About my education: {context}"
+        return f"Here's what I found: {context.split('.')[0]}."
     
     # Default conversational response
-    return f"Based on my portfolio: {context}"
+    return f"Based on Aaryan's portfolio: {context.split('.')[0]}."
 
 @app.route('/api/health', methods=['GET'])
 def health():
