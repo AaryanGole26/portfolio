@@ -9,7 +9,7 @@ from email.mime.multipart import MIMEMultipart
 from datetime import datetime, UTC
 from bson.objectid import ObjectId
 import numpy as np
-from sentence_transformers import SentenceTransformer
+from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 
 load_dotenv()
@@ -23,12 +23,12 @@ if not app.config['MONGO_URI']:
     raise ValueError("MONGO_URI not found in environment variables. Please set it in your .env file.")
 mongo = PyMongo(app)
 
-# RAG Knowledge Base
+# RAG Knowledge Base (using TF-IDF for lightweight deployment)
 class PortfolioRAG:
     def __init__(self):
-        self.model = SentenceTransformer('all-MiniLM-L6-v2')
+        self.vectorizer = TfidfVectorizer(stop_words='english', ngram_range=(1, 2))
         self.knowledge_base = self._create_knowledge_base()
-        self.embeddings = None
+        self.tfidf_matrix = None
         self._generate_embeddings()
     
     def _create_knowledge_base(self):
@@ -97,14 +97,14 @@ class PortfolioRAG:
         ]
     
     def _generate_embeddings(self):
-        """Generate embeddings for all knowledge base chunks"""
+        """Generate TF-IDF vectors for all knowledge base chunks"""
         texts = [doc['content'] for doc in self.knowledge_base]
-        self.embeddings = self.model.encode(texts, convert_to_numpy=True)
+        self.tfidf_matrix = self.vectorizer.fit_transform(texts)
     
     def search(self, query, top_k=3):
-        """Retrieve relevant portfolio information using semantic search"""
-        query_embedding = self.model.encode(query, convert_to_numpy=True)
-        similarities = cosine_similarity([query_embedding], self.embeddings)[0]
+        """Retrieve relevant portfolio information using TF-IDF similarity"""
+        query_vector = self.vectorizer.transform([query])
+        similarities = cosine_similarity(query_vector, self.tfidf_matrix)[0]
         
         top_indices = np.argsort(similarities)[-top_k:][::-1]
         results = [
@@ -113,7 +113,7 @@ class PortfolioRAG:
                 "category": self.knowledge_base[idx]['category'],
                 "score": float(similarities[idx])
             }
-            for idx in top_indices if similarities[idx] > 0.1
+            for idx in top_indices if similarities[idx] > 0.05
         ]
         return results
 
