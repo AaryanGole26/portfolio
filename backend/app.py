@@ -143,80 +143,87 @@ class PortfolioRAG:
 rag = PortfolioRAG()
 
 def send_email(to_email, name, message):
-    """Send email to user and yourself"""
-    try:
-        sender_email = os.getenv('EMAIL_ADDRESS')
-        sender_password = os.getenv('EMAIL_PASSWORD')
-        smtp_server = os.getenv('SMTP_SERVER', 'smtp.gmail.com')
-        smtp_port = int(os.getenv('SMTP_PORT', 587))
+    """Send email to user and yourself in a non-blocking way with timeout"""
+    import threading
+    def _send():
+        try:
+            sender_email = os.getenv('EMAIL_ADDRESS')
+            sender_password = os.getenv('EMAIL_PASSWORD')
+            smtp_server = os.getenv('SMTP_SERVER', 'smtp.gmail.com')
+            smtp_port = int(os.getenv('SMTP_PORT', 587))
 
-        print(f"DEBUG: Email config - Server: {smtp_server}, Port: {smtp_port}, Email: {sender_email}")
+            print(f"DEBUG: Email config - Server: {smtp_server}, Port: {smtp_port}, Email: {sender_email}")
 
-        if not sender_email or not sender_password:
-            print("Email credentials not configured. Skipping email notification.")
+            if not sender_email or not sender_password:
+                print("Email credentials not configured. Skipping email notification.")
+                return True
+
+            # Email to user
+            user_subject = "Thank you for reaching out!"
+            user_body = f"""
+            Hi {name},
+
+            Thank you for your message! I've received your inquiry and will get back to you as soon as possible.
+
+            Best regards,
+            Aaryan Gole
+            """
+
+            # Email to admin
+            admin_subject = f"New Contact Form Submission from {name}"
+            admin_body = f"""
+            New message received on your portfolio:
+
+            Name: {name}
+            Email: {to_email}
+            Message: {message}
+
+            ---
+            Reply to: {to_email}
+            """
+
+            # Send emails
+            print(f"DEBUG: Connecting to {smtp_server}:{smtp_port}...")
+            server = smtplib.SMTP(smtp_server, smtp_port, timeout=10)
+            print("DEBUG: Connected, starting TLS...")
+            server.starttls()
+            print("DEBUG: TLS started, logging in...")
+            server.login(sender_email, sender_password)
+            print("DEBUG: Login successful")
+
+            # Send to user
+            msg_user = MIMEMultipart()
+            msg_user['From'] = sender_email
+            msg_user['To'] = to_email
+            msg_user['Subject'] = user_subject
+            msg_user.attach(MIMEText(user_body, 'plain'))
+            print(f"DEBUG: Sending email to {to_email}...")
+            server.send_message(msg_user)
+            print("DEBUG: Email to user sent")
+
+            # Send to admin
+            msg_admin = MIMEMultipart()
+            msg_admin['From'] = sender_email
+            msg_admin['To'] = sender_email
+            msg_admin['Subject'] = admin_subject
+            msg_admin.attach(MIMEText(admin_body, 'plain'))
+            print(f"DEBUG: Sending email to admin {sender_email}...")
+            server.send_message(msg_admin)
+            print("DEBUG: Email to admin sent")
+
+            server.quit()
+            print("DEBUG: Email sending completed successfully")
             return True
-
-        # Email to user
-        user_subject = "Thank you for reaching out!"
-        user_body = f"""
-        Hi {name},
-
-        Thank you for your message! I've received your inquiry and will get back to you as soon as possible.
-
-        Best regards,
-        Aaryan Gole
-        """
-
-        # Email to admin
-        admin_subject = f"New Contact Form Submission from {name}"
-        admin_body = f"""
-        New message received on your portfolio:
-
-        Name: {name}
-        Email: {to_email}
-        Message: {message}
-
-        ---
-        Reply to: {to_email}
-        """
-
-        # Send emails
-        print(f"DEBUG: Connecting to {smtp_server}:{smtp_port}...")
-        server = smtplib.SMTP(smtp_server, smtp_port)
-        print("DEBUG: Connected, starting TLS...")
-        server.starttls()
-        print("DEBUG: TLS started, logging in...")
-        server.login(sender_email, sender_password)
-        print("DEBUG: Login successful")
-
-        # Send to user
-        msg_user = MIMEMultipart()
-        msg_user['From'] = sender_email
-        msg_user['To'] = to_email
-        msg_user['Subject'] = user_subject
-        msg_user.attach(MIMEText(user_body, 'plain'))
-        print(f"DEBUG: Sending email to {to_email}...")
-        server.send_message(msg_user)
-        print("DEBUG: Email to user sent")
-
-        # Send to admin
-        msg_admin = MIMEMultipart()
-        msg_admin['From'] = sender_email
-        msg_admin['To'] = sender_email
-        msg_admin['Subject'] = admin_subject
-        msg_admin.attach(MIMEText(admin_body, 'plain'))
-        print(f"DEBUG: Sending email to admin {sender_email}...")
-        server.send_message(msg_admin)
-        print("DEBUG: Email to admin sent")
-
-        server.quit()
-        print("DEBUG: Email sending completed successfully")
-        return True
-    except Exception as e:
-        print(f"ERROR sending email: {str(e)}")
-        import traceback
-        traceback.print_exc()
-        return False
+        except Exception as e:
+            print(f"ERROR sending email: {str(e)}")
+            import traceback
+            traceback.print_exc()
+            return False
+    # Run email sending in a background thread
+    thread = threading.Thread(target=_send)
+    thread.daemon = True
+    thread.start()
+    return True
 
 @app.route('/api/contact', methods=['POST'])
 def contact():
