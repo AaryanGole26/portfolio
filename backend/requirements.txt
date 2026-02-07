@@ -3,13 +3,6 @@ Flask-CORS==4.0.0
 Flask-PyMongo==2.3.0
 python-dotenv==1.0.0
 pymongo==4.5.0
-<<<<<<< HEAD
 numpy
 scikit-learn
 gunicorn==21.2.0
-=======
-sentence-transformers>=3.0.0
-numpy
-scikit-learn
-gunicorn==21.2.0
->>>>>>> 81f5fadc3e900c75ce37c4e860bea09c558333d1
