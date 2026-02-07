@@ -18,7 +18,9 @@ app = Flask(__name__)
 CORS(app)
 
 # MongoDB Configuration
-app.config['MONGO_URI'] = os.getenv('MONGO_URI', 'mongodb+srv://username:password@cluster.mongodb.net/portfolio?retryWrites=true&w=majority')
+app.config['MONGO_URI'] = os.getenv('MONGO_URI')
+if not app.config['MONGO_URI']:
+    raise ValueError("MONGO_URI not found in environment variables. Please set it in your .env file.")
 mongo = PyMongo(app)
 
 # RAG Knowledge Base

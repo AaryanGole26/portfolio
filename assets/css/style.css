@@ -142,19 +142,109 @@ body{
 @media(max-width:900px){
   .hero{
     padding:50px 25px;
+    min-height: 90vh;
   }
   .hero-content{
     flex-direction: column;
     text-align: center;
+    gap: 30px;
+    margin-right: 0;
   }
   .hero-content h1{
     font-size:44px;
+    line-height: 1.2;
   }
   .profile-pic{
-    width: 150px;
-    height: 150px;
+    width: 130px;
+    height: 130px;
     margin-bottom: 20px;
-    margin-top: -20px;
+    margin-top: 0;
+  }
+  .nav {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+  }
+  .socials {
+    justify-content: center;
+  }
+  .wave {
+    width: 500px;
+    height: 500px;
+    right: -250px;
+  }
+}
+
+@media(max-width:768px){
+  .hero{
+    padding: 40px 20px;
+    min-height: 85vh;
+  }
+  .hero-content h1 {
+    font-size: 36px;
+  }
+  .hero-content h2 {
+    font-size: 16px;
+  }
+  .profile-pic {
+    width: 110px;
+    height: 110px;
+  }
+  .nav {
+    gap: 15px;
+    font-size: 14px;
+  }
+  .nav a {
+    font-size: 13px;
+  }
+  .wave {
+    width: 400px;
+    height: 400px;
+    right: -200px;
+  }
+}
+
+@media(max-width:480px){
+  .hero{
+    padding: 30px 15px;
+    min-height: 100vh;
+  }
+  .hero-content h1 {
+    font-size: 28px;
+    margin-bottom: 10px;
+  }
+  .hero-content h2 {
+    font-size: 14px;
+  }
+  .profile-pic {
+    width: 100px;
+    height: 100px;
+  }
+  .nav {
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 20px;
+  }
+  .nav a {
+    font-size: 12px;
+    padding: 8px 12px;
+  }
+  .socials {
+    gap: 15px;
+    margin-top: 20px;
+  }
+  .socials a {
+    width: 38px;
+    height: 38px;
+    font-size: 16px;
+  }
+  .wave {
+    width: 300px;
+    height: 300px;
+    right: -150px;
+  }
+  .hero::before {
+    background: linear-gradient(to right, #0b0e14 50%, rgba(11,14,20,0.7));
   }
 }
 
