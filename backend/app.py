@@ -12,6 +12,7 @@ import numpy as np
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 import certifi
+import requests
 
 load_dotenv()
 
@@ -30,6 +31,10 @@ else:
     app.config['MONGO_URI'] = f"{mongo_uri}?tlsCAFile={certifi.where()}"
 
 mongo = PyMongo(app)
+
+# Groq API for AI responses (free tier available)
+GROQ_API_KEY = os.getenv('GROQ_API_KEY')
+GROQ_API_URL = "https://api.groq.com/openai/v1/chat/completions"
 
 # RAG Knowledge Base (using TF-IDF for lightweight deployment)
 class PortfolioRAG:
@@ -138,80 +143,100 @@ class PortfolioRAG:
 rag = PortfolioRAG()
 
 def send_email(to_email, name, message):
-    """Send email to user and yourself"""
-    try:
-        sender_email = os.getenv('EMAIL_ADDRESS')
-        sender_password = os.getenv('EMAIL_PASSWORD')
-        smtp_server = os.getenv('SMTP_SERVER', 'smtp.gmail.com')
-        smtp_port = int(os.getenv('SMTP_PORT', 587))
+    """Send email using SendGrid API (works on Render, non-blocking)"""
+    import threading
+    def _send():
+        try:
+            sendgrid_api_key = os.getenv('SENDGRID_API_KEY')
+            sender_email = os.getenv('EMAIL_ADDRESS', 'goleaaryan7@gmail.com')
+            
+            if not sendgrid_api_key:
+                print("SendGrid API key not configured. Skipping email notification.")
+                return True
 
-        print(f"DEBUG: Email config - Server: {smtp_server}, Port: {smtp_port}, Email: {sender_email}")
+            # Email to user
+            user_email_data = {
+                "personalizations": [{
+                    "to": [{"email": to_email}],
+                    "subject": "Thank you for reaching out!"
+                }],
+                "from": {"email": sender_email, "name": "Aaryan Gole"},
+                "content": [{
+                    "type": "text/plain",
+                    "value": f"""Hi {name},
 
-        if not sender_email or not sender_password:
-            print("Email credentials not configured. Skipping email notification.")
+Thank you for your message! I've received your inquiry and will get back to you as soon as possible.
+
+Best regards,
+Aaryan Gole"""
+                }]
+            }
+
+            # Email to admin
+            admin_email_data = {
+                "personalizations": [{
+                    "to": [{"email": sender_email}],
+                    "subject": f"New Contact Form Submission from {name}"
+                }],
+                "from": {"email": sender_email, "name": "Portfolio Contact Form"},
+                "content": [{
+                    "type": "text/plain",
+                    "value": f"""New message received on your portfolio:
+
+Name: {name}
+Email: {to_email}
+Message: {message}
+
+---
+Reply to: {to_email}"""
+                }]
+            }
+
+            headers = {
+                "Authorization": f"Bearer {sendgrid_api_key}",
+                "Content-Type": "application/json"
+            }
+
+            # Send email to user
+            print(f"Sending email to {to_email} via SendGrid...")
+            response = requests.post(
+                "https://api.sendgrid.com/v3/mail/send",
+                headers=headers,
+                json=user_email_data,
+                timeout=10
+            )
+            
+            if response.status_code == 202:
+                print(f"Email to user sent successfully")
+            else:
+                print(f"Failed to send email to user: {response.status_code} - {response.text}")
+
+            # Send email to admin
+            print(f"Sending notification to admin...")
+            response = requests.post(
+                "https://api.sendgrid.com/v3/mail/send",
+                headers=headers,
+                json=admin_email_data,
+                timeout=10
+            )
+            
+            if response.status_code == 202:
+                print(f"Admin notification sent successfully")
+            else:
+                print(f"Failed to send admin notification: {response.status_code} - {response.text}")
+
             return True
-
-        # Email to user
-        user_subject = "Thank you for reaching out!"
-        user_body = f"""
-        Hi {name},
-
-        Thank you for your message! I've received your inquiry and will get back to you as soon as possible.
-
-        Best regards,
-        Aaryan Gole
-        """
-
-        # Email to admin
-        admin_subject = f"New Contact Form Submission from {name}"
-        admin_body = f"""
-        New message received on your portfolio:
-
-        Name: {name}
-        Email: {to_email}
-        Message: {message}
-
-        ---
-        Reply to: {to_email}
-        """
-
-        # Send emails
-        print(f"DEBUG: Connecting to {smtp_server}:{smtp_port}...")
-        server = smtplib.SMTP(smtp_server, smtp_port)
-        print("DEBUG: Connected, starting TLS...")
-        server.starttls()
-        print("DEBUG: TLS started, logging in...")
-        server.login(sender_email, sender_password)
-        print("DEBUG: Login successful")
-
-        # Send to user
-        msg_user = MIMEMultipart()
-        msg_user['From'] = sender_email
-        msg_user['To'] = to_email
-        msg_user['Subject'] = user_subject
-        msg_user.attach(MIMEText(user_body, 'plain'))
-        print(f"DEBUG: Sending email to {to_email}...")
-        server.send_message(msg_user)
-        print("DEBUG: Email to user sent")
-
-        # Send to admin
-        msg_admin = MIMEMultipart()
-        msg_admin['From'] = sender_email
-        msg_admin['To'] = sender_email
-        msg_admin['Subject'] = admin_subject
-        msg_admin.attach(MIMEText(admin_body, 'plain'))
-        print(f"DEBUG: Sending email to admin {sender_email}...")
-        server.send_message(msg_admin)
-        print("DEBUG: Email to admin sent")
-
-        server.quit()
-        print("DEBUG: Email sending completed successfully")
-        return True
-    except Exception as e:
-        print(f"ERROR sending email: {str(e)}")
-        import traceback
-        traceback.print_exc()
-        return False
+        except Exception as e:
+            print(f"ERROR sending email via SendGrid: {str(e)}")
+            import traceback
+            traceback.print_exc()
+            return False
+    
+    # Run email sending in a background thread
+    thread = threading.Thread(target=_send)
+    thread.daemon = True
+    thread.start()
+    return True
 
 @app.route('/api/contact', methods=['POST'])
 def contact():
@@ -315,39 +340,63 @@ def chat():
         return jsonify({'error': str(e)}), 500
 
 def generate_response(user_query, context, relevant_docs):
-    """Generate conversational response from retrieved context"""
+    """Generate AI response using Groq API with RAG context"""
+    
+    # If Groq API key is available, use AI
+    if GROQ_API_KEY:
+        try:
+            system_prompt = """You are a helpful portfolio assistant for Aaryan Gole. 
+Answer questions about Aaryan based ONLY on the provided context. 
+Be conversational, friendly, and concise (2-3 sentences max).
+If the context doesn't contain relevant information, politely say you can help with questions about Aaryan's background, skills, projects, experience, or contact info.
+Always refer to Aaryan in third person (he/him) unless the user is clearly talking to Aaryan directly."""
+
+            user_prompt = f"""Context about Aaryan:
+{context}
+
+User question: {user_query}
+
+Answer based on the context:"""
+
+            headers = {
+                "Authorization": f"Bearer {GROQ_API_KEY}",
+                "Content-Type": "application/json"
+            }
+            
+            payload = {
+                "model": "llama-3.1-8b-instant",
+                "messages": [
+                    {"role": "system", "content": system_prompt},
+                    {"role": "user", "content": user_prompt}
+                ],
+                "max_tokens": 200,
+                "temperature": 0.7
+            }
+            
+            response = requests.post(GROQ_API_URL, headers=headers, json=payload, timeout=10)
+            
+            if response.status_code == 200:
+                return response.json()['choices'][0]['message']['content'].strip()
+        except Exception as e:
+            print(f"Groq API error: {e}")
+    
+    # Fallback to rule-based responses if no API key or API fails
     query_lower = user_query.lower()
     
     # Greeting responses
     if any(word in query_lower for word in ['hi', 'hello', 'hey', 'greetings']):
-        return f"Hi there! I'm Aaryan Gole's portfolio assistant. {context.split('.')[0]}. How can I help you learn more about me?"
+        return f"Hi there! I'm Aaryan Gole's portfolio assistant. {context.split('.')[0]}. How can I help you learn more about him?"
     
     # Why hire / strengths questions
     if any(phrase in query_lower for phrase in ['hire', 'why should', 'strengths', 'best', 'good at', 'capable']):
-        return f"Aaryan brings a unique combination of AI/ML expertise and full-stack development skills. {context.split('.')[0]}. He has hands-on experience building production-grade AI systems, RAG chatbots, and scalable web applications. His projects demonstrate problem-solving abilities and technical depth."
+        return f"Aaryan brings a unique combination of AI/ML expertise and full-stack development skills. {context.split('.')[0]}. He has hands-on experience building production-grade AI systems, RAG chatbots, and scalable web applications."
     
     # Project-specific responses
     if 'project' in query_lower or 'built' in query_lower or 'created' in query_lower:
-        if relevant_docs:
-            doc = relevant_docs[0]
-            if 'project_' in doc['category']:
-                return f"Great question! {context.split('.')[0]}. This project demonstrates my expertise in {doc['category'].replace('project_', '').upper()}."
-        return f"I've worked on several interesting projects: {context}"
-    
-    # Skills responses
-    if any(word in query_lower for word in ['skill', 'expertise', 'know', 'experience', 'technology', 'tech']):
-        return f"My key competencies include: {context}"
-    
-    # Contact responses
-    if any(word in query_lower for word in ['contact', 'reach', 'email', 'phone', 'linkedin', 'github']):
-        return f"Here's how you can reach me: {context}"
-    
-    # Education responses
-    if any(word in query_lower for word in ['education', 'study', 'college', 'university', 'degree', 'gpa']):
-        return f"About my education: {context}"
+        return f"Here's what I found: {context.split('.')[0]}."
     
     # Default conversational response
-    return f"Based on my portfolio: {context}"
+    return f"Based on Aaryan's portfolio: {context.split('.')[0]}."
 
 @app.route('/api/health', methods=['GET'])
 def health():
