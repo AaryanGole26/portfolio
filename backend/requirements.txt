@@ -7,4 +7,8 @@ certifi
 numpy
 scikit-learn
 gunicorn==21.2.0
+<<<<<<< HEAD
 requests
+=======
+requests
+>>>>>>> 3d7e751caf1f7a9bf08fb711a688df6b77350773
