@@ -2,14 +2,21 @@
   publish = "."
   ignore = "git diff --quiet $CACHED_COMMIT_REF $COMMIT_REF backend/"
 
+# API Routing: Redirect /api/* calls to Render backend
+# IMPORTANT: Update the URL below with your actual Render service URL
+# Format: https://YOUR-SERVICE-NAME.onrender.com
+# Find it in: Render Dashboard → Your Service → Copy URL
 [[redirects]]
   from = "/api/*"
-  to = "https://your-backend-url.onrender.com/api/:splat"
+  to = "https://portfolio-backend.onrender.com/api/:splat"
   status = 200
   force = true
 
+# Security Headers
 [[headers]]
   for = "/*"
   [headers.values]
     X-Frame-Options = "DENY"
     X-Content-Type-Options = "nosniff"
+    X-XSS-Protection = "1; mode=block"
+    Referrer-Policy = "strict-origin-when-cross-origin"

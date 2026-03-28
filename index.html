@@ -1,799 +1,1385 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Aaryan Gole - Portfolio</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/style.css">
-<link rel="stylesheet" href="assets/css/sections.css">
-<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12/lib/typed.min.js"></script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@2.1.4/css/boxicons.min.css">
-<link rel="icon" type="image/png" href="assets/img/favicon.png"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aaryan Gole - Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;600;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/sections.css">
+  <link rel="stylesheet" href="assets/css/responsive.css">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@2.1.4/css/boxicons.min.css">
+  <link rel="icon" type="image/png" href="assets/img/favicon.png" />
 </head>
 
 <body>
 
-<!-- HERO SECTION -->
-<section class="hero" id="home">
-  <div class="wave"></div>
+  <!-- Custom Cursor -->
+  <div id="cursor-dot"></div>
+  <div id="cursor-ring"></div>
 
-  <div class="hero-logo">
-    <a href="#home">AG.</a>
+  <!-- Global Navigation -->
+  <header class="global-nav">
+    <div class="nav-logo">
+      <a href="#home" class="logo">A<span>ryn.</span>G<span>ole</span></a>
+    </div>
+    <nav class="nav-links">
+      <a href="#about" class="nav-item">about</a>
+      <a href="#skills" class="nav-item">skills</a>
+      <a href="#experience" class="nav-item">experience</a>
+      <a href="#projects" class="nav-item">projects</a>
+      <a href="#contact" class="nav-item">contact</a>
+    </nav>
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark/light mode">
+      <i class="bx bx-sun" id="themeIcon"></i>
+    </button>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section class="hero" id="home">
+    <div class="hero-bg-glow"></div>
+    <div class="hero-grid-overlay"></div>
+
+    <!-- Main Content -->
+    <div class="hero-content">
+      <div class="hero-text">
+        <!-- Tech Badges -->
+        <div class="tech-badges">
+          <span class="tech-badge">flask</span>
+          <span class="tech-badge">machine learning</span>
+          <span class="tech-badge">data science</span>
+        </div>
+
+        <span class="hello-text">Hello, I'm</span>
+        <h1><span class="highlight-scroll">Aaryan</span><br><span class="name-accent">Gole.</span></h1>
+
+        <div class="hero-pic-mobile">
+          <div class="hero-image-card">
+            <div class="image-clip">
+              <img src="assets/img/acg.jpeg" alt="Aaryan Gole">
+            </div>
+            <div class="profile-badge badge-1">
+              <span class="badge-icon">💭</span>
+              <span class="badge-text">Hey</span>
+            </div>
+          </div>
+        </div>
+
+        <p class="hero-description">AI & Data Science student building scalable backend systems and intelligent applications with machine learning.</p>
+
+        <div class="hero-cta">
+          <a href="#contact" class="btn-primary">Get in touch <span class="btn-arrow">&rsaquo;</span></a>
+          <a href="#about" class="btn-secondary">Learn more</a>
+        </div>
+
+        <div class="socials">
+          <a href="https://www.linkedin.com/in/aaryan-gole" target="_blank" class="linkedin"><i
+              class="bx bxl-linkedin"></i></a>
+          <a href="https://www.github.com/AaryanGole26" target="_blank" class="github"><i class="bx bxl-github"></i></a>
+          <a href="mailto:goleaaryan7@gmail.com" target="_blank" class="google"><i class="bx bxl-google"></i></a>
+          <a href="https://drive.google.com/file/d/1NWJxPXYwa6j8cYUhQZHHWw0X0ARIw16I/view?usp=sharing" target="_blank"
+            rel="noopener noreferrer" class="resume-link"><i class="bx bxs-file-doc"></i></a>
+        </div>
+      </div>
+
+      <div class="hero-pic">
+        <div class="hero-image-card">
+          <div class="image-clip">
+            <div class="image-glow"></div>
+            <img src="assets/img/acg.jpeg" alt="Aaryan Gole">
+          </div>
+          <div class="profile-badge badge-1">
+            <span class="badge-icon">💭</span>
+            <span class="badge-text">Hey</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scroll Indicator -->
+    <div class="scroll-indicator">
+      <span>Scroll to discover</span>
+      <div class="scroll-arrow">
+        <i class="bx bx-chevron-down"></i>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT SECTION -->
+  <section class="about" id="about">
+    <div class="wave wave-left"></div>
+
+    <div class="section-content">
+      <div class="section-title">
+        <h2>About <span class="accent-text">Me</span></h2>
+      </div>
+
+      <div class="about-container">
+        <div class="about-text-hero">
+          <h1 class="heroic-text">
+            I'm a passionate builder majoring in <span class="highlight-scroll">Artificial Intelligence</span> & <span
+              class="highlight-scroll">Data Science</span>
+          </h1>
+
+          <p class="heroic-subtext">
+            With a strong foundation in <span class="highlight-scroll">software engineering</span> and <span
+              class="highlight-scroll">Machine Learning</span>, I specialize in transforming complex problems into
+            elegant, scalable backend solutions. Currently exploring NLP, Transformers, and production-grade AI systems,
+            backed by hands-on experience developing RAG models using TensorFlow at Citius Tech.
+          </p>
+        </div>
+
+        <!-- Removed services section as requested -->
+      </div>
+    </div>
+    </div>
+  </section>
+
+  <!-- SKILLS SECTION -->
+  <section class="skills" id="skills">
+    <div class="wave wave-right"></div>
+
+    <div class="section-content">
+      <div class="skills-bento-grid">
+
+        <!-- Skill Card 1 -->
+        <div class="skill-bento-card">
+          <div class="skill-bento-icon"><i class="bx bx-code-alt"></i></div>
+          <h4>Programming</h4>
+          <p>Python, JavaScript, C, SQL, HTML/CSS</p>
+        </div>
+
+        <!-- Header Card -->
+        <div class="skills-header-card">
+          <p class="skills-eyebrow">What I work with</p>
+          <h2>My <span class="highlight-scroll">Tech</span><br><span class="accent-text">Stack.</span></h2>
+          <p class="skills-sub">A cross-disciplinary toolkit spanning AI, web, and systems engineering.</p>
+        </div>
+
+        <!-- Skill Card 2 -->
+        <div class="skill-bento-card">
+          <div class="skill-bento-icon"><i class="bx bx-layer"></i></div>
+          <h4>Frameworks</h4>
+          <p>Flask, Django, ReactJS, Postman, Figma, Power BI</p>
+        </div>
+
+        <!-- Skill Card 3 -->
+        <div class="skill-bento-card">
+          <div class="skill-bento-icon"><i class="bx bxs-brain"></i></div>
+          <h4>AI / ML & Data</h4>
+          <p>TensorFlow, RNN, Transformers, RAG, NLP, Computer Vision</p>
+        </div>
+
+        <!-- Skill Card 4 -->
+        <div class="skill-bento-card">
+          <div class="skill-bento-icon"><i class="bx bx-broadcast"></i></div>
+          <h4>Tools & DevOps</h4>
+          <p>Docker, Git, AWS (Basic), Linux Terminal, CI/CD</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+  <br>
+
+  <!-- EXPERIENCE SECTION -->
+  <section class="experience" id="experience">
+    <div class="wave wave-right"></div>
+
+    <div class="section-content">
+      <div class="section-title">
+        <h2>Experience <span class="accent-text">&amp;</span> Education</h2>
+      </div>
+
+      <div class="experience-container">
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="timeline-marker"></div>
+            <div class="timeline-content">
+              <h3><i class="bx bxs-briefcase"></i> Academic Intern</h3>
+              <h4>Citius Cloud | Jun 2024 – Jul 2024</h4>
+              <p>Implemented RNN, Transformers, and RAG models in TensorFlow to build a chatbot trained on web-scraped
+                data. Gained experience in building production-ready AI systems.</p>
+              <div class="timeline-tags">
+                <span>TensorFlow</span>
+                <span>RNN</span>
+                <span>Transformers</span>
+                <span>RAG</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-marker"></div>
+            <div class="timeline-content">
+              <h3><i class="bx bxs-graduation"></i> Bachelor of Engineering - AI & Data Science</h3>
+              <h4>VCET, Vasai, MH | Nov 2022 – Present</h4>
+              <p>Majoring in Artificial Intelligence and Data Science with a strong focus on machine learning, deep
+                learning, and data analysis.</p>
+              <div class="score-badge">
+                <span class="score-label">CGPA: 8.16/10</span>
+                <i class="bx bxs-info-circle"></i>
+              </div>
+              <div class="timeline-tags">
+                <span>Data Analysis</span>
+                <span>AI</span>
+                <span>Algorithms</span>
+                <span>Software Engineering</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-marker"></div>
+            <div class="timeline-content">
+              <h3><i class="bx bxs-medal"></i> AISSCE (CBSE XII) - Science (PCM)</h3>
+              <h4>2022</h4>
+              <p>Science stream with Physics, Chemistry, and Mathematics specialization.</p>
+              <div class="score-badge">
+                <span class="score-label">Score: 74.00%</span>
+                <i class="bx bxs-info-circle"></i>
+              </div>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-marker"></div>
+            <div class="timeline-content">
+              <h3><i class="bx bxs-award"></i> AISSE (CBSE X)</h3>
+              <h4>2020</h4>
+              <p>Exceptional academic performance in CBSE Board Examination.</p>
+              <div class="score-badge">
+                <span class="score-label">Score: 94.20%</span>
+                <i class="bx bxs-info-circle"></i>
+              </div>
+              <div class="achievement-tag">
+                <i class="bx bxs-trophy"></i>
+                <span>Ranked as Top 2 Student in Academic Performance</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="certifications">
+          <h3><i class="bx bxs-certification"></i> Certifications</h3>
+          <ul>
+            <li><i class="bx bxl-microsoft"></i> Fundamentals of Machine Learning - Microsoft Learn</li>
+            <li><i class="bx bxs-data"></i> Data Analytics Program - Godrej Infotech Ltd. (Centum Foundation)</li>
+            <li><i class="bx bxs-package"></i> MLOps with Data Version Control: CI/CD Using CML - Infosys Springboard
+            </li>
+            <li><i class="bx bxl-google"></i> GenAI Academy - Google Cloud (Hack2Skill)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS SECTION -->
+  <section class="projects" id="projects">
+    <div class="wave wave-left"></div>
+
+    <div class="projects-wrapper">
+      <!-- Sticky Sidebar -->
+      <aside class="projects-sidebar">
+        <div class="sidebar-content">
+          <h2 class="sidebar-title"><span class="accent-text">Featured</span><br>Projects</h2>
+          <div class="projects-filters">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="research">Research</button>
+            <button class="filter-btn" data-filter="extra">Extra</button>
+          </div>
+          <nav class="projects-nav">
+            <div class="nav-item-wrapper active" data-project="1">
+              <span class="nav-no">01</span>
+              <span class="nav-name">LawPal</span>
+            </div>
+            <div class="nav-item-wrapper" data-project="2">
+              <span class="nav-no">02</span>
+              <span class="nav-name">OptiResume-AI</span>
+            </div>
+            <div class="nav-item-wrapper" data-project="3">
+              <span class="nav-no">03</span>
+              <span class="nav-name">FinSlash</span>
+            </div>
+            <div class="nav-item-wrapper" data-project="4">
+              <span class="nav-no">04</span>
+              <span class="nav-name">Rento</span>
+            </div>
+            <div class="nav-item-wrapper" data-project="5">
+              <span class="nav-no">05</span>
+              <span class="nav-name">CineSLEUTH</span>
+            </div>
+            <div class="nav-item-wrapper" data-project="6">
+              <span class="nav-no">06</span>
+              <span class="nav-name">DriveSense</span>
+            </div>
+            <div class="nav-item-wrapper" data-project="7">
+              <span class="nav-no">07</span>
+              <span class="nav-name">ArcadePy</span>
+            </div>
+            <div class="nav-item-wrapper" data-project="8">
+              <span class="nav-no">08</span>
+              <span class="nav-name">Collatz</span>
+            </div>
+            <div class="nav-item-wrapper" data-project="9">
+              <span class="nav-no">09</span>
+              <span class="nav-name">CGPA Calc</span>
+            </div>
+            <div class="nav-item-wrapper" data-project="10">
+              <span class="nav-no">10</span>
+              <span class="nav-name">LUME</span>
+            </div>
+          </nav>
+        </div>
+      </aside>
+
+      <!-- Scrolling Content -->
+      <div class="projects-list">
+        <!-- Project 1 -->
+        <div class="project-showcase" id="project-1" data-project="1">
+          <div class="showcase-visual">
+            <div class="video-container" data-video="assets/videos/lawpal-demo.mp4">
+              <img src="assets/img/lawpal.jpg" alt="LawPal" class="showcase-img">
+              <video muted loop playsinline></video>
+              <div class="play-overlay-v2">
+                <i class="bx bx-play"></i>
+                <span>View Demo</span>
+              </div>
+            </div>
+          </div>
+          <div class="showcase-info">
+            <div class="info-content">
+              <span class="info-tag">Research / Coursework</span>
+              <h3>LawPal — Legal AI Assistant</h3>
+              <p>LawPal is an AI-driven chatbot designed to assist users with legal inquiries, document analysis, and
+                case law retrieval. It simplifies legal research and provides real-time guidance by leveraging Pinecone
+                for vector search, Groq for natural language processing, and Flask for backend services.</p>
+              <div class="showcase-tags">
+                <span>Flask</span><span>RAG</span><span>NLP</span><span>Voice Assistant</span>
+              </div>
+              <div class="showcase-actions">
+                <a href="https://github.com/AaryanGole26/lawpal" target="_blank" class="btn-action">Github <i
+                    class="bx bxl-github"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 2 -->
+        <div class="project-showcase" id="project-2" data-project="2" data-category="research">
+          <div class="showcase-visual">
+            <div class="video-container" data-video="assets/videos/optiresume-demo.mp4">
+              <img src="assets/img/optiresume.jpg" alt="OptiResume-AI" class="showcase-img">
+              <video muted loop playsinline></video>
+              <div class="play-overlay-v2">
+                <i class="bx bx-play"></i>
+                <span>View Demo</span>
+              </div>
+            </div>
+          </div>
+          <div class="showcase-info">
+            <div class="info-content">
+              <span class="info-tag">Research / Coursework</span>
+              <h3>OptiResume — AI-Driven Resume Optimization</h3>
+              <p>A full‑stack AI system to parse, analyze, and optimize resumes. Features automated job link extraction,
+                AI-powered content enhancement, and 6 professional ATS-friendly templates with LaTeX/PDF export.</p>
+              <div class="showcase-tags">
+                <span>NLP</span><span>Web Scraping</span><span>React</span><span>Flask</span><span>LaTeX</span>
+              </div>
+              <div class="showcase-actions">
+                <a href="https://github.com/AaryanGole26/OptiResume-AI" target="_blank" class="btn-action">Github <i
+                    class="bx bxl-github"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 3 -->
+        <div class="project-showcase" id="project-3" data-project="3" data-category="extra">
+          <div class="showcase-visual">
+            <div class="video-container" data-video="assets/videos/finslash-demo.mp4">
+              <img src="assets/img/finslash.jpg" alt="FinSlash" class="showcase-img">
+              <video muted loop playsinline></video>
+              <div class="play-overlay-v2">
+                <i class="bx bx-play"></i>
+                <span>View Demo</span>
+              </div>
+            </div>
+          </div>
+          <div class="showcase-info">
+            <div class="info-content">
+              <span class="info-tag">Extra-Curricular</span>
+              <h3>FinSlash — Loan Dashboard</h3>
+              <p>FinSlash is an AI-driven loan approval dashboard that leverages machine learning to make loan decisions
+                faster, smarter, and more transparent. This application provides financial institutions with a
+                user-friendly interface to analyze loan applicants and make data-driven approval decisions.</p>
+              <div class="showcase-tags">
+                <span>ML</span><span>EDA</span><span>Regression</span><span>Streamlit</span>
+              </div>
+              <div class="showcase-actions">
+                <a href="https://github.com/AaryanGole26/FinSlash" target="_blank" class="btn-action">Github <i
+                    class="bx bxl-github"></i></a>
+                <a href="https://finslash-3jt.streamlit.app/" target="_blank" class="btn-action primary">Live <i
+                    class="bx bx-link-external"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 4 -->
+        <div class="project-showcase" id="project-4" data-project="4" data-category="research">
+          <div class="showcase-visual">
+            <div class="video-container" data-video="assets/videos/rento-demo.mp4">
+              <img src="assets/img/rento.jpg" alt="Rento" class="showcase-img">
+              <video muted loop playsinline></video>
+              <div class="play-overlay-v2">
+                <i class="bx bx-play"></i>
+                <span>View Demo</span>
+              </div>
+            </div>
+          </div>
+          <div class="showcase-info">
+            <div class="info-content">
+              <span class="info-tag">Research / Coursework</span>
+              <h3>Rento — Tool Rental Hub</h3>
+              <p>Rento is a web-based application designed to facilitate the rental of engineering tools and equipment.
+                This platform enables users (customers) to browse, select, and rent various engineering equipment
+                easily.</p>
+              <div class="showcase-tags">
+                <span>Django</span><span>Python</span><span>Web Dev</span><span>SQL</span>
+              </div>
+              <div class="showcase-actions">
+                <a href="https://github.com/AaryanGole26/Rento" target="_blank" class="btn-action">Github <i
+                    class="bx bxl-github"></i></a>
+                <a href="https://rento-srcr.onrender.com/" target="_blank" class="btn-action primary">Live <i
+                    class="bx bx-link-external"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 5 -->
+        <div class="project-showcase" id="project-5" data-project="5" data-category="research">
+          <div class="showcase-visual">
+            <div class="video-container" data-video="assets/videos/cinesleuth-demo.mp4">
+              <img src="assets/img/cinesleuth.jpg" alt="CineSLEUTH" class="showcase-img">
+              <video muted loop playsinline></video>
+              <div class="play-overlay-v2">
+                <i class="bx bx-play"></i>
+                <span>View Demo</span>
+              </div>
+            </div>
+          </div>
+          <div class="showcase-info">
+            <div class="info-content">
+              <span class="info-tag">Research / Coursework</span>
+              <h3>CineSLEUTH — Movie Filter</h3>
+              <p>CineSLEUTH is an intelligent movie recommendation system that combines advanced ML techniques such as
+                TF-IDF vectorization, cosine similarity, fuzzy matching, and Apriori-based collaborative filtering. The
+                system provides highly accurate and personalized movie recommendations for users.</p>
+              <div class="showcase-tags">
+                <span>Fuzzy-search</span><span>TF-IDF</span><span>Cosine Similarity</span>
+              </div>
+              <div class="showcase-actions">
+                <a href="https://github.com/AaryanGole26/CineSLEUTH" target="_blank" class="btn-action">Github <i
+                    class="bx bxl-github"></i></a>
+                <a href="https://huggingface.co/spaces/ARYN26/CineSLEUTH" target="_blank"
+                  class="btn-action primary">Live <i class="bx bx-link-external"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 6 -->
+        <div class="project-showcase" id="project-6" data-project="6" data-category="extra">
+          <div class="showcase-visual">
+            <div class="video-container" data-video="assets/videos/drivesense-demo.mp4">
+              <img src="assets/img/drivesense.jpg" alt="DriveSense" class="showcase-img">
+              <video muted loop playsinline></video>
+              <div class="play-overlay-v2">
+                <i class="bx bx-play"></i>
+                <span>View Demo</span>
+              </div>
+            </div>
+          </div>
+          <div class="showcase-info">
+            <div class="info-content">
+              <span class="info-tag">Extra-Curricular</span>
+              <h3>DriveSense — Fatigue Monitor</h3>
+              <p>DriveSense is an AI-powered driver wellness system that monitors facial cues and eye movements in real
+                time to detect fatigue, stress, or distress. Using deep learning and computer vision, it provides
+                non-intrusive interventions like gentle audio alerts to enhance focus, safety, and overall driver
+                well-being.</p>
+              <div class="showcase-tags">
+                <span>OpenCV</span><span>Deep Learning</span><span>TensorFlow</span>
+              </div>
+              <div class="showcase-actions">
+                <a href="https://github.com/AaryanGole26/DriveSense" target="_blank" class="btn-action">Github <i
+                    class="bx bxl-github"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 7 -->
+        <div class="project-showcase" id="project-7" data-project="7" data-category="extra">
+          <div class="showcase-visual">
+            <div class="video-container" data-video="assets/videos/arcadepy-demo.mp4">
+              <img src="assets/img/arcadepy.jpg" alt="ArcadePy" class="showcase-img">
+              <video muted loop playsinline></video>
+              <div class="play-overlay-v2">
+                <i class="bx bx-play"></i>
+                <span>View Demo</span>
+              </div>
+            </div>
+          </div>
+          <div class="showcase-info">
+            <div class="info-content">
+              <span class="info-tag">Extra-Curricular</span>
+              <h3>ArcadePy — Game Suite</h3>
+              <p>ArcadePy is a consolidated suite of four classic Python-based arcade games into one repository. With a
+                simple user interface, the ArcadePy.py file allows you to choose from: Slither, Pong, Hovering UFO &
+                Hangman.</p>
+              <div class="showcase-tags">
+                <span>PyGame</span><span>Tkinter</span><span>Game Dev</span>
+              </div>
+              <div class="showcase-actions">
+                <a href="https://github.com/AaryanGole26/ArcadePy" target="_blank" class="btn-action">Github <i
+                    class="bx bxl-github"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 8 -->
+        <div class="project-showcase" id="project-8" data-project="8" data-category="extra">
+          <div class="showcase-visual">
+            <div class="video-container" data-video="assets/videos/cc-demo.mp4">
+              <img src="assets/img/cc.jpg" alt="Collatz" class="showcase-img">
+              <video muted loop playsinline></video>
+              <div class="play-overlay-v2">
+                <i class="bx bx-play"></i>
+                <span>View Demo</span>
+              </div>
+            </div>
+          </div>
+          <div class="showcase-info">
+            <div class="info-content">
+              <span class="info-tag">Extra-Curricular</span>
+              <h3>Collatz Conjecture — Algorithm Visualizer</h3>
+              <p>It visualizes the Collatz Conjecture (also known as the 3x + 1 problem) through interactive graphs. For
+                a given natural number, the program calculates the Collatz sequence and displays it graphically.</p>
+              <div class="showcase-tags">
+                <span>Python</span><span>Mathematics</span><span>Visualization</span>
+              </div>
+              <div class="showcase-actions">
+                <a href="https://github.com/AaryanGole26/Collatz_Conjecture" target="_blank" class="btn-action">Github
+                  <i class="bx bxl-github"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 9 -->
+        <div class="project-showcase" id="project-9" data-project="9" data-category="extra">
+          <div class="showcase-visual">
+            <div class="video-container" data-video="assets/videos/cgpacalc-demo.mp4">
+              <img src="assets/img/cgpa.jpg" alt="CGPA Calculator" class="showcase-img">
+              <video muted loop playsinline></video>
+              <div class="play-overlay-v2">
+                <i class="bx bx-play"></i>
+                <span>View Demo</span>
+              </div>
+            </div>
+          </div>
+          <div class="showcase-info">
+            <div class="info-content">
+              <span class="info-tag">Extra-Curricular</span>
+              <h3>CGPA Calculator — Mumbai University</h3>
+              <p>Mumbai University C-Scheme CGPI & Percentage Calculator that computes CGPI using official formulas.
+                Enter marks, SGPA, or CR×GP to auto-calculate credits, SGPA trends, and generate a downloadable report
+                with graph. Includes performance prediction tools to estimate required SGPA for achieving a target CGPI.
+              </p>
+              <div class="showcase-tags">
+                <span>HTML</span><span>CSS</span><span>JavaScript</span><span>Mumbai University</span>
+              </div>
+              <div class="showcase-actions">
+                <a href="https://github.com/AaryanGole26/CGPA-Calculator" target="_blank" class="btn-action">Github
+                  <i class="bx bxl-github"></i></a>
+                <a href="https://aaryangole26.github.io/CGPA-Calculator/" target="_blank" class="btn-action"
+                  style="background: var(--accent); color: white; border-color: var(--accent);">Live
+                  <i class="bx bx-link-external"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 10 -->
+        <div class="project-showcase" id="project-10" data-project="10" data-category="extra">
+          <div class="showcase-visual">
+            <div class="video-container" data-video="assets/videos/lume-demo.mp4">
+              <img src="assets/img/lume.jpg" alt="LUME" class="showcase-img">
+              <video muted loop playsinline></video>
+              <div class="play-overlay-v2">
+                <i class="bx bx-play"></i>
+                <span>View Demo</span>
+              </div>
+            </div>
+          </div>
+          <div class="showcase-info">
+            <div class="info-content">
+              <span class="info-tag">Extra-Curricular</span>
+              <h3>LUME — AI Meme Suite</h3>
+              <p>LUME is an AI-powered app that turns your images into viral memes. Upload a photo, add an optional
+                trending topic, and let Lume use BLIP and Groq AI to craft witty, high-quality captions with stylish
+                overlays—ready to download and share instantly.</p>
+              <div class="showcase-tags">
+                <span>AI</span><span>BLIP</span><span>Groq</span><span>Computer Vision</span><span>Meme Suite</span>
+              </div>
+              <div class="showcase-actions">
+                <a href="https://github.com/AaryanGole26/LUME" target="_blank" class="btn-action">Github <i
+                    class="bx bxl-github"></i></a>
+                <a href="https://lume-ai-l9ji.onrender.com" target="_blank" class="btn-action primary"
+                  style="background: var(--accent); color: white; border-color: var(--accent);">Live
+                  <i class="bx bx-link-external"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT SECTION -->
+  <section class="contact" id="contact">
+    <div class="wave wave-right"></div>
+
+    <div class="section-content">
+      <div class="section-title">
+        <h2>Get In <span class="highlight-scroll">Touch</span></h2>
+      </div>
+
+      <div class="contact-container">
+        <div class="contact-info">
+          <h3>Let's connect!</h3>
+          <p>I'm always interested in hearing about new projects and opportunities. Feel free to reach out using any of
+            the methods below.</p>
+
+          <div class="contact-links">
+            <div class="contact-item">
+              <i class="bx bxl-linkedin"></i>
+              <div>
+                <h4>LinkedIn</h4>
+                <a href="https://www.linkedin.com/in/aaryan-gole" target="_blank">linkedin.com/in/aaryan-gole</a>
+              </div>
+            </div>
+
+            <div class="contact-item">
+              <i class="bx bxl-github"></i>
+              <div>
+                <h4>GitHub</h4>
+                <a href="https://www.github.com/AaryanGole26" target="_blank">github.com/AaryanGole26</a>
+              </div>
+            </div>
+
+            <div class="contact-item">
+              <i class="bx bxs-envelope"></i>
+              <div>
+                <h4>Email</h4>
+                <a href="mailto:goleaaryan7@gmail.com">goleaaryan7@gmail.com</a>
+              </div>
+            </div>
+
+            <div class="contact-item">
+              <i class="bx bxs-phone"></i>
+              <div>
+                <h4>Phone</h4>
+                <a href="tel:+919309744137">+91 93097 44137</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <form class="contact-form" id="contactForm">
+          <div class="form-group">
+            <input type="text" name="name" placeholder="Your Name" required>
+          </div>
+          <div class="form-group">
+            <input type="email" name="email" placeholder="Your Email" required>
+          </div>
+          <div class="form-group">
+            <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
+          </div>
+          <button type="submit" class="btn-submit" id="submitBtn">Send Message</button>
+          <div id="formMessage"
+            style="margin-top: 15px; display: none; padding: 12px; border-radius: 5px; text-align: center;"></div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="local-time">
+        <span class="time-label">Local time:</span>
+        <span id="live-clock">--:-- --</span>
+        <span class="timezone">UTC+5:30</span>
+      </div>
+
+      <div class="footer-divider"></div>
+
+      <div class="footer-center">
+        <p>Made with ❤️ by <span class="name-accent">Aaryan Gole</span></p>
+        <div class="footer-divider"></div>
+        <div class="footer-socials-minimal">
+          <a href="https://www.linkedin.com/in/aaryan-gole" target="_blank" title="LinkedIn"><i
+              class="bx bxl-linkedin"></i></a>
+          <a href="https://www.github.com/AaryanGole26" target="_blank" title="GitHub"><i class="bx bxl-github"></i></a>
+          <a href="mailto:goleaaryan7@gmail.com" target="_blank" title="Email"><i class="bx bx-envelope"></i></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- CHATBOT -->
+  <div class="chatbot-container">
+    <div class="chatbot-button" id="chatbotButton">
+      <i class="bx bx-message-dots"></i>
+    </div>
+
+    <div class="chatbot-window" id="chatbotWindow">
+      <div class="chatbot-header">
+        <h3>Portfolio Assistant</h3>
+        <button class="chatbot-close" id="chatbotClose">
+          <i class="bx bx-x"></i>
+        </button>
+      </div>
+
+      <div class="chatbot-messages" id="chatbotMessages">
+        <div class="message bot-message">
+          <div class="message-content">
+            <p>Hi! I'm your portfolio assistant. I can help you navigate to:</p>
+            <div class="quick-actions">
+              <button class="quick-btn" data-section="about">About Me</button>
+              <button class="quick-btn" data-section="skills">Skills</button>
+              <button class="quick-btn" data-section="experience">Experience</button>
+              <button class="quick-btn" data-section="projects">Projects</button>
+              <button class="quick-btn" data-section="contact">Contact</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="chatbot-input">
+        <input type="text" id="chatbotInput" placeholder="Ask me anything..." />
+        <button id="chatbotSend">
+          <i class="bx bx-send"></i>
+        </button>
+      </div>
+    </div>
   </div>
 
-  <div class="hero-content">
-    <div class="hero-text">
-      <span class="hello-text">Hello, I'm</span>
-      <h1>Aaryan Gole</h1>
-      
-      <div class="hero-pic-mobile">
-        <div class="profile-wrapper">
-          <div class="profile-glow"></div>
-          <img src="assets/img/acg.jpeg" alt="Aaryan Gole" class="profile-pic">
-        </div>
-      </div>
-
-      <div class="role-badge">
-        <span class="typing-container">I'm <span class="typing" style="color: #8a8a8a;"></span></span>
-      </div>
-      <p class="hero-description">I'm a passionate AI & Data Science student at VCET with hands-on experience in building intelligent applications and scalable solutions. With expertise in machine learning, backend development, and RAG chatbots.</p>
-      
-      <div class="nav">
-        <a href="#home">Home</a>
-        <a href="#about">About</a>
-        <a href="#skills">Skills</a>
-        <a href="#experience">Experience</a>
-        <a href="#projects">Projects</a>
-        <a href="#contact">Contact</a>
-        <a href="https://drive.google.com/file/d/1NWJxPXYwa6j8cYUhQZHHWw0X0ARIw16I/view?usp=sharing" target="_blank" rel="noopener noreferrer">Resume</a>
-      </div>
-
-      <br><br>
-
-      <div class="socials">
-        <a href="https://www.linkedin.com/in/aaryan-gole" target="_blank" class="linkedin"><i class="bx bxl-linkedin"></i></a>
-        <a href="https://www.github.com/AaryanGole26" target="_blank" class="github"><i class="bx bxl-github"></i></a>
-        <a href="mailto:goleaaryan7@gmail.com" target="_blank" class="google"><i class="bx bxl-google"></i></a>
-      </div>
-    </div>
-
-    <div class="hero-pic">
-      <div class="profile-wrapper">
-        <div class="profile-glow"></div>
-        <img src="assets/img/acg.jpeg" alt="Aaryan Gole" class="profile-pic">
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ABOUT SECTION -->
-<section class="about" id="about">
-  <div class="wave wave-left"></div>
-  
-  <div class="section-content">
-    <div class="section-title">
-      <h2>About Me</h2>
-    </div>
-    
-    <div class="about-container">
-      <div class="about-text">
-        <p>I'm a passionate AI & Data Science student at VCET with hands-on experience in building intelligent applications and scalable solutions. With expertise in machine learning, backend development, and RAG chatbots, I love transforming complex problems into elegant, AI-powered solutions.</p>
-        
-        <p>Currently exploring NLP, transformers, and production-grade AI systems. I have interned at Citius Cloud working with RNN, Transformers, and RAG models in TensorFlow, and developed multiple AI-powered projects including legal chatbots and resume analyzers.</p>
-
-        <div class="about-info">
-          <div class="info-item">
-            <div class="info-icon">
-              <i class="bx bxs-brain"></i>
-            </div>
-            <h4>AI/ML Developer</h4>
-            <p>Building intelligent systems with TensorFlow, NLP, and RAG architectures</p>
-          </div>
-          <div class="info-item">
-            <div class="info-icon">
-              <i class="bx bxs-terminal"></i>
-            </div>
-            <h4>Full Stack Developer</h4>
-            <p>Flask backend, React frontend, and scalable system design</p>
-          </div>
-          <div class="info-item">
-            <div class="info-icon">
-              <i class="bx bxs-bulb"></i>
-            </div>
-            <h4>Problem Solver</h4>
-            <p>Converting ideas into functional, production-ready solutions</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- SKILLS SECTION -->
-<section class="skills" id="skills">
-  <div class="wave wave-right"></div>
-  
-  <div class="section-content">
-    <div class="section-title">
-      <h2>Skills & Technologies</h2>
-    </div>
-    
-    <div class="skills-grid">
-      <div class="skill-category">
-        <h3>Programming Languages</h3>
-        <div class="skill-tags">
-          <span class="skill-tag"><i class="bx bxl-python"></i> Python</span>
-          <span class="skill-tag"><i class="bx bxl-javascript"></i> JavaScript</span>
-          <span class="skill-tag"><i class="bx bxl-c-plus-plus"></i> C</span>
-          <span class="skill-tag"><i class="bx bxs-data"></i> SQL</span>
-          <span class="skill-tag"><i class="bx bxl-html5"></i> HTML/CSS</span>
-        </div>
-      </div>
-
-      <div class="skill-category">
-        <h3>Frameworks & Tools</h3>
-        <div class="skill-tags">
-          <span class="skill-tag"><i class="bx bxs-flask"></i> Flask</span>
-          <span class="skill-tag"><i class="bx bxl-django"></i> Django</span>
-          <span class="skill-tag"><i class="bx bxl-react"></i> ReactJS</span>
-          <span class="skill-tag"><i class="bx bxs-customize"></i> Postman</span>
-          <span class="skill-tag"><i class="bx bxl-figma"></i> Figma</span>
-          <span class="skill-tag"><i class="bx bxs-bar-chart-alt-2"></i> Power BI</span>
-        </div>
-      </div>
-
-      <div class="skill-category">
-        <h3>AI/ML & Data Engineering</h3>
-        <div class="skill-tags">
-          <span class="skill-tag"><i class="bx bxs-brain"></i> TensorFlow</span>
-          <span class="skill-tag"><i class="bx bxs-network-chart"></i> RNN & Transformers</span>
-          <span class="skill-tag"><i class="bx bxs-message-dots"></i> RAG Models</span>
-          <span class="skill-tag"><i class="bx bxs-chat"></i> NLP</span>
-          <span class="skill-tag"><i class="bx bxs-video"></i> Computer Vision</span>
-          <span class="skill-tag"><i class="bx bxl-docker"></i> Docker</span>
-        </div>
-      </div>
-
-      <div class="skill-category">
-        <h3>Soft Skills</h3>
-        <div class="skill-tags">
-          <span class="skill-tag"><i class="bx bxs-briefcase"></i> Product Management</span>
-          <span class="skill-tag"><i class="bx bxs-bulb"></i> Problem Solving</span>
-          <span class="skill-tag"><i class="bx bxs-adjust"></i> Adaptability</span>
-          <span class="skill-tag"><i class="bx bxs-group"></i> Teamwork</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-<br>
-
-<!-- EXPERIENCE SECTION -->
-<section class="experience" id="experience">
-  <div class="wave wave-right"></div>
-  
-  <div class="section-content">
-    <div class="section-title">
-      <h2>Experience & Education</h2>
-    </div>
-    
-    <div class="experience-container">
-      <div class="timeline">
-        <div class="timeline-item">
-          <div class="timeline-marker"></div>
-          <div class="timeline-content">
-            <h3><i class="bx bxs-briefcase"></i> Academic Intern</h3>
-            <h4>Citius Cloud | Jun 2024 – Jul 2024</h4>
-            <p>Implemented RNN, Transformers, and RAG models in TensorFlow to build a chatbot trained on web-scraped data. Gained experience in building production-ready AI systems.</p>
-            <div class="timeline-tags">
-              <span>TensorFlow</span>
-              <span>RNN</span>
-              <span>Transformers</span>
-              <span>RAG</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="timeline-item">
-          <div class="timeline-marker"></div>
-          <div class="timeline-content">
-            <h3><i class="bx bxs-graduation"></i> Bachelor of Engineering - AI & Data Science</h3>
-            <h4>VCET, Vasai, MH | Nov 2022 – Present</h4>
-            <p>Majoring in Artificial Intelligence and Data Science with a strong focus on machine learning, deep learning, and data analysis.</p>
-            <div class="score-badge">
-              <span class="score-label">CGPA: 8.07/10</span>
-              <i class="bx bxs-info-circle"></i>
-            </div>
-            <div class="timeline-tags">
-              <span>Data Analysis</span>
-              <span>AI</span>
-              <span>Algorithms</span>
-              <span>Software Engineering</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="timeline-item">
-          <div class="timeline-marker"></div>
-          <div class="timeline-content">
-            <h3><i class="bx bxs-medal"></i> AISSCE (CBSE XII) - Science (PCM)</h3>
-            <h4>2022</h4>
-            <p>Science stream with Physics, Chemistry, and Mathematics specialization.</p>
-            <div class="score-badge">
-              <span class="score-label">Score: 74.00%</span>
-              <i class="bx bxs-info-circle"></i>
-            </div>
-          </div>
-        </div>
-
-        <div class="timeline-item">
-          <div class="timeline-marker"></div>
-          <div class="timeline-content">
-            <h3><i class="bx bxs-award"></i> AISSE (CBSE X)</h3>
-            <h4>2020</h4>
-            <p>Exceptional academic performance in CBSE Board Examination.</p>
-            <div class="score-badge">
-              <span class="score-label">Score: 94.20%</span>
-              <i class="bx bxs-info-circle"></i>
-            </div>
-            <div class="achievement-tag">
-              <i class="bx bxs-trophy"></i>
-              <span>Ranked as Top 2 Student in Academic Performance</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="certifications">
-        <h3><i class="bx bxs-certification"></i> Certifications</h3>
-        <ul>
-          <li><i class="bx bxl-microsoft"></i> Fundamentals of Machine Learning - Microsoft Learn</li>
-          <li><i class="bx bxs-data"></i> Data Analytics Program - Godrej Infotech Ltd. (Centum Foundation)</li>
-          <li><i class="bx bxs-package"></i> MLOps with Data Version Control: CI/CD Using CML - Infosys Springboard</li>
-          <li><i class="bx bxl-google"></i> GenAI Academy - Google Cloud (Hack2Skill)</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- PROJECTS SECTION -->
-<section class="projects" id="projects">
-  <div class="wave wave-left"></div>
-  
-  <div class="section-content">
-    <div class="section-title">
-      <h2>Featured Projects</h2>
-    </div>
-
-    <div class="projects-filters" role="group" aria-label="Project filters">
-      <button class="filter-btn active" type="button" data-filter="all" aria-pressed="true">All</button>
-      <button class="filter-btn" type="button" data-filter="research" aria-pressed="false">Research / Coursework</button>
-      <button class="filter-btn" type="button" data-filter="extra" aria-pressed="false">Extra-Curricular</button>
-    </div>
-    
-    <div class="projects-grid">
-      <div class="project-card" data-category="research">
-        <div class="project-image">
-          <img src="assets/img/lawpal.jpg" alt="LawPal - Legal Chatbot">
-        </div>
-        <div class="project-info">
-          <h3>LawPal - Legal Chatbot with Voice Assistant</h3>
-          <p>Built Flask-based RAG chatbot backend with semantic legal search and voice-enabled navigation. Simplified access to complex legal documents for non-technical users.</p>
-          <div class="project-tags">
-            <span>Flask</span>
-            <span>RAG</span>
-            <span>NLP</span>
-            <span>Voice Assistant</span>
-          </div>
-          <a href="https://github.com/AaryanGole26/lawpal" target="_blank" class="project-link">View on GitHub <i class="bx bx-right-arrow-alt"></i></a>
-        </div>
-      </div>
-
-      <div class="project-card" data-category="research">
-        <div class="project-image">
-          <img src="assets/img/elevatr.jpg" alt="Elevatr - Resume Analyzer">
-        </div>
-        <div class="project-info">
-          <h3>Elevatr - AI Resume Analyzer & ATS-Friendly Resume Builder</h3>
-          <p>Developed an AI-driven resume analysis system that evaluates resumes against ATS criteria and suggests improvements. Helps users generate optimized, ATS-friendly resumes using curated templates.</p>
-          <div class="project-tags">
-            <span>NLP</span>
-            <span>React</span>
-            <span>Python</span>
-            <span>Text Analysis</span>
-          </div>
-          <a href="https://github.com/AaryanGole26/OptiResume-AI" target="_blank" class="project-link">View on GitHub <i class="bx bx-right-arrow-alt"></i></a>
-        </div>
-      </div>
-
-      <div class="project-card" data-category="extra">
-        <div class="project-image">
-          <img src="assets/img/finslash.jpg" alt="FinSlash - AI-powered Loan Approval Dashboard">
-        </div>
-        <div class="project-info">
-          <h3>FinSlash - AI-powered Loan Approval Dashboard</h3>
-          <p>FinSlash is an AI-driven loan approval dashboard that leverages machine learning to make loan decisions faster, smarter, and more transparent.</p>
-          <div class="project-tags">
-            <span>Machine Learning</span>
-            <span>Exploratory Data Analysis</span>
-            <span>Logistic Regression</span>
-            <span>Streamlit</span>
-          </div>
-          <a href="https://github.com/AaryanGole26/FinSlash" target="_blank" class="project-link">View on GitHub <i class="bx bx-right-arrow-alt"></i></a>
-          <a href="https://finslash-3jt.streamlit.app/" target="_blank" class="project-link">View Live <i class="bx bx-right-arrow-alt"></i></a>
-        </div>
-      </div>
-
-      <div class="project-card" data-category="research">
-        <div class="project-image">
-          <img src="assets/img/rento.jpg" alt="Rento">
-        </div>
-        <div class="project-info">
-          <h3>Rento</h3>
-          <p>Rento is a Django-based web app for renting engineering tools, allowing users to browse, add to cart, and place rental orders easily, demonstrating core concepts such as user authentication, model relationships, e-commerce style cart & order management, and session handling.</p>
-          <div class="project-tags">
-            <span>Django</span>
-            <span>Web Development</span>
-            <span>Python</span>
-            <span>Tool Rental</span>
-          </div>
-          <a href="https://github.com/AaryanGole26/Rento" target="_blank" class="project-link">View on GitHub <i class="bx bx-right-arrow-alt"></i></a>
-          <a href="https://rento-srcr.onrender.com/" target="_blank" class="project-link">View Live <i class="bx bx-right-arrow-alt"></i></a>
-        </div>
-      </div>
-
-      <div class="project-card" data-category="research">
-        <div class="project-image">
-          <img src="assets/img/cinesleuth.jpg" alt="ArcadePy">
-        </div>
-        <div class="project-info">
-          <h3>CineSLEUTH</h3>
-          <p>CineSLEUTH is an intelligent movie recommendation system that combines advanced machine learning techniques such as TF-IDF vectorization, cosine similarity, fuzzy matching, and Apriori-based collaborative filtering.</p>
-          <div class="project-tags">
-            <span>Fuzzy-search</span>
-            <span>TF-IDF</span>
-            <span>Cosine-similarity</span>
-            <span>Apriori Algorithm</span>
-          </div>
-          <a href="https://github.com/AaryanGole26/CineSLEUTH" target="_blank" class="project-link">View on GitHub <i class="bx bx-right-arrow-alt"></i></a>
-          <a href="https://huggingface.co/spaces/ARYN26/CineSLEUTH" target="_blank" class="project-link">View Live <i class="bx bx-right-arrow-alt"></i></a>
-        </div>
-      </div>
-
-      <div class="project-card" data-category="extra">
-        <div class="project-image">
-          <img src="assets/img/drivesense.jpg" alt="DriveSense">
-        </div>
-        <div class="project-info">
-          <h3>DriveSense</h3>
-          <p>DriveSense is an AI-powered driver wellness system that monitors facial cues and eye movements in real time to detect fatigue, stress, or distress. Using deep learning and computer vision, it provides non-intrusive interventions like gentle audio alerts to enhance focus, safety, and overall driver well-being.</p>
-          <div class="project-tags">
-            <span>OpenCV</span>
-            <span>Deep Learning</span>
-            <span>Keras-Tensorflow</span>
-            <span>Tflite-model</span>
-          </div>
-          <a href="https://github.com/AaryanGole26/DriveSense" target="_blank" class="project-link">View on GitHub <i class="bx bx-right-arrow-alt"></i></a>
-        </div>
-      </div>
-
-      <div class="project-card" data-category="extra">
-        <div class="project-image">
-          <img src="assets/img/arcadepy.jpg" alt="ArcadePy">
-        </div>
-        <div class="project-info">
-          <h3>ArcadePy</h3>
-          <p>ArcadePy is an umbrella project that merges four classic Python-based arcade games into one repository. With a simple user interface, the ArcadePy.py file allows you to choose from four exciting games: Slither, Pong, Hovering UFO, and Hangman.</p>
-          <div class="project-tags">
-            <span>PyGame</span>
-            <span>Game Development</span>
-            <span>Pillow</span>
-            <span>Tkinter</span>
-          </div>
-          <a href="https://github.com/AaryanGole26/ArcadePy" target="_blank" class="project-link">View on GitHub <i class="bx bx-right-arrow-alt"></i></a>
-        </div>
-      </div>
-
-      <div class="project-card" data-category="extra">
-        <div class="project-image">
-          <img src="assets/img/cc.jpg" alt="Collatz Conjecture">
-        </div>
-        <div class="project-info">
-          <h3>Collatz Conjecture Implementation</h3>
-          <p>Implemented the Collatz Conjecture algorithm and visualized its sequence using Python. Explored mathematical patterns and computational efficiency.</p>
-          <div class="project-tags">
-            <span>Python</span>
-            <span>Algorithm</span>
-            <span>Mathematics</span>
-            <span>Visualization</span>
-          </div>
-          <a href="https://github.com/AaryanGole26/Collatz_Conjecture" target="_blank" class="project-link">View on GitHub <i class="bx bx-right-arrow-alt"></i></a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- CONTACT SECTION -->
-<section class="contact" id="contact">
-  <div class="wave wave-right"></div>
-  
-  <div class="section-content">
-    <div class="section-title">
-      <h2>Get In Touch</h2>
-    </div>
-    
-    <div class="contact-container">
-      <div class="contact-info">
-        <h3>Let's connect!</h3>
-        <p>I'm always interested in hearing about new projects and opportunities. Feel free to reach out using any of the methods below.</p>
-        
-        <div class="contact-links">
-          <div class="contact-item">
-            <i class="bx bxl-linkedin"></i>
-            <div>
-              <h4>LinkedIn</h4>
-              <a href="https://www.linkedin.com/in/aaryan-gole" target="_blank">linkedin.com/in/aaryan-gole</a>
-            </div>
-          </div>
-          
-          <div class="contact-item">
-            <i class="bx bxl-github"></i>
-            <div>
-              <h4>GitHub</h4>
-              <a href="https://www.github.com/AaryanGole26" target="_blank">github.com/AaryanGole26</a>
-            </div>
-          </div>
-          
-          <div class="contact-item">
-            <i class="bx bxs-envelope"></i>
-            <div>
-              <h4>Email</h4>
-              <a href="mailto:goleaaryan7@gmail.com">goleaaryan7@gmail.com</a>
-            </div>
-          </div>
-
-          <div class="contact-item">
-            <i class="bx bxs-phone"></i>
-            <div>
-              <h4>Phone</h4>
-              <a href="tel:+919309744137">+91 93097 44137</a>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <form class="contact-form" id="contactForm">
-        <div class="form-group">
-          <input type="text" name="name" placeholder="Your Name" required>
-        </div>
-        <div class="form-group">
-          <input type="email" name="email" placeholder="Your Email" required>
-        </div>
-        <div class="form-group">
-          <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
-        </div>
-        <button type="submit" class="btn-submit" id="submitBtn">Send Message</button>
-        <div id="formMessage" style="margin-top: 15px; display: none; padding: 12px; border-radius: 5px; text-align: center;"></div>
-      </form>
-    </div>
-  </div>
-</section>
-
-<!-- FOOTER -->
-<footer class="footer">
-  <div class="footer-content">
-    <p>&copy; 2026 Aaryan Gole. All rights reserved.</p>
-    <div class="footer-socials">
-      <a href="https://www.linkedin.com/in/aaryan-gole" target="_blank"><i class="bx bxl-linkedin"></i></a>
-      <a href="https://www.github.com/AaryanGole26" target="_blank"><i class="bx bxl-github"></i></a>
-      <a href="mailto:goleaaryan7@gmail.com" target="_blank"><i class="bx bxl-google"></i></a>
-    </div>
-  </div>
-</footer>
-
-<!-- CHATBOT -->
-<div class="chatbot-container">
-  <div class="chatbot-button" id="chatbotButton">
-    <i class="bx bx-message-dots"></i>
-  </div>
-  
-  <div class="chatbot-window" id="chatbotWindow">
-    <div class="chatbot-header">
-      <h3>Portfolio Assistant</h3>
-      <button class="chatbot-close" id="chatbotClose">
-        <i class="bx bx-x"></i>
-      </button>
-    </div>
-    
-    <div class="chatbot-messages" id="chatbotMessages">
-      <div class="message bot-message">
-        <div class="message-content">
-          <p>Hi! I'm your portfolio assistant. I can help you navigate to:</p>
-          <div class="quick-actions">
-            <button class="quick-btn" data-section="about">About Me</button>
-            <button class="quick-btn" data-section="skills">Skills</button>
-            <button class="quick-btn" data-section="experience">Experience</button>
-            <button class="quick-btn" data-section="projects">Projects</button>
-            <button class="quick-btn" data-section="contact">Contact</button>
-          </div>
-        </div>
-      </div>
-    </div>
-    
-    <div class="chatbot-input">
-      <input type="text" id="chatbotInput" placeholder="Ask me anything..." />
-      <button id="chatbotSend">
-        <i class="bx bx-send"></i>
-      </button>
-    </div>
-  </div>
-</div>
-
-<script type="text/javascript">
-document.addEventListener('DOMContentLoaded', function() {
-    var typed = new Typed('.typing',{
-      strings: ["a Coder", "a Developer", "an AI Enthusiast"],
-      loop: true,
-      typeSpeed: 125,
-      backSpeed: 125
-    });
-
-    // Smooth scrolling for navigation links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-          target.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start'
-          });
-        }
-      });
-    });
-
-    // Projects filter controls
-    const filterButtons = document.querySelectorAll('.projects-filters [data-filter]');
-    const projectCards = document.querySelectorAll('.projects-grid .project-card');
-
-    if (filterButtons.length && projectCards.length) {
-      const setFilter = (filter) => {
-        projectCards.forEach((card) => {
-          const category = card.dataset.category;
-          const isVisible = filter === 'all' || category === filter;
-          card.style.display = isVisible ? '' : 'none';
-        });
-
-        filterButtons.forEach((button) => {
-          const isActive = button.dataset.filter === filter;
-          button.classList.toggle('active', isActive);
-          button.setAttribute('aria-pressed', isActive ? 'true' : 'false');
-        });
+  <script type="text/javascript">
+    document.addEventListener('DOMContentLoaded', function () {
+      // Intersection Observer for scroll-triggered fade-in animations
+      const observerOptions = {
+        root: null,
+        rootMargin: '0px 0px -60px 0px',
+        threshold: 0.1
       };
 
-      filterButtons.forEach((button) => {
-        button.addEventListener('click', () => {
-          setFilter(button.dataset.filter);
+      const fadeObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+            fadeObserver.unobserve(entry.target);
+          }
+        });
+      }, observerOptions);
+
+      document.querySelectorAll('.section-content, .project-card, .info-item, .skill-category, .timeline-item, .certifications').forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(30px)';
+        el.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
+        fadeObserver.observe(el);
+      });
+
+      // Active nav link highlight on scroll
+      const sections = document.querySelectorAll('section[id]');
+      const navLinks = document.querySelectorAll('.hero-nav a');
+
+      window.addEventListener('scroll', () => {
+        let current = '';
+        sections.forEach(section => {
+          const sectionTop = section.offsetTop - 120;
+          if (window.scrollY >= sectionTop) {
+            current = section.getAttribute('id');
+          }
+        });
+        navLinks.forEach(link => {
+          link.classList.remove('nav-active');
+          if (link.getAttribute('href') === '#' + current) {
+            link.classList.add('nav-active');
+          }
         });
       });
 
-      setFilter('all');
-    }
+      // ========================
+      // PROJECT VIDEO PLAY/PAUSE
+      // ========================
+      document.querySelectorAll('.project-image[data-video]').forEach(container => {
+        const video = container.querySelector('video');
+        const overlay = container.querySelector('.play-overlay');
+        const videoSrc = container.dataset.video;
+        let isLoaded = false;
 
-    // Contact form submission
-    const contactForm = document.getElementById('contactForm');
-    if (contactForm) {
-      contactForm.addEventListener('submit', async function(e) {
-        e.preventDefault();
-        
-        const submitBtn = document.getElementById('submitBtn');
-        const formMessage = document.getElementById('formMessage');
-        const formData = new FormData(this);
-        
-        // Show loading state
-        submitBtn.disabled = true;
-        submitBtn.textContent = 'Sending...';
-        formMessage.style.display = 'block';
-        formMessage.textContent = 'Processing...';
-        formMessage.style.color = '#7f9cff';
-        formMessage.style.backgroundColor = 'rgba(127, 156, 255, 0.2)';
-        formMessage.style.borderLeft = '4px solid #7f9cff';
-        
-        try {
-          console.log('Making fetch request...');
-          const response = await fetch('https://portfolio-backend-200p.onrender.com/api/contact', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-              name: formData.get('name'),
-              email: formData.get('email'),
-              message: formData.get('message')
-            })
-          });
-          
-          console.log('Response received, status:', response.status);
-          
-          // Always try to parse response as JSON
-          let data;
-          try {
-            data = await response.json();
-            console.log('Response data:', data);
-          } catch (e) {
-            console.log('Could not parse JSON');
-            data = {};
-          }
-          
-          // Check if response was successful
-          if (response.status === 201 || response.status === 200) {
-            console.log('Success response!');
-            formMessage.style.backgroundColor = 'rgba(127, 156, 255, 0.2)';
-            formMessage.style.color = '#7f9cff';
-            formMessage.style.borderLeft = '4px solid #7f9cff';
-            formMessage.textContent = '✓ Message sent successfully! I\'ll get back to you soon.';
-            formMessage.style.display = 'block';
-            this.reset();
-            setTimeout(() => {
-              formMessage.style.display = 'none';
-            }, 5000);
+        // Click overlay to toggle play/pause
+        overlay.addEventListener('click', (e) => {
+          e.stopPropagation();
+
+          if (container.classList.contains('video-active')) {
+            // Pause
+            video.pause();
+            container.classList.remove('video-active');
           } else {
-            console.log('Error response:', response.status);
+            // Load video source lazily on first play
+            if (!isLoaded) {
+              video.src = videoSrc;
+              isLoaded = true;
+            }
+            video.play().catch(() => { });
+            container.classList.add('video-active');
+          }
+        });
+
+        // Pause video when mouse leaves the card image area
+        container.addEventListener('mouseleave', () => {
+          if (container.classList.contains('video-active')) {
+            video.pause();
+            container.classList.remove('video-active');
+          }
+        });
+      });
+
+      // Smooth scrolling for navigation links
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute('href'));
+          if (target) {
+            target.scrollIntoView({
+              behavior: 'smooth',
+              block: 'start'
+            });
+          }
+        });
+      });
+
+      // Projects filter controls
+      const filterButtons = document.querySelectorAll('.projects-filters [data-filter]');
+      const projectCards = document.querySelectorAll('.projects-grid .project-card');
+
+      if (filterButtons.length && projectCards.length) {
+        const setFilter = (filter) => {
+          projectCards.forEach((card) => {
+            const category = card.dataset.category;
+            const isVisible = filter === 'all' || category === filter;
+            card.style.display = isVisible ? '' : 'none';
+          });
+
+          filterButtons.forEach((button) => {
+            const isActive = button.dataset.filter === filter;
+            button.classList.toggle('active', isActive);
+            button.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+          });
+        };
+
+        filterButtons.forEach((button) => {
+          button.addEventListener('click', () => {
+            setFilter(button.dataset.filter);
+          });
+        });
+
+        setFilter('all');
+      }
+
+      // Contact form submission
+      const contactForm = document.getElementById('contactForm');
+      if (contactForm) {
+        contactForm.addEventListener('submit', async function (e) {
+          e.preventDefault();
+
+          const submitBtn = document.getElementById('submitBtn');
+          const formMessage = document.getElementById('formMessage');
+          const formData = new FormData(this);
+
+          // Show loading state
+          submitBtn.disabled = true;
+          submitBtn.textContent = 'Sending...';
+          formMessage.style.display = 'block';
+          formMessage.textContent = 'Processing...';
+          formMessage.style.color = '#7f9cff';
+          formMessage.style.backgroundColor = 'rgba(127, 156, 255, 0.2)';
+          formMessage.style.borderLeft = '4px solid #7f9cff';
+
+          try {
+            console.log('Making fetch request...');
+            const response = await fetch('https://portfolio-backend-200p.onrender.com/api/contact', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({
+                name: formData.get('name'),
+                email: formData.get('email'),
+                message: formData.get('message')
+              })
+            });
+
+            console.log('Response received, status:', response.status);
+
+            // Always try to parse response as JSON
+            let data;
+            try {
+              data = await response.json();
+              console.log('Response data:', data);
+            } catch (e) {
+              console.log('Could not parse JSON');
+              data = {};
+            }
+
+            // Check if response was successful
+            if (response.status === 201 || response.status === 200) {
+              console.log('Success response!');
+              formMessage.style.backgroundColor = 'rgba(127, 156, 255, 0.2)';
+              formMessage.style.color = '#7f9cff';
+              formMessage.style.borderLeft = '4px solid #7f9cff';
+              formMessage.textContent = '✓ Message sent successfully! I\'ll get back to you soon.';
+              formMessage.style.display = 'block';
+              this.reset();
+              setTimeout(() => {
+                formMessage.style.display = 'none';
+              }, 5000);
+            } else {
+              console.log('Error response:', response.status);
+              formMessage.style.backgroundColor = 'rgba(255, 100, 100, 0.2)';
+              formMessage.style.color = '#ff6464';
+              formMessage.style.borderLeft = '4px solid #ff6464';
+              formMessage.textContent = '✗ Error: ' + (data.error || 'Status ' + response.status);
+              formMessage.style.display = 'block';
+            }
+          } catch (error) {
+            console.error('Catch block error:', error);
             formMessage.style.backgroundColor = 'rgba(255, 100, 100, 0.2)';
             formMessage.style.color = '#ff6464';
             formMessage.style.borderLeft = '4px solid #ff6464';
-            formMessage.textContent = '✗ Error: ' + (data.error || 'Status ' + response.status);
+            formMessage.textContent = '✗ Error: ' + error.message;
             formMessage.style.display = 'block';
+          } finally {
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Send Message';
           }
-        } catch (error) {
-          console.error('Catch block error:', error);
-          formMessage.style.backgroundColor = 'rgba(255, 100, 100, 0.2)';
-          formMessage.style.color = '#ff6464';
-          formMessage.style.borderLeft = '4px solid #ff6464';
-          formMessage.textContent = '✗ Error: ' + error.message;
-          formMessage.style.display = 'block';
-        } finally {
-          submitBtn.disabled = false;
-          submitBtn.textContent = 'Send Message';
-        }
+        });
+      }
+
+      // Chatbot functionality
+      const chatbotButton = document.getElementById('chatbotButton');
+      const chatbotWindow = document.getElementById('chatbotWindow');
+      const chatbotClose = document.getElementById('chatbotClose');
+      const chatbotMessages = document.getElementById('chatbotMessages');
+      const chatbotInput = document.getElementById('chatbotInput');
+      const chatbotSend = document.getElementById('chatbotSend');
+
+      // Toggle chatbot
+      chatbotButton.addEventListener('click', () => {
+        chatbotWindow.classList.add('active');
+        chatbotButton.style.display = 'none';
+        chatbotInput.focus();
       });
-    }
 
-    // Chatbot functionality
-    const chatbotButton = document.getElementById('chatbotButton');
-    const chatbotWindow = document.getElementById('chatbotWindow');
-    const chatbotClose = document.getElementById('chatbotClose');
-    const chatbotMessages = document.getElementById('chatbotMessages');
-    const chatbotInput = document.getElementById('chatbotInput');
-    const chatbotSend = document.getElementById('chatbotSend');
-
-    // Toggle chatbot
-    chatbotButton.addEventListener('click', () => {
-      chatbotWindow.classList.add('active');
-      chatbotButton.style.display = 'none';
-      chatbotInput.focus();
-    });
-
-    chatbotClose.addEventListener('click', () => {
-      chatbotWindow.classList.remove('active');
-      chatbotButton.style.display = 'flex';
-    });
-
-    // Quick action buttons
-    document.querySelectorAll('.quick-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const section = btn.dataset.section;
-        navigateToSection(section);
-        addBotMessage(`Navigating to ${btn.textContent}...`);
+      chatbotClose.addEventListener('click', () => {
+        chatbotWindow.classList.remove('active');
+        chatbotButton.style.display = 'flex';
       });
-    });
 
-    // Send message
-    function sendMessage() {
-      const message = chatbotInput.value.trim();
-      if (!message) return;
+      // Quick action buttons
+      document.querySelectorAll('.quick-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const section = btn.dataset.section;
+          navigateToSection(section);
+          addBotMessage(`Navigating to ${btn.textContent}...`);
+        });
+      });
 
-      addUserMessage(message);
-      chatbotInput.value = '';
+      // Send message
+      function sendMessage() {
+        const message = chatbotInput.value.trim();
+        if (!message) return;
 
-      setTimeout(() => {
-        handleUserQuery(message);
-      }, 500);
-    }
+        addUserMessage(message);
+        chatbotInput.value = '';
 
-    chatbotSend.addEventListener('click', sendMessage);
-    chatbotInput.addEventListener('keypress', (e) => {
-      if (e.key === 'Enter') sendMessage();
-    });
-
-    function addUserMessage(text) {
-      const messageDiv = document.createElement('div');
-      messageDiv.className = 'message user-message';
-      messageDiv.innerHTML = `<div class="message-content"><p>${text}</p></div>`;
-      chatbotMessages.appendChild(messageDiv);
-      chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
-    }
-
-    function addBotMessage(text) {
-      const messageDiv = document.createElement('div');
-      messageDiv.className = 'message bot-message';
-      messageDiv.innerHTML = `<div class="message-content"><p>${text}</p></div>`;
-      chatbotMessages.appendChild(messageDiv);
-      chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
-    }
-
-    function navigateToSection(section) {
-      const target = document.getElementById(section);
-      if (target) {
-        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
         setTimeout(() => {
-          chatbotWindow.classList.remove('active');
-          chatbotButton.style.display = 'flex';
-        }, 800);
-      }
-    }
-
-    function handleUserQuery(query) {
-      const lowerQuery = query.toLowerCase();
-
-      // Check for navigation intents first
-      if (lowerQuery.includes('home')) {
-        addBotMessage('Taking you home!');
-        navigateToSection('home');
-        return;
-      } else if (lowerQuery.includes('about') && !lowerQuery.includes('project')) {
-        addBotMessage('Let me show you my about section!');
-        navigateToSection('about');
-        return;
-      } else if (lowerQuery.includes('skill')) {
-        addBotMessage('Check out my skills!');
-        navigateToSection('skills');
-        return;
-      } else if (lowerQuery.includes('experience')) {
-        addBotMessage('Here\'s my experience!');
-        navigateToSection('experience');
-        return;
-      } else if (lowerQuery.includes('project')) {
-        addBotMessage('Let me show you my projects!');
-        navigateToSection('projects');
-        return;
-      } else if (lowerQuery.includes('contact') || lowerQuery.includes('reach') || lowerQuery.includes('email')) {
-        addBotMessage('Let\'s get in touch!');
-        navigateToSection('contact');
-        return;
+          handleUserQuery(message);
+        }, 500);
       }
 
-      // Use RAG backend for intelligent responses
-      sendChatToBackend(query);
-    }
-
-    function sendChatToBackend(message) {
-      fetch('https://portfolio-backend-200p.onrender.com/api/chat', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({message: message})
-      })
-      .then(response => response.json())
-      .then(data => {
-        if (data.success) {
-          addBotMessage(data.message);
-        } else {
-          addBotMessage('Sorry, I encountered an issue. Could you rephrase your question?');
-        }
-      })
-      .catch(error => {
-        console.error('Chat error:', error);
-        addBotMessage('I\'m having trouble connecting to my knowledge base. Please try again later.');
+      chatbotSend.addEventListener('click', sendMessage);
+      chatbotInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') sendMessage();
       });
-    }
-});
-</script>
+
+      function addUserMessage(text) {
+        const messageDiv = document.createElement('div');
+        messageDiv.className = 'message user-message';
+        messageDiv.innerHTML = `<div class="message-content"><p>${text}</p></div>`;
+        chatbotMessages.appendChild(messageDiv);
+        chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+      }
+
+      function addBotMessage(text) {
+        const messageDiv = document.createElement('div');
+        messageDiv.className = 'message bot-message';
+        messageDiv.innerHTML = `<div class="message-content"><p>${text}</p></div>`;
+        chatbotMessages.appendChild(messageDiv);
+        chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+      }
+
+      function navigateToSection(section) {
+        const target = document.getElementById(section);
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          setTimeout(() => {
+            chatbotWindow.classList.remove('active');
+            chatbotButton.style.display = 'flex';
+          }, 800);
+        }
+      }
+
+      function handleUserQuery(query) {
+        const lowerQuery = query.toLowerCase();
+
+        // Check for navigation intents first
+        if (lowerQuery.includes('home')) {
+          addBotMessage('Taking you home!');
+          navigateToSection('home');
+          return;
+        } else if (lowerQuery.includes('about') && !lowerQuery.includes('project')) {
+          addBotMessage('Let me show you my about section!');
+          navigateToSection('about');
+          return;
+        } else if (lowerQuery.includes('skill')) {
+          addBotMessage('Check out my skills!');
+          navigateToSection('skills');
+          return;
+        } else if (lowerQuery.includes('experience')) {
+          addBotMessage('Here\'s my experience!');
+          navigateToSection('experience');
+          return;
+        } else if (lowerQuery.includes('project')) {
+          addBotMessage('Let me show you my projects!');
+          navigateToSection('projects');
+          return;
+        } else if (lowerQuery.includes('contact') || lowerQuery.includes('reach') || lowerQuery.includes('email')) {
+          addBotMessage('Let\'s get in touch!');
+          navigateToSection('contact');
+          return;
+        }
+
+        // Use RAG backend for intelligent responses
+        sendChatToBackend(query);
+      }
+
+      function sendChatToBackend(message) {
+        fetch('https://portfolio-backend-200p.onrender.com/api/chat', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ message: message })
+        })
+          .then(response => response.json())
+          .then(data => {
+            if (data.success) {
+              addBotMessage(data.message);
+            } else {
+              addBotMessage('Sorry, I encountered an issue. Could you rephrase your question?');
+            }
+          })
+          .catch(error => {
+            console.error('Chat error:', error);
+            addBotMessage('I\'m having trouble connecting to my knowledge base. Please try again later.');
+          });
+      }
+
+      // Theme Toggle Logic
+      const themeToggle = document.getElementById('themeToggle');
+      const themeIcon = document.getElementById('themeIcon');
+      const body = document.body;
+
+      // Check for saved theme preference or use OS preference
+      const savedTheme = localStorage.getItem('theme');
+      const prefersLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
+
+      if (savedTheme === 'light' || (!savedTheme && prefersLight)) {
+        body.classList.add('light-mode');
+        themeIcon.classList.replace('bx-sun', 'bx-moon');
+      }
+
+      themeToggle.addEventListener('click', () => {
+        body.classList.toggle('light-mode');
+        const isLight = body.classList.contains('light-mode');
+
+        if (isLight) {
+          themeIcon.classList.replace('bx-sun', 'bx-moon');
+          localStorage.setItem('theme', 'light');
+        } else {
+          themeIcon.classList.replace('bx-moon', 'bx-sun');
+          localStorage.setItem('theme', 'dark');
+        }
+      });
+
+      // Navbar & Logo Dynamic Logic
+      const nav = document.querySelector('.global-nav');
+      const logo = document.querySelector('.logo');
+
+      window.addEventListener('scroll', () => {
+        // Logo Transition (aryn.gole -> AG.)
+        if (window.scrollY > 50) {
+          logo.classList.add('compact');
+        } else {
+          logo.classList.remove('compact');
+        }
+
+        // Navbar Sticky Background
+        if (window.scrollY > 20) {
+          nav.classList.add('scrolled');
+        } else {
+          nav.classList.remove('scrolled');
+        }
+      });
+
+
+      // Hide Navbar in Projects Section (desktop only)
+      const projectsSection = document.querySelector('#projects');
+      const navHideObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          // Only hide on desktop — mobile nav must stay visible for "contact" link access
+          if (window.innerWidth > 1024) {
+            if (entry.isIntersecting) {
+              nav.style.transform = 'translateY(-100%)';
+              nav.style.opacity = '0';
+              nav.style.pointerEvents = 'none';
+            } else {
+              nav.style.transform = 'translateY(0)';
+              nav.style.opacity = '1';
+              nav.style.pointerEvents = 'all';
+            }
+          }
+        });
+      }, { threshold: 0 });
+      navHideObserver.observe(projectsSection);
+
+
+
+      // Projects V2.1 Logic (Filters & Stacking Sync)
+      const projectShowcases = document.querySelectorAll('.project-showcase');
+      const projectNavItems = document.querySelectorAll('.nav-item-wrapper');
+      const filterBtns = document.querySelectorAll('.filter-btn');
+
+      const projectObserverOptions = {
+        root: null,
+        threshold: 0.5
+      };
+
+      let projectObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const id = entry.target.dataset.project;
+            projectNavItems.forEach(item => {
+              item.classList.toggle('active', item.dataset.project === id);
+            });
+          }
+        });
+      }, projectObserverOptions);
+
+      projectShowcases.forEach(showcase => projectObserver.observe(showcase));
+
+      // Filter Logic — reconnect observer to only visible cards to avoid glitches
+      filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const filter = btn.dataset.filter;
+
+          filterBtns.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+
+          // Disconnect observer to prevent stale intersection events
+          projectObserver.disconnect();
+
+          projectShowcases.forEach(card => {
+            if (filter === 'all' || card.dataset.category === filter) {
+              card.style.display = 'flex';
+              projectObserver.observe(card);
+            } else {
+              card.style.display = 'none';
+            }
+          });
+
+          // Re-sync nav visibility
+          projectNavItems.forEach(navItem => {
+            const projectCard = document.getElementById(`project-${navItem.dataset.project}`);
+            navItem.style.display = (projectCard && projectCard.style.display === 'none') ? 'none' : 'flex';
+          });
+        });
+      });
+
+      // Project Sidebar Click to Scroll — using offsetTop for accuracy with sticky elements
+      projectNavItems.forEach(item => {
+        item.addEventListener('click', () => {
+          const id = item.dataset.project;
+          const target = document.getElementById(`project-${id}`);
+          if (target) {
+            const navHeight = nav ? nav.offsetHeight : 0;
+            const top = target.getBoundingClientRect().top + window.scrollY - navHeight;
+            window.scrollTo({ top, behavior: 'smooth' });
+          }
+        });
+      });
+
+      // Video Click-to-Play Logic
+      const videoContainers = document.querySelectorAll('.video-container');
+      videoContainers.forEach(container => {
+        const video = container.querySelector('video');
+        const videoSrc = container.dataset.video;
+
+        container.addEventListener('click', () => {
+          if (container.classList.contains('playing')) {
+            video.pause();
+            container.classList.remove('playing');
+          } else {
+            // Stop other playing videos
+            videoContainers.forEach(c => {
+              if (c !== container) {
+                const otherVideo = c.querySelector('video');
+                if (otherVideo) otherVideo.pause();
+                c.classList.remove('playing');
+              }
+            });
+
+            if (!video.src && videoSrc) video.src = videoSrc;
+            video.play().catch(() => {
+              // Video play failed (likely missing file)
+              container.classList.remove('playing');
+              const overlay = container.querySelector('.play-overlay-v2');
+              if (overlay) {
+                overlay.innerHTML = '<i class="bx bxs-error-circle"></i><span>Preview Unavailable</span>';
+                overlay.style.opacity = '1';
+                overlay.style.background = 'rgba(0,0,0,0.8)';
+              }
+            });
+            container.classList.add('playing');
+          }
+        });
+
+        // Error handling for video load
+        video.addEventListener('error', () => {
+          const overlay = container.querySelector('.play-overlay-v2');
+          if (overlay) {
+            overlay.innerHTML = '<i class="bx bxs-error-circle"></i><span>Preview Unavailable</span>';
+            overlay.style.opacity = '1';
+            overlay.style.background = 'rgba(0,0,0,0.8)';
+          }
+        });
+      });
+
+      // Custom Cursor Logic
+      const cursorDot = document.getElementById('cursor-dot');
+      const cursorRing = document.getElementById('cursor-ring');
+
+      let mouseX = 0;
+      let mouseY = 0;
+      let ringX = 0;
+      let ringY = 0;
+
+      window.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+        cursorDot.style.transform = `translate(${mouseX}px, ${mouseY}px)`;
+      });
+
+      function renderCursor() {
+        ringX += (mouseX - ringX) * 0.15;
+        ringY += (mouseY - ringY) * 0.15;
+        cursorRing.style.transform = `translate(${ringX}px, ${ringY}px)`;
+        requestAnimationFrame(renderCursor);
+      }
+      renderCursor();
+
+      // Custom Cursor Hover States
+      const interactables = document.querySelectorAll('a, button, .project-showcase, .btn-action, .nav-item-wrapper, .service-card, .nav-item, .theme-toggle');
+      interactables.forEach(el => {
+        el.addEventListener('mouseenter', () => {
+          cursorRing.classList.add('hovered');
+          cursorDot.style.opacity = '0';
+        });
+        el.addEventListener('mouseleave', () => {
+          cursorRing.classList.remove('hovered');
+          cursorDot.style.opacity = '1';
+        });
+      });
+
+      // Navbar Scroll Spy Logic
+      const navSections = document.querySelectorAll('section');
+      const navItemsList = document.querySelectorAll('.nav-item');
+
+      const navObserverOptions = {
+        root: null,
+        rootMargin: '-20% 0px -60% 0px',
+        threshold: 0
+      };
+
+      const navObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            navItemsList.forEach(item => {
+              item.classList.remove('nav-active');
+              if (item.getAttribute('href').substring(1) === entry.target.id) {
+                item.classList.add('nav-active');
+              }
+            });
+          }
+        });
+      }, navObserverOptions);
+
+      navSections.forEach(section => navObserver.observe(section));
+
+      // Live Clock Logic
+      function updateClock() {
+        const now = new Date();
+        // Offset for IST (UTC+5:30)
+        const istOffset = 5.5 * 60 * 60 * 1000;
+        const istTime = new Date(now.getTime() + (now.getTimezoneOffset() * 60000) + istOffset);
+
+        const hours = istTime.getHours();
+        const minutes = istTime.getMinutes();
+        const ampm = hours >= 12 ? 'PM' : 'AM';
+        const displayHours = hours % 12 || 12;
+
+        const timeString = `${displayHours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')} ${ampm}`;
+        document.getElementById('live-clock').textContent = timeString;
+      }
+      setInterval(updateClock, 60000);
+      updateClock();
+
+    });
+  </script>
 
 </body>
+
 </html>

@@ -84,8 +84,8 @@ class PortfolioRAG:
                 "content": "LawPal is a legal chatbot with voice assistant built using Flask backend with RAG architecture. I implemented semantic legal search and voice-enabled navigation to simplify access to complex legal documents for non-technical users."
             },
             {
-                "category": "project_elevatr",
-                "content": "Elevatr is an AI-driven resume analyzer and ATS-friendly resume builder. It evaluates resumes against ATS criteria using NLP and suggests improvements. Users can generate optimized, ATS-friendly resumes using curated templates."
+                "category": "project_optiresume",
+                "content": "OptiResume-AI is a full-stack system for resume optimization and career enhancement. It parses PDF/DOCX resumes (PyMuPDF, spaCy), analyzes them against job descriptions, and generates ATS-friendly CVs with 6 professional templates. Key features: Resume Analysis (skills gap, match scores), 3-layer Job Link Extraction (Indeed/Naukri), AI-powered bullet rewriting, and LaTeX/PDF export. It also includes optional MCP servers for tool integration."
             },
             {
                 "category": "project_finslash",
@@ -102,6 +102,10 @@ class PortfolioRAG:
             {
                 "category": "project_drivesense",
                 "content": "DriveSense is an AI-powered driver wellness system monitoring facial cues and eye movements using deep learning and OpenCV to detect fatigue, stress, or distress with real-time interventions."
+            },
+            {
+                "category": "project_lume",
+                "content": "LUME is an AI-powered app that turns your images into viral memes. Upload a photo, add an optional trending topic, and let Lume use BLIP and Groq AI to craft witty, high-quality captions with stylish overlays—ready to download and share instantly. It features real-time caption synthesis, font overlays, and easy sharing options."
             },
             {
                 "category": "contact",
@@ -143,46 +147,25 @@ class PortfolioRAG:
 rag = PortfolioRAG()
 
 def send_email(to_email, name, message):
-<<<<<<< HEAD
-    """Send email using SendGrid API (works on Render, non-blocking)"""
+    """Send email using SendGrid API (preferred for Render) or SMTP fallback (non-blocking)"""
     import threading
     def _send():
         try:
             sendgrid_api_key = os.getenv('SENDGRID_API_KEY')
             sender_email = os.getenv('EMAIL_ADDRESS', 'goleaaryan7@gmail.com')
-            
-            if not sendgrid_api_key:
-                print("SendGrid API key not configured. Skipping email notification.")
-                return True
 
-            # Email to user
-            user_email_data = {
-                "personalizations": [{
-                    "to": [{"email": to_email}],
-                    "subject": "Thank you for reaching out!"
-                }],
-                "from": {"email": sender_email, "name": "Aaryan Gole"},
-                "content": [{
-                    "type": "text/plain",
-                    "value": f"""Hi {name},
+            # User email content
+            user_subject = "Thank you for reaching out!"
+            user_body = f"""Hi {name},
 
 Thank you for your message! I've received your inquiry and will get back to you as soon as possible.
 
 Best regards,
 Aaryan Gole"""
-                }]
-            }
 
-            # Email to admin
-            admin_email_data = {
-                "personalizations": [{
-                    "to": [{"email": sender_email}],
-                    "subject": f"New Contact Form Submission from {name}"
-                }],
-                "from": {"email": sender_email, "name": "Portfolio Contact Form"},
-                "content": [{
-                    "type": "text/plain",
-                    "value": f"""New message received on your portfolio:
+            # Admin email content
+            admin_subject = f"New Contact Form Submission from {name}"
+            admin_body = f"""New message received on your portfolio:
 
 Name: {name}
 Email: {to_email}
@@ -190,127 +173,82 @@ Message: {message}
 
 ---
 Reply to: {to_email}"""
-                }]
-            }
 
-            headers = {
-                "Authorization": f"Bearer {sendgrid_api_key}",
-                "Content-Type": "application/json"
-            }
+            if sendgrid_api_key:
+                # Use SendGrid
+                print(f"Sending email via SendGrid...")
+                headers = {
+                    "Authorization": f"Bearer {sendgrid_api_key}",
+                    "Content-Type": "application/json"
+                }
+                
+                user_email_data = {
+                    "personalizations": [{"to": [{"email": to_email}], "subject": user_subject}],
+                    "from": {"email": sender_email, "name": "Aaryan Gole"},
+                    "content": [{"type": "text/plain", "value": user_body}]
+                }
+                
+                admin_email_data = {
+                    "personalizations": [{"to": [{"email": sender_email}], "subject": admin_subject}],
+                    "from": {"email": sender_email, "name": "Portfolio Contact Form"},
+                    "content": [{"type": "text/plain", "value": admin_body}]
+                }
 
-            # Send email to user
-            print(f"Sending email to {to_email} via SendGrid...")
-            response = requests.post(
-                "https://api.sendgrid.com/v3/mail/send",
-                headers=headers,
-                json=user_email_data,
-                timeout=10
-            )
-            
-            if response.status_code == 202:
-                print(f"Email to user sent successfully")
-            else:
-                print(f"Failed to send email to user: {response.status_code} - {response.text}")
+                # Send to user
+                response_user = requests.post("https://api.sendgrid.com/v3/mail/send", headers=headers, json=user_email_data, timeout=10)
+                if response_user.status_code == 202:
+                    print("Email to user sent successfully via SendGrid.")
+                else:
+                    print(f"Failed to send email to user via SendGrid: {response_user.status_code} - {response_user.text}")
 
-            # Send email to admin
-            print(f"Sending notification to admin...")
-            response = requests.post(
-                "https://api.sendgrid.com/v3/mail/send",
-                headers=headers,
-                json=admin_email_data,
-                timeout=10
-            )
-            
-            if response.status_code == 202:
-                print(f"Admin notification sent successfully")
-            else:
-                print(f"Failed to send admin notification: {response.status_code} - {response.text}")
-
-            return True
-        except Exception as e:
-            print(f"ERROR sending email via SendGrid: {str(e)}")
-            import traceback
-            traceback.print_exc()
-            return False
-    
-=======
-    """Send email to user and yourself in a non-blocking way with timeout"""
-    import threading
-    def _send():
-        try:
-            sender_email = os.getenv('EMAIL_ADDRESS')
-            sender_password = os.getenv('EMAIL_PASSWORD')
-            smtp_server = os.getenv('SMTP_SERVER', 'smtp.gmail.com')
-            smtp_port = int(os.getenv('SMTP_PORT', 587))
-
-            print(f"DEBUG: Email config - Server: {smtp_server}, Port: {smtp_port}, Email: {sender_email}")
-
-            if not sender_email or not sender_password:
-                print("Email credentials not configured. Skipping email notification.")
+                # Send to admin
+                response_admin = requests.post("https://api.sendgrid.com/v3/mail/send", headers=headers, json=admin_email_data, timeout=10)
+                if response_admin.status_code == 202:
+                    print("Admin notification sent successfully via SendGrid.")
+                else:
+                    print(f"Failed to send admin notification via SendGrid: {response_admin.status_code} - {response_admin.text}")
+                
                 return True
+                # Fallback to SMTP
+                sender_password = os.getenv('EMAIL_PASSWORD')
+                if sender_password:
+                    sender_password = sender_password.replace(" ", "") # Strip spaces from Google App Password
+                
+                smtp_server = os.getenv('SMTP_SERVER', 'smtp.gmail.com')
+                smtp_port = int(os.getenv('SMTP_PORT', 587))
+                
+                if not sender_email or not sender_password:
+                    print("CRITICAL: Email credentials not configured. Skipping email notification.")
+                    return True
+                    
+                print(f"Sending email via SMTP ({smtp_server}:{smtp_port})...")
+                server = smtplib.SMTP(smtp_server, smtp_port, timeout=10)
+                server.starttls()
+                server.login(sender_email, sender_password)
 
-            # Email to user
-            user_subject = "Thank you for reaching out!"
-            user_body = f"""
-            Hi {name},
+                msg_user = MIMEMultipart()
+                msg_user['From'] = sender_email
+                msg_user['To'] = to_email
+                msg_user['Subject'] = user_subject
+                msg_user.attach(MIMEText(user_body, 'plain'))
+                server.send_message(msg_user)
 
-            Thank you for your message! I've received your inquiry and will get back to you as soon as possible.
+                msg_admin = MIMEMultipart()
+                msg_admin['From'] = sender_email
+                msg_admin['To'] = sender_email
+                msg_admin['Subject'] = admin_subject
+                msg_admin.attach(MIMEText(admin_body, 'plain'))
+                server.send_message(msg_admin)
 
-            Best regards,
-            Aaryan Gole
-            """
-
-            # Email to admin
-            admin_subject = f"New Contact Form Submission from {name}"
-            admin_body = f"""
-            New message received on your portfolio:
-
-            Name: {name}
-            Email: {to_email}
-            Message: {message}
-
-            ---
-            Reply to: {to_email}
-            """
-
-            # Send emails
-            print(f"DEBUG: Connecting to {smtp_server}:{smtp_port}...")
-            server = smtplib.SMTP(smtp_server, smtp_port, timeout=10)
-            print("DEBUG: Connected, starting TLS...")
-            server.starttls()
-            print("DEBUG: TLS started, logging in...")
-            server.login(sender_email, sender_password)
-            print("DEBUG: Login successful")
-
-            # Send to user
-            msg_user = MIMEMultipart()
-            msg_user['From'] = sender_email
-            msg_user['To'] = to_email
-            msg_user['Subject'] = user_subject
-            msg_user.attach(MIMEText(user_body, 'plain'))
-            print(f"DEBUG: Sending email to {to_email}...")
-            server.send_message(msg_user)
-            print("DEBUG: Email to user sent")
-
-            # Send to admin
-            msg_admin = MIMEMultipart()
-            msg_admin['From'] = sender_email
-            msg_admin['To'] = sender_email
-            msg_admin['Subject'] = admin_subject
-            msg_admin.attach(MIMEText(admin_body, 'plain'))
-            print(f"DEBUG: Sending email to admin {sender_email}...")
-            server.send_message(msg_admin)
-            print("DEBUG: Email to admin sent")
-
-            server.quit()
-            print("DEBUG: Email sending completed successfully")
-            return True
+                server.quit()
+                print(f"SUCCESS: Emails dispatched successfully to {to_email} and admin via SMTP.")
+                return True
         except Exception as e:
-            print(f"ERROR sending email: {str(e)}")
+            print(f"CRITICAL ERROR in background email thread: {str(e)}")
             import traceback
             traceback.print_exc()
             return False
->>>>>>> 3d7e751caf1f7a9bf08fb711a688df6b77350773
+
     # Run email sending in a background thread
     thread = threading.Thread(target=_send)
     thread.daemon = True
