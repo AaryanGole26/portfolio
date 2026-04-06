@@ -33,13 +33,6 @@ A full-stack personal portfolio website showcasing my AI/ML projects, skills, an
 - **Environment**: Python 3.12
 - **Testing**: pytest (12 unit tests)
 
-## Contact
-
-📧 Email: [goleaaryan7@gmail.com](mailto:goleaaryan7@gmail.com)  
-🔗 LinkedIn: [linkedin.com/in/aaryan-gole](https://linkedin.com/in/aaryan-gole)  
-💻 GitHub: [github.com/AaryanGole26](https://github.com/AaryanGole26)  
-📞 Phone: +91 93097 44137
-
 ## License
 
 MIT License - Feel free to fork and use!
