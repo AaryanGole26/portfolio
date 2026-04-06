@@ -16,8 +16,12 @@ import requests
 
 load_dotenv()
 
-app = Flask(__name__)
-CORS(app)
+frontend_url = os.getenv("FRONTEND_URL")
+
+if frontend_url:
+    CORS(app, origins=[frontend_url])
+else:
+    CORS(app)  # fallback (not ideal but prevents crash)
 
 # MongoDB Configuration with SSL certificate
 mongo_uri = os.getenv('MONGO_URI')
