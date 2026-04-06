@@ -1186,6 +1186,17 @@
       function handleUserQuery(query) {
         const lowerQuery = query.toLowerCase();
 
+        // Keep greeting responses local to avoid irrelevant retrieval-based replies.
+        const isGreeting = ['hi', 'hello', 'hey', 'greetings'].some(word => {
+          const pattern = new RegExp(`\\b${word}\\b`, 'i');
+          return pattern.test(query);
+        });
+
+        if (isGreeting) {
+          addBotMessage("Hi there! I'm Aaryan Gole's portfolio assistant. I can help with his background, skills, projects, experience, and contact details.");
+          return;
+        }
+
         // Check for navigation intents first
         if (lowerQuery.includes('home')) {
           addBotMessage('Taking you home!');
