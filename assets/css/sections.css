@@ -996,6 +996,28 @@ body.light-mode .skill-bento-icon i {
   color: #5a4ce0;
 }
 
+body.light-mode .metric-badge {
+  color: #2f4f8f;
+  background: rgba(84, 140, 255, 0.16);
+  border-color: rgba(84, 140, 255, 0.45);
+}
+
+body.light-mode .showcase-tags span {
+  color: #2c3450;
+  background: rgba(108, 92, 231, 0.08);
+  border-color: rgba(108, 92, 231, 0.2);
+}
+
+body.light-mode .showcase-tags span:hover {
+  color: #4f42d2;
+  background: rgba(108, 92, 231, 0.14);
+  border-color: rgba(108, 92, 231, 0.42);
+}
+
+body.light-mode .showcase-tags span i {
+  color: #5f52df;
+}
+
 @media (max-width: 1024px) {
   .skills-bento-grid {
     grid-template-columns: repeat(2, 1fr);
