@@ -1414,11 +1414,20 @@
       const videoContainers = document.querySelectorAll('.video-container');
       videoContainers.forEach(container => {
         const video = container.querySelector('video');
+        const overlay = container.querySelector('.play-overlay-v2');
+        const defaultOverlayHtml = overlay ? overlay.innerHTML : '';
         const videoSrc = container.dataset.video;
         const localVideoSrc = container.dataset.videoLocal;
 
+        function resetVideoOverlay() {
+          if (overlay) {
+            overlay.innerHTML = defaultOverlayHtml;
+            overlay.style.opacity = '';
+            overlay.style.background = '';
+          }
+        }
+
         function showVideoUnavailable() {
-          const overlay = container.querySelector('.play-overlay-v2');
           if (overlay) {
             overlay.innerHTML = '<i class="bx bxs-error-circle"></i><span>Preview Unavailable</span>';
             overlay.style.opacity = '1';
@@ -1430,7 +1439,10 @@
           if (localVideoSrc && !container.dataset.fallbackTried) {
             container.dataset.fallbackTried = 'true';
             video.src = localVideoSrc;
-            return video.play();
+            return video.play().then(() => {
+              resetVideoOverlay();
+              container.classList.add('playing');
+            });
           }
           return Promise.reject(new Error('No fallback available'));
         }
@@ -1449,14 +1461,18 @@
               }
             });
 
+            resetVideoOverlay();
             if (!video.src && videoSrc) video.src = videoSrc;
-            video.play().catch(() => {
-              tryLocalFallback().catch(() => {
-                container.classList.remove('playing');
-                showVideoUnavailable();
+            video.play()
+              .then(() => {
+                container.classList.add('playing');
+              })
+              .catch(() => {
+                tryLocalFallback().catch(() => {
+                  container.classList.remove('playing');
+                  showVideoUnavailable();
+                });
               });
-            });
-            container.classList.add('playing');
           }
         });
 
