@@ -96,6 +96,9 @@
   .showcase-visual { height: 180px !important; flex: none !important; }
   .showcase-info { padding: 18px 16px !important; }
   .info-content h3 { font-size: 1rem; }
+  .project-key-title { font-size: 10px; letter-spacing: 1.5px; }
+  .project-key-features { margin-left: 16px; gap: 6px; }
+  .project-key-features li { font-size: 11px; }
   .showcase-tags span { font-size: 10px; padding: 4px 9px; }
   .btn-action { font-size: 11px; padding: 7px 12px; }
 
@@ -301,7 +304,13 @@
   }
   .projects-list { width: 62% !important; }
   .sidebar-title { font-size: clamp(1.8rem, 3.5vw, 2.8rem); }
-  .showcase-visual { height: 260px !important; }
+  .showcase-visual {
+    flex: 0 0 48vh !important;
+  }
+  .showcase-img,
+  .video-container video {
+    object-fit: contain;
+  }
 
   /* EXPERIENCE */
   .experience { padding: 100px 40px; }
@@ -331,4 +340,13 @@
 
   .skills-bento-grid { grid-template-columns: repeat(3, 1fr); }
   .about-info { grid-template-columns: repeat(3, 1fr); }
+
+  .showcase-visual {
+    flex: 0 0 48vh !important;
+  }
+
+  .showcase-img,
+  .video-container video {
+    object-fit: contain;
+  }
 }

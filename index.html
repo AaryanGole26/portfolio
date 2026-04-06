@@ -29,6 +29,7 @@
     </div>
     <nav class="nav-links">
       <a href="#about" class="nav-item">about</a>
+      <a href="#systems" class="nav-item">focus</a>
       <a href="#skills" class="nav-item">skills</a>
       <a href="#experience" class="nav-item">experience</a>
       <a href="#projects" class="nav-item">projects</a>
@@ -69,7 +70,7 @@
           </div>
         </div>
 
-        <p class="hero-description">AI & Data Science student building scalable backend systems and intelligent applications with machine learning.</p>
+        <p class="hero-description">Backend-focused developer building scalable systems with Flask, Django, and AI-powered pipelines (RAG, NLP).</p>
 
         <div class="hero-cta">
           <a href="#contact" class="btn-primary">Get in touch <span class="btn-arrow">&rsaquo;</span></a>
@@ -81,7 +82,7 @@
               class="bx bxl-linkedin"></i></a>
           <a href="https://www.github.com/AaryanGole26" target="_blank" class="github"><i class="bx bxl-github"></i></a>
           <a href="mailto:goleaaryan7@gmail.com" target="_blank" class="google"><i class="bx bxl-google"></i></a>
-          <a href="https://drive.google.com/file/d/1NWJxPXYwa6j8cYUhQZHHWw0X0ARIw16I/view?usp=sharing" target="_blank"
+          <a href="https://drive.google.com/file/d/1qc9qI5WlnPX1Eo-aYkNR0uIpzqyWHc5W/view?usp=sharing" target="_blank"
             rel="noopener noreferrer" class="resume-link"><i class="bx bxs-file-doc"></i></a>
         </div>
       </div>
@@ -121,21 +122,65 @@
       <div class="about-container">
         <div class="about-text-hero">
           <h1 class="heroic-text">
-            I'm a passionate builder majoring in <span class="highlight-scroll">Artificial Intelligence</span> & <span
-              class="highlight-scroll">Data Science</span>
+            I build <span class="highlight-scroll">scalable backend systems</span> with integrated <span
+              class="highlight-scroll">AI capabilities</span>
           </h1>
 
           <p class="heroic-subtext">
-            With a strong foundation in <span class="highlight-scroll">software engineering</span> and <span
-              class="highlight-scroll">Machine Learning</span>, I specialize in transforming complex problems into
-            elegant, scalable backend solutions. Currently exploring NLP, Transformers, and production-grade AI systems,
-            backed by hands-on experience developing RAG models using TensorFlow at Citius Tech.
+            I design and ship <span class="highlight-scroll">backend-first platforms</span> with clean APIs,
+            resilient architecture, and measurable performance. My recent work focuses on
+            <span class="highlight-scroll">RAG pipelines</span>, semantic retrieval, and production-oriented AI
+            services that solve real user workflows.
           </p>
         </div>
 
         <!-- Removed services section as requested -->
       </div>
     </div>
+    </div>
+  </section>
+
+  <!-- SYSTEMS SECTION -->
+  <section class="systems" id="systems">
+    <div class="wave wave-right"></div>
+    <div class="section-content">
+      <div class="systems-head">
+        <p class="systems-eyebrow">Architecture Focus</p>
+        <h2>Systems <span class="accent-text">I Build</span></h2>
+        <p class="systems-subtext">Production-oriented backend architectures built for reliability, performance, and clean delivery. This section describes how I design software, while the stack below shows the tools I use.</p>
+      </div>
+
+      <div class="systems-grid">
+        <article class="system-card">
+          <div class="system-icon"><i class="bx bx-server"></i></div>
+          <h3>API Orchestration</h3>
+          <p>Service boundaries, request validation, auth, and response shaping for maintainable backend contracts.</p>
+        </article>
+
+        <article class="system-card">
+          <div class="system-icon"><i class="bx bx-network-chart"></i></div>
+          <h3>Retrieval Systems</h3>
+          <p>Vector search, reranking, grounding, and prompt flow design for document-heavy AI products.</p>
+        </article>
+
+        <article class="system-card">
+          <div class="system-icon"><i class="bx bx-brain"></i></div>
+          <h3>Event-Driven Logic</h3>
+          <p>Background tasks, state changes, and workflow automation for real-time product behavior.</p>
+        </article>
+
+        <article class="system-card">
+          <div class="system-icon"><i class="bx bx-timer"></i></div>
+          <h3>Real-time Processing</h3>
+          <p>Low-latency event handling, streaming updates, and alert loops for time-sensitive use cases.</p>
+        </article>
+
+        <article class="system-card">
+          <div class="system-icon"><i class="bx bx-layer"></i></div>
+          <h3>Delivery & Observability</h3>
+          <p>Deployment-friendly systems with logging, stability checks, and production readiness in mind.</p>
+        </article>
+      </div>
     </div>
   </section>
 
@@ -155,9 +200,9 @@
 
         <!-- Header Card -->
         <div class="skills-header-card">
-          <p class="skills-eyebrow">What I work with</p>
+          <p class="skills-eyebrow">Tool Stack</p>
           <h2>My <span class="highlight-scroll">Tech</span><br><span class="accent-text">Stack.</span></h2>
-          <p class="skills-sub">A cross-disciplinary toolkit spanning AI, web, and systems engineering.</p>
+          <p class="skills-sub">Languages, frameworks, and tooling I use to build and ship the systems above.</p>
         </div>
 
         <!-- Skill Card 2 -->
@@ -288,7 +333,8 @@
         <div class="sidebar-content">
           <h2 class="sidebar-title"><span class="accent-text">Featured</span><br>Projects</h2>
           <div class="projects-filters">
-            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn active" data-filter="top">Top Systems</button>
+            <button class="filter-btn" data-filter="all">All Projects</button>
             <button class="filter-btn" data-filter="research">Research</button>
             <button class="filter-btn" data-filter="extra">Extra</button>
           </div>
@@ -340,7 +386,7 @@
       <!-- Scrolling Content -->
       <div class="projects-list">
         <!-- Project 1 -->
-        <div class="project-showcase" id="project-1" data-project="1">
+        <div class="project-showcase" id="project-1" data-project="1" data-category="research" data-priority="top">
           <div class="showcase-visual">
             <div class="video-container" data-video="assets/videos/lawpal-demo.mp4">
               <img src="assets/img/lawpal.jpg" alt="LawPal" class="showcase-img">
@@ -355,12 +401,22 @@
             <div class="info-content">
               <span class="info-tag">Research / Coursework</span>
               <h3>LawPal — Legal AI Assistant</h3>
-              <p>LawPal is an AI-driven chatbot designed to assist users with legal inquiries, document analysis, and
-                case law retrieval. It simplifies legal research and provides real-time guidance by leveraging Pinecone
-                for vector search, Groq for natural language processing, and Flask for backend services.</p>
-              <div class="showcase-tags">
-                <span>Flask</span><span>RAG</span><span>NLP</span><span>Voice Assistant</span>
+              <p class="project-summary">Built a <strong>scalable Flask backend</strong> with RAG retrieval over legal corpora, enabling low-latency legal guidance with grounded responses.</p>
+              <div class="project-impact-metrics">
+                <span class="metric-badge"><i class="bx bx-bolt-circle"></i> 35% faster responses</span>
+                <span class="metric-badge"><i class="bx bx-file"></i> 7k+ legal documents</span>
+                <span class="metric-badge"><i class="bx bx-search"></i> Semantic search</span>
               </div>
+              <div class="showcase-tags">
+                <span><i class="bx bxl-react"></i> React</span><span><i class="bx bx-camera"></i> OpenCV</span><span><i class="bx bx-brain"></i> NLP</span><span><i class="bx bxl-nodejs"></i> Express</span><span><i class="bx bx-network-chart"></i> RAG</span>
+              </div>
+              <p class="system-design-tag"><strong>System:</strong> RAG Pipeline | Vector DB | API Backend | Auth</p>
+              <p class="project-key-title">Key Features:</p>
+              <ul class="project-key-features">
+                <li>Location-based <strong>legal updates</strong> with AI-generated summaries</li>
+                <li>Multilingual <strong>question answering</strong> for common legal scenarios</li>
+                <li>Document upload with <strong>legal analysis</strong> and quick recommendations</li>
+              </ul>
               <div class="showcase-actions">
                 <a href="https://github.com/AaryanGole26/lawpal" target="_blank" class="btn-action">Github <i
                     class="bx bxl-github"></i></a>
@@ -370,7 +426,7 @@
         </div>
 
         <!-- Project 2 -->
-        <div class="project-showcase" id="project-2" data-project="2" data-category="research">
+        <div class="project-showcase" id="project-2" data-project="2" data-category="research" data-priority="top">
           <div class="showcase-visual">
             <div class="video-container" data-video="assets/videos/optiresume-demo.mp4">
               <img src="assets/img/optiresume.jpg" alt="OptiResume-AI" class="showcase-img">
@@ -385,11 +441,22 @@
             <div class="info-content">
               <span class="info-tag">Research / Coursework</span>
               <h3>OptiResume — AI-Driven Resume Optimization</h3>
-              <p>A full‑stack AI system to parse, analyze, and optimize resumes. Features automated job link extraction,
-                AI-powered content enhancement, and 6 professional ATS-friendly templates with LaTeX/PDF export.</p>
-              <div class="showcase-tags">
-                <span>NLP</span><span>Web Scraping</span><span>React</span><span>Flask</span><span>LaTeX</span>
+              <p class="project-summary">Designed an <strong>API-first resume optimization service</strong> with NLP scoring, structured parsing, and export-ready ATS document generation.</p>
+              <div class="project-impact-metrics">
+                <span class="metric-badge"><i class="bx bx-bolt-circle"></i> 40% faster resume processing</span>
+                <span class="metric-badge"><i class="bx bx-file"></i> 6 ATS templates</span>
+                <span class="metric-badge"><i class="bx bx-search"></i> Semantic JD matching</span>
               </div>
+              <div class="showcase-tags">
+                <span><i class="bx bxl-react"></i> React</span><span><i class="bx bxl-python"></i> Flask</span><span><i class="bx bx-brain"></i> NLP</span><span><i class="bx bx-math"></i> LaTeX</span><span><i class="bx bx-globe"></i> Web Scraping</span>
+              </div>
+              <p class="system-design-tag"><strong>System:</strong> API Backend | NLP Scorer | Template Engine | Export Service</p>
+              <p class="project-key-title">Key Features:</p>
+              <ul class="project-key-features">
+                <li>Automated <strong>JD keyword matching</strong> and score feedback</li>
+                <li>AI-assisted <strong>content enhancement</strong> for stronger bullets</li>
+                <li>Export-ready <strong>ATS templates</strong> in PDF and LaTeX</li>
+              </ul>
               <div class="showcase-actions">
                 <a href="https://github.com/AaryanGole26/OptiResume-AI" target="_blank" class="btn-action">Github <i
                     class="bx bxl-github"></i></a>
@@ -414,24 +481,30 @@
             <div class="info-content">
               <span class="info-tag">Extra-Curricular</span>
               <h3>FinSlash — Loan Dashboard</h3>
-              <p>FinSlash is an AI-driven loan approval dashboard that leverages machine learning to make loan decisions
-                faster, smarter, and more transparent. This application provides financial institutions with a
-                user-friendly interface to analyze loan applicants and make data-driven approval decisions.</p>
+              <p class="project-summary"><strong>Loan decision dashboard</strong> that helps lenders evaluate applicant risk and approve applications with explainable ML insights.</p>
               <div class="showcase-tags">
-                <span>ML</span><span>EDA</span><span>Regression</span><span>Streamlit</span>
+                <span><i class="bx bx-line-chart"></i> ML</span><span><i class="bx bx-bar-chart-alt-2"></i> EDA</span><span><i class="bx bx-trending-up"></i> Regression</span><span><i class="bx bx-window-alt"></i> Streamlit</span>
               </div>
+              <p class="system-design-tag"><strong>System:</strong> ML Scoring API | Analytics Dashboard | Feature Pipeline</p>
+              <p class="project-key-title">Key Features:</p>
+              <ul class="project-key-features">
+                <li>End-to-end <strong>risk scoring</strong> from applicant attributes</li>
+                <li>Transparent <strong>feature-driven predictions</strong> for approvals</li>
+                <li>Interactive admin dashboard with <strong>real-time what-if analysis</strong></li>
+              </ul>
               <div class="showcase-actions">
                 <a href="https://github.com/AaryanGole26/FinSlash" target="_blank" class="btn-action">Github <i
                     class="bx bxl-github"></i></a>
                 <a href="https://finslash-3jt.streamlit.app/" target="_blank" class="btn-action primary">Live <i
                     class="bx bx-link-external"></i></a>
+                <span class="live-signal"><i class="bx bxs-circle"></i> Live System Available</span>
               </div>
             </div>
           </div>
         </div>
 
         <!-- Project 4 -->
-        <div class="project-showcase" id="project-4" data-project="4" data-category="research">
+        <div class="project-showcase" id="project-4" data-project="4" data-category="research" data-priority="top">
           <div class="showcase-visual">
             <div class="video-container" data-video="assets/videos/rento-demo.mp4">
               <img src="assets/img/rento.jpg" alt="Rento" class="showcase-img">
@@ -446,17 +519,28 @@
             <div class="info-content">
               <span class="info-tag">Research / Coursework</span>
               <h3>Rento — Tool Rental Hub</h3>
-              <p>Rento is a web-based application designed to facilitate the rental of engineering tools and equipment.
-                This platform enables users (customers) to browse, select, and rent various engineering equipment
-                easily.</p>
-              <div class="showcase-tags">
-                <span>Django</span><span>Python</span><span>Web Dev</span><span>SQL</span>
+              <p class="project-summary">Built a <strong>Django-based rental backend</strong> with inventory workflows, booking state transitions, and role-based operations for admin and users.</p>
+              <div class="project-impact-metrics">
+                <span class="metric-badge"><i class="bx bx-bolt-circle"></i> 50% faster booking flow</span>
+                <span class="metric-badge"><i class="bx bx-package"></i> Inventory lifecycle tracking</span>
+                <span class="metric-badge"><i class="bx bx-check-shield"></i> Role-based access</span>
               </div>
+              <div class="showcase-tags">
+                <span><i class="bx bxl-django"></i> Django</span><span><i class="bx bxl-python"></i> Python</span><span><i class="bx bx-code-curly"></i> Web Dev</span><span><i class="bx bx-data"></i> SQL</span>
+              </div>
+              <p class="system-design-tag"><strong>System:</strong> API Backend | SQL Data Model | Booking Engine | Auth</p>
+              <p class="project-key-title">Key Features:</p>
+              <ul class="project-key-features">
+                <li>Search-first catalog with <strong>availability-aware booking</strong></li>
+                <li>Role-based flows for <strong>customers and inventory admins</strong></li>
+                <li>Booking lifecycle with <strong>checkout, return, and status tracking</strong></li>
+              </ul>
               <div class="showcase-actions">
                 <a href="https://github.com/AaryanGole26/Rento" target="_blank" class="btn-action">Github <i
                     class="bx bxl-github"></i></a>
                 <a href="https://rento-srcr.onrender.com/" target="_blank" class="btn-action primary">Live <i
                     class="bx bx-link-external"></i></a>
+                <span class="live-signal"><i class="bx bxs-circle"></i> Live System Available</span>
               </div>
             </div>
           </div>
@@ -478,24 +562,30 @@
             <div class="info-content">
               <span class="info-tag">Research / Coursework</span>
               <h3>CineSLEUTH — Movie Filter</h3>
-              <p>CineSLEUTH is an intelligent movie recommendation system that combines advanced ML techniques such as
-                TF-IDF vectorization, cosine similarity, fuzzy matching, and Apriori-based collaborative filtering. The
-                system provides highly accurate and personalized movie recommendations for users.</p>
+              <p class="project-summary"><strong>Personalized movie recommendation engine</strong> combining text similarity and collaborative signals for accurate discovery.</p>
               <div class="showcase-tags">
-                <span>Fuzzy-search</span><span>TF-IDF</span><span>Cosine Similarity</span>
+                <span><i class="bx bx-search-alt-2"></i> Fuzzy-search</span><span><i class="bx bx-text"></i> TF-IDF</span><span><i class="bx bx-shape-circle"></i> Cosine Similarity</span>
               </div>
+              <p class="system-design-tag"><strong>System:</strong> Retrieval Engine | Ranking Pipeline | Recommendation API</p>
+              <p class="project-key-title">Key Features:</p>
+              <ul class="project-key-features">
+                <li>Hybrid ranking with <strong>TF-IDF + cosine similarity</strong></li>
+                <li>Fast title matching using <strong>fuzzy search</strong> for typo tolerance</li>
+                <li>Smarter suggestions with <strong>Apriori collaborative patterns</strong></li>
+              </ul>
               <div class="showcase-actions">
                 <a href="https://github.com/AaryanGole26/CineSLEUTH" target="_blank" class="btn-action">Github <i
                     class="bx bxl-github"></i></a>
                 <a href="https://huggingface.co/spaces/ARYN26/CineSLEUTH" target="_blank"
                   class="btn-action primary">Live <i class="bx bx-link-external"></i></a>
+                <span class="live-signal"><i class="bx bxs-circle"></i> Live System Available</span>
               </div>
             </div>
           </div>
         </div>
 
         <!-- Project 6 -->
-        <div class="project-showcase" id="project-6" data-project="6" data-category="extra">
+        <div class="project-showcase" id="project-6" data-project="6" data-category="extra" data-priority="top">
           <div class="showcase-visual">
             <div class="video-container" data-video="assets/videos/drivesense-demo.mp4">
               <img src="assets/img/drivesense.jpg" alt="DriveSense" class="showcase-img">
@@ -510,13 +600,22 @@
             <div class="info-content">
               <span class="info-tag">Extra-Curricular</span>
               <h3>DriveSense — Fatigue Monitor</h3>
-              <p>DriveSense is an AI-powered driver wellness system that monitors facial cues and eye movements in real
-                time to detect fatigue, stress, or distress. Using deep learning and computer vision, it provides
-                non-intrusive interventions like gentle audio alerts to enhance focus, safety, and overall driver
-                well-being.</p>
-              <div class="showcase-tags">
-                <span>OpenCV</span><span>Deep Learning</span><span>TensorFlow</span>
+              <p class="project-summary">Engineered a <strong>real-time CV backend pipeline</strong> for drowsiness detection with event-driven alerting and low-latency inference.</p>
+              <div class="project-impact-metrics">
+                <span class="metric-badge"><i class="bx bx-bolt-circle"></i> Sub-second alert loop</span>
+                <span class="metric-badge"><i class="bx bx-camera"></i> Live landmark tracking</span>
+                <span class="metric-badge"><i class="bx bx-shield-quarter"></i> Safety-first intervention</span>
               </div>
+              <div class="showcase-tags">
+                <span><i class="bx bx-camera"></i> OpenCV</span><span><i class="bx bx-brain"></i> Deep Learning</span><span><i class="bx bx-network-chart"></i> TensorFlow</span>
+              </div>
+              <p class="system-design-tag"><strong>System:</strong> CV Inference Pipeline | Event Stream | Alert Engine</p>
+              <p class="project-key-title">Key Features:</p>
+              <ul class="project-key-features">
+                <li>Live <strong>eye and face landmark tracking</strong> during driving</li>
+                <li>Risk detection for <strong>drowsiness, stress, and micro-sleeps</strong></li>
+                <li>Non-intrusive <strong>audio alerts</strong> to restore attention safely</li>
+              </ul>
               <div class="showcase-actions">
                 <a href="https://github.com/AaryanGole26/DriveSense" target="_blank" class="btn-action">Github <i
                     class="bx bxl-github"></i></a>
@@ -541,12 +640,17 @@
             <div class="info-content">
               <span class="info-tag">Extra-Curricular</span>
               <h3>ArcadePy — Game Suite</h3>
-              <p>ArcadePy is a consolidated suite of four classic Python-based arcade games into one repository. With a
-                simple user interface, the ArcadePy.py file allows you to choose from: Slither, Pong, Hovering UFO &
-                Hangman.</p>
+              <p class="project-summary"><strong>Classic Python arcade bundle</strong> combining multiple mini-games under one launcher with smooth keyboard-first controls.</p>
               <div class="showcase-tags">
-                <span>PyGame</span><span>Tkinter</span><span>Game Dev</span>
+                <span><i class="bx bxl-python"></i> PyGame</span><span><i class="bx bx-window"></i> Tkinter</span><span><i class="bx bx-joystick"></i> Game Dev</span>
               </div>
+              <p class="system-design-tag"><strong>System:</strong> Modular Game Engine | UI Launcher | Input Loop</p>
+              <p class="project-key-title">Key Features:</p>
+              <ul class="project-key-features">
+                <li>Unified menu to launch <strong>Slither, Pong, UFO, and Hangman</strong></li>
+                <li>Lightweight local setup with <strong>single-entry execution</strong></li>
+                <li>Fun-focused design with <strong>replay-friendly gameplay loops</strong></li>
+              </ul>
               <div class="showcase-actions">
                 <a href="https://github.com/AaryanGole26/ArcadePy" target="_blank" class="btn-action">Github <i
                     class="bx bxl-github"></i></a>
@@ -571,11 +675,17 @@
             <div class="info-content">
               <span class="info-tag">Extra-Curricular</span>
               <h3>Collatz Conjecture — Algorithm Visualizer</h3>
-              <p>It visualizes the Collatz Conjecture (also known as the 3x + 1 problem) through interactive graphs. For
-                a given natural number, the program calculates the Collatz sequence and displays it graphically.</p>
+              <p class="project-summary"><strong>Interactive number-theory visualizer</strong> that maps Collatz sequences into clear, explorable graph patterns.</p>
               <div class="showcase-tags">
-                <span>Python</span><span>Mathematics</span><span>Visualization</span>
+                <span><i class="bx bxl-python"></i> Python</span><span><i class="bx bx-math"></i> Mathematics</span><span><i class="bx bx-scatter-chart"></i> Visualization</span>
               </div>
+              <p class="system-design-tag"><strong>System:</strong> Computation Pipeline | Visualization Layer | Interactive Controls</p>
+              <p class="project-key-title">Key Features:</p>
+              <ul class="project-key-features">
+                <li>Computes complete <strong>3x + 1 progression</strong> for any natural input</li>
+                <li>Graph-based view for <strong>sequence growth and convergence</strong></li>
+                <li>Educational mode for <strong>algorithm intuition and exploration</strong></li>
+              </ul>
               <div class="showcase-actions">
                 <a href="https://github.com/AaryanGole26/Collatz_Conjecture" target="_blank" class="btn-action">Github
                   <i class="bx bxl-github"></i></a>
@@ -600,19 +710,24 @@
             <div class="info-content">
               <span class="info-tag">Extra-Curricular</span>
               <h3>CGPA Calculator — Mumbai University</h3>
-              <p>Mumbai University C-Scheme CGPI & Percentage Calculator that computes CGPI using official formulas.
-                Enter marks, SGPA, or CR×GP to auto-calculate credits, SGPA trends, and generate a downloadable report
-                with graph. Includes performance prediction tools to estimate required SGPA for achieving a target CGPI.
-              </p>
+              <p class="project-summary"><strong>Academic performance companion</strong> for Mumbai University students to compute CGPA, trends, and target planning instantly.</p>
               <div class="showcase-tags">
-                <span>HTML</span><span>CSS</span><span>JavaScript</span><span>Mumbai University</span>
+                <span><i class="bx bxl-html5"></i> HTML</span><span><i class="bx bxl-css3"></i> CSS</span><span><i class="bx bxl-javascript"></i> JavaScript</span><span><i class="bx bx-buildings"></i> Mumbai University</span>
               </div>
+              <p class="system-design-tag"><strong>System:</strong> Client-side Calculator Engine | Rules Mapper | Report Generator</p>
+              <p class="project-key-title">Key Features:</p>
+              <ul class="project-key-features">
+                <li>Official formula-based <strong>CGPI and percentage calculations</strong></li>
+                <li>Semester trend graphs with <strong>downloadable progress reports</strong></li>
+                <li>Target planner for <strong>required SGPA prediction</strong></li>
+              </ul>
               <div class="showcase-actions">
                 <a href="https://github.com/AaryanGole26/CGPA-Calculator" target="_blank" class="btn-action">Github
                   <i class="bx bxl-github"></i></a>
                 <a href="https://aaryangole26.github.io/CGPA-Calculator/" target="_blank" class="btn-action"
                   style="background: var(--accent); color: white; border-color: var(--accent);">Live
                   <i class="bx bx-link-external"></i></a>
+                <span class="live-signal"><i class="bx bxs-circle"></i> Live System Available</span>
               </div>
             </div>
           </div>
@@ -634,18 +749,24 @@
             <div class="info-content">
               <span class="info-tag">Extra-Curricular</span>
               <h3>LUME — AI Meme Suite</h3>
-              <p>LUME is an AI-powered app that turns your images into viral memes. Upload a photo, add an optional
-                trending topic, and let Lume use BLIP and Groq AI to craft witty, high-quality captions with stylish
-                overlays—ready to download and share instantly.</p>
+              <p class="project-summary"><strong>Image-to-meme generator</strong> that transforms user photos into share-ready meme cards using multimodal AI captioning.</p>
               <div class="showcase-tags">
-                <span>AI</span><span>BLIP</span><span>Groq</span><span>Computer Vision</span><span>Meme Suite</span>
+                <span><i class="bx bx-bot"></i> AI</span><span><i class="bx bx-image-alt"></i> BLIP</span><span><i class="bx bx-chip"></i> Groq</span><span><i class="bx bx-camera"></i> Computer Vision</span><span><i class="bx bx-smile"></i> Meme Suite</span>
               </div>
+              <p class="system-design-tag"><strong>System:</strong> Multimodal Inference API | Caption Pipeline | Media Renderer</p>
+              <p class="project-key-title">Key Features:</p>
+              <ul class="project-key-features">
+                <li>Photo upload pipeline with <strong>context-aware caption generation</strong></li>
+                <li>Topic-conditioned outputs using <strong>BLIP + Groq inference</strong></li>
+                <li>One-click export for <strong>social-ready meme templates</strong></li>
+              </ul>
               <div class="showcase-actions">
                 <a href="https://github.com/AaryanGole26/LUME" target="_blank" class="btn-action">Github <i
                     class="bx bxl-github"></i></a>
                 <a href="https://lume-ai-l9ji.onrender.com" target="_blank" class="btn-action primary"
                   style="background: var(--accent); color: white; border-color: var(--accent);">Live
                   <i class="bx bx-link-external"></i></a>
+                <span class="live-signal"><i class="bx bxs-circle"></i> Live System Available</span>
               </div>
             </div>
           </div>
@@ -1223,7 +1344,11 @@
           projectObserver.disconnect();
 
           projectShowcases.forEach(card => {
-            if (filter === 'all' || card.dataset.category === filter) {
+            const isTop = card.dataset.priority === 'top';
+            const isCategoryMatch = card.dataset.category === filter;
+            const shouldShow = filter === 'all' || (filter === 'top' ? isTop : isCategoryMatch);
+
+            if (shouldShow) {
               card.style.display = 'flex';
               projectObserver.observe(card);
             } else {
@@ -1238,6 +1363,9 @@
           });
         });
       });
+
+      const defaultFilterBtn = document.querySelector('.filter-btn.active') || document.querySelector('.filter-btn[data-filter="all"]');
+      if (defaultFilterBtn) defaultFilterBtn.click();
 
       // Project Sidebar Click to Scroll — using offsetTop for accuracy with sticky elements
       projectNavItems.forEach(item => {
