@@ -907,6 +907,22 @@
 
   <script type="text/javascript">
     document.addEventListener('DOMContentLoaded', function () {
+      // Demo video CDN routing (GitHub via jsDelivr)
+      const GITHUB_VIDEO_CDN_BASE = 'https://cdn.jsdelivr.net/gh/AaryanGole26/portfolio@main/assets/videos/';
+
+      function mapLocalVideoToGithubCdn(videoPath) {
+        if (!videoPath || !videoPath.startsWith('assets/videos/')) return videoPath;
+        const fileName = videoPath.replace('assets/videos/', '');
+        return `${GITHUB_VIDEO_CDN_BASE}${fileName}`;
+      }
+
+      // Keep local paths in markup; only switch runtime source to CDN for faster delivery.
+      document.querySelectorAll('.video-container[data-video]').forEach((container) => {
+        const localPath = container.getAttribute('data-video');
+        const cdnPath = mapLocalVideoToGithubCdn(localPath);
+        if (cdnPath) container.setAttribute('data-video', cdnPath);
+      });
+
       // Intersection Observer for scroll-triggered fade-in animations
       const observerOptions = {
         root: null,
