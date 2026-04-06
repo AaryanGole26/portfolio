@@ -907,24 +907,62 @@
 
   <script type="text/javascript">
     document.addEventListener('DOMContentLoaded', function () {
-      // Demo video CDN routing (GitHub via jsDelivr)
-      const GITHUB_VIDEO_CDN_BASE = 'https://cdn.jsdelivr.net/gh/AaryanGole26/portfolio@main/assets/videos/';
+      const DEFAULT_BACKEND_ORIGIN = 'https://portfolio-backend-200p.onrender.com';
 
-      function mapLocalVideoToGithubCdn(videoPath) {
-        if (!videoPath || !videoPath.startsWith('assets/videos/')) return videoPath;
-        const fileName = videoPath.replace('assets/videos/', '');
-        return `${GITHUB_VIDEO_CDN_BASE}${fileName}`;
+      function getApiBaseCandidates() {
+        const candidates = [];
+        const explicitBackend = window.PORTFOLIO_BACKEND_URL || window.BACKEND_URL;
+        const hostname = window.location.hostname;
+
+        if (hostname.endsWith('netlify.app')) {
+          candidates.push('/api', '/.netlify/functions/api-proxy');
+        } else {
+          candidates.push('/api');
+        }
+
+        if (explicitBackend) {
+          candidates.push(`${String(explicitBackend).replace(/\/+$/, '')}/api`);
+        }
+
+        candidates.push(`${DEFAULT_BACKEND_ORIGIN}/api`);
+
+        if (['localhost', '127.0.0.1'].includes(hostname)) {
+          candidates.push('http://127.0.0.1:5000/api');
+        }
+
+        return [...new Set(candidates)];
       }
 
-      // Keep local paths in markup; only switch runtime source to CDN for faster delivery.
-      document.querySelectorAll('.video-container[data-video]').forEach((container) => {
-        const localPath = container.getAttribute('data-video');
-        const cdnPath = mapLocalVideoToGithubCdn(localPath);
-        if (cdnPath && localPath && localPath !== cdnPath) {
-          container.setAttribute('data-video-local', localPath);
-          container.setAttribute('data-video', cdnPath);
+      async function fetchApiJson(path, options = {}) {
+        const apiBases = getApiBaseCandidates();
+        let lastError = null;
+
+        for (const base of apiBases) {
+          const url = `${base}${path}`;
+          try {
+            const response = await fetch(url, options);
+            const contentType = response.headers.get('content-type') || '';
+
+            if (!response.ok) {
+              lastError = new Error(`Request failed (${response.status}) at ${url}`);
+              continue;
+            }
+
+            if (!contentType.includes('application/json')) {
+              const preview = (await response.text()).slice(0, 120);
+              lastError = new Error(`Expected JSON from ${url}, got: ${preview}`);
+              continue;
+            }
+
+            const data = await response.json();
+            return { data, url };
+          } catch (error) {
+            lastError = error;
+          }
         }
-      });
+
+        throw lastError || new Error('No API route is reachable.');
+      }
 
       // Intersection Observer for scroll-triggered fade-in animations
       const observerOptions = {
@@ -973,11 +1011,25 @@
       // ========================
       // PROJECT VIDEO PLAY/PAUSE
       // ========================
-      document.querySelectorAll('.project-image[data-video]').forEach(container => {
+      document.querySelectorAll('.video-container[data-video], .project-image[data-video]').forEach(container => {
         const video = container.querySelector('video');
-        const overlay = container.querySelector('.play-overlay');
+        const overlay = container.querySelector('.play-overlay-v2, .play-overlay');
         const videoSrc = container.dataset.video;
         let isLoaded = false;
+
+        if (!video || !overlay || !videoSrc) {
+          return;
+        }
+
+        video.preload = 'metadata';
+
+        function playLoadedVideo() {
+          video.play().then(() => {
+            container.classList.add('video-active');
+          }).catch(() => {
+            // Keep UI stable when autoplay policies block playback.
+          });
+        }
 
         // Click overlay to toggle play/pause
         overlay.addEventListener('click', (e) => {
@@ -990,11 +1042,26 @@
           } else {
             // Load video source lazily on first play
             if (!isLoaded) {
+              overlay.classList.add('loading');
               video.src = videoSrc;
+              video.load();
               isLoaded = true;
+
+              const onCanPlay = () => {
+                overlay.classList.remove('loading');
+                playLoadedVideo();
+              };
+
+              const onError = () => {
+                overlay.classList.remove('loading');
+              };
+
+              video.addEventListener('canplay', onCanPlay, { once: true });
+              video.addEventListener('error', onError, { once: true });
+              return;
             }
-            video.play().catch(() => { });
-            container.classList.add('video-active');
+
+            playLoadedVideo();
           }
         });
 
@@ -1069,33 +1136,21 @@
           formMessage.style.borderLeft = '4px solid #7f9cff';
 
           try {
-            console.log('Making fetch request...');
-            const response = await fetch('/api/contact', {
+            const payload = {
+              name: formData.get('name'),
+              email: formData.get('email'),
+              message: formData.get('message')
+            };
+
+            const { data } = await fetchApiJson('/contact', {
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json',
               },
-              body: JSON.stringify({
-                name: formData.get('name'),
-                email: formData.get('email'),
-                message: formData.get('message')
-              })
+              body: JSON.stringify(payload)
             });
 
-            console.log('Response received, status:', response.status);
-
-            // Always try to parse response as JSON
-            let data;
-            try {
-              data = await response.json();
-              console.log('Response data:', data);
-            } catch (e) {
-              console.log('Could not parse JSON');
-              data = {};
-            }
-
-            // Check if response was successful
-            if (response.status === 201 || response.status === 200) {
+            if (data && data.success) {
               console.log('Success response!');
               formMessage.style.backgroundColor = 'rgba(127, 156, 255, 0.2)';
               formMessage.style.color = '#7f9cff';
@@ -1107,11 +1162,11 @@
                 formMessage.style.display = 'none';
               }, 5000);
             } else {
-              console.log('Error response:', response.status);
+              console.log('Error response payload:', data);
               formMessage.style.backgroundColor = 'rgba(255, 100, 100, 0.2)';
               formMessage.style.color = '#ff6464';
               formMessage.style.borderLeft = '4px solid #ff6464';
-              formMessage.textContent = '✗ Error: ' + (data.error || 'Status ' + response.status);
+              formMessage.textContent = '✗ Error: ' + ((data && data.error) || 'Unexpected API response');
               formMessage.style.display = 'block';
             }
           } catch (error) {
@@ -1248,16 +1303,15 @@
       }
 
       function sendChatToBackend(message) {
-        fetch('/api/chat', {
+        fetchApiJson('/chat', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({ message: message })
         })
-          .then(response => response.json())
-          .then(data => {
-            if (data.success) {
+          .then(({ data }) => {
+            if (data && data.success) {
               addBotMessage(data.message);
             } else {
               addBotMessage('Sorry, I encountered an issue. Could you rephrase your question?');
