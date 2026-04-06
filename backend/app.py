@@ -16,6 +16,7 @@ import requests
 
 load_dotenv()
 
+app = Flask(__name__)
 frontend_url = os.getenv("FRONTEND_URL")
 
 if frontend_url:
