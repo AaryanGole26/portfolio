@@ -402,7 +402,7 @@ Answer based on the context:"""
     
     # Greeting responses
     if any(word in query_lower for word in ['hi', 'hello', 'hey', 'greetings']):
-        return f"Hi there! I'm Aaryan Gole's portfolio assistant. {context.split('.')[0]}. How can I help you learn more about him?"
+        return "Hi there! I'm Aaryan Gole's portfolio assistant. I can help with his background, skills, projects, experience, and contact details."
     
     # Why hire / strengths questions
     if any(phrase in query_lower for phrase in ['hire', 'why should', 'strengths', 'best', 'good at', 'capable']):

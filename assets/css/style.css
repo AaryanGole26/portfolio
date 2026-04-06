@@ -20,6 +20,7 @@
   --hero-grad-2: rgba(15, 10, 50, 0.4);
   --hero-glow-core: rgba(108, 92, 231, 0.12);
   --hero-glow-edge: rgba(60, 40, 160, 0.05);
+  --chatbot-shell-bg: rgba(16, 18, 35, 0.5);
   --font: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
@@ -42,6 +43,7 @@
   --hero-grad-2: rgba(140, 120, 250, 0.05);
   --hero-glow-core: rgba(108, 92, 231, 0.15);
   --hero-glow-edge: rgba(108, 92, 231, 0.04);
+  --chatbot-shell-bg: rgba(255, 255, 255, 0.52);
 }
 
 * {
@@ -802,7 +804,7 @@ body.loaded {
   right: 0;
   width: 380px;
   height: 550px;
-  background: var(--card-bg);
+  background: var(--chatbot-shell-bg);
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
   border-radius: 24px;
