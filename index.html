@@ -920,7 +920,10 @@
       document.querySelectorAll('.video-container[data-video]').forEach((container) => {
         const localPath = container.getAttribute('data-video');
         const cdnPath = mapLocalVideoToGithubCdn(localPath);
-        if (cdnPath) container.setAttribute('data-video', cdnPath);
+        if (cdnPath && localPath && localPath !== cdnPath) {
+          container.setAttribute('data-video-local', localPath);
+          container.setAttribute('data-video', cdnPath);
+        }
       });
 
       // Intersection Observer for scroll-triggered fade-in animations
@@ -1412,6 +1415,25 @@
       videoContainers.forEach(container => {
         const video = container.querySelector('video');
         const videoSrc = container.dataset.video;
+        const localVideoSrc = container.dataset.videoLocal;
+
+        function showVideoUnavailable() {
+          const overlay = container.querySelector('.play-overlay-v2');
+          if (overlay) {
+            overlay.innerHTML = '<i class="bx bxs-error-circle"></i><span>Preview Unavailable</span>';
+            overlay.style.opacity = '1';
+            overlay.style.background = 'rgba(0,0,0,0.8)';
+          }
+        }
+
+        function tryLocalFallback() {
+          if (localVideoSrc && !container.dataset.fallbackTried) {
+            container.dataset.fallbackTried = 'true';
+            video.src = localVideoSrc;
+            return video.play();
+          }
+          return Promise.reject(new Error('No fallback available'));
+        }
 
         container.addEventListener('click', () => {
           if (container.classList.contains('playing')) {
@@ -1429,14 +1451,10 @@
 
             if (!video.src && videoSrc) video.src = videoSrc;
             video.play().catch(() => {
-              // Video play failed (likely missing file)
-              container.classList.remove('playing');
-              const overlay = container.querySelector('.play-overlay-v2');
-              if (overlay) {
-                overlay.innerHTML = '<i class="bx bxs-error-circle"></i><span>Preview Unavailable</span>';
-                overlay.style.opacity = '1';
-                overlay.style.background = 'rgba(0,0,0,0.8)';
-              }
+              tryLocalFallback().catch(() => {
+                container.classList.remove('playing');
+                showVideoUnavailable();
+              });
             });
             container.classList.add('playing');
           }
@@ -1444,12 +1462,10 @@
 
         // Error handling for video load
         video.addEventListener('error', () => {
-          const overlay = container.querySelector('.play-overlay-v2');
-          if (overlay) {
-            overlay.innerHTML = '<i class="bx bxs-error-circle"></i><span>Preview Unavailable</span>';
-            overlay.style.opacity = '1';
-            overlay.style.background = 'rgba(0,0,0,0.8)';
-          }
+          tryLocalFallback().catch(() => {
+            container.classList.remove('playing');
+            showVideoUnavailable();
+          });
         });
       });
 
