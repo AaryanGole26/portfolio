@@ -68,3 +68,9 @@ render-build.log
 node_modules/
 npm-debug.log
 yarn-error.log
+
+# Local archives
+*.zip
+*.pdf
+# Netlify function helpers (the Python "lib/" rule above would hide them)
+!netlify/lib/

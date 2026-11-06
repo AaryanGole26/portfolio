@@ -4,8 +4,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Aaryan Gole - Portfolio</title>
+  <title>Aaryan Gole | Backend &amp; AI Engineer</title>
+  <meta name="description"
+    content="Portfolio of Aaryan Gole, a backend-focused AI engineer building scalable systems with Flask, Django, FastAPI, and RAG pipelines.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Aaryan Gole | Backend &amp; AI Engineer">
+  <meta property="og:description"
+    content="Backend systems and AI products: RAG pipelines, recommendation engines, and production-minded APIs.">
+  <meta property="og:url" content="https://aaryan-gole.netlify.app/">
+  <meta property="og:image" content="https://aaryan-gole.netlify.app/assets/img/acg.jpeg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;600;700&display=swap"
     rel="stylesheet">
   <link rel="stylesheet" href="assets/css/style.css">
@@ -17,6 +26,16 @@
 </head>
 
 <body>
+  <script>
+    // Applied before first paint so light-mode visitors don't see a dark flash.
+    (function () {
+      var saved = null;
+      try { saved = localStorage.getItem('theme'); } catch (error) { /* Storage can be blocked. */ }
+      if (saved === 'light' || (!saved && window.matchMedia('(prefers-color-scheme: light)').matches)) {
+        document.body.classList.add('light-mode');
+      }
+    })();
+  </script>
 
   <!-- Custom Cursor -->
   <div id="cursor-dot"></div>
@@ -61,7 +80,7 @@
         <div class="hero-pic-mobile">
           <div class="hero-image-card">
             <div class="image-clip">
-              <img src="assets/img/acg.jpeg" alt="Aaryan Gole">
+              <img src="assets/img/acg.jpeg" alt="Aaryan Gole" loading="lazy" decoding="async">
             </div>
             <div class="profile-badge badge-1">
               <span class="badge-icon">💭</span>
@@ -78,12 +97,12 @@
         </div>
 
         <div class="socials">
-          <a href="https://www.linkedin.com/in/aaryan-gole" target="_blank" class="linkedin"><i
+          <a href="https://www.linkedin.com/in/aaryan-gole" target="_blank" rel="noopener noreferrer" class="linkedin" aria-label="LinkedIn"><i
               class="bx bxl-linkedin"></i></a>
-          <a href="https://www.github.com/AaryanGole26" target="_blank" class="github"><i class="bx bxl-github"></i></a>
-          <a href="mailto:goleaaryan7@gmail.com" target="_blank" class="google"><i class="bx bxl-google"></i></a>
-          <a href="https://drive.google.com/file/d/1Glc8dS9xZI75pkFA6P_VpWM55VXVHqVd/view?usp=sharing" target="_blank"
-            rel="noopener noreferrer" class="resume-link"><i class="bx bxs-file-doc"></i></a>
+          <a href="https://www.github.com/AaryanGole26" target="_blank" rel="noopener noreferrer" class="github" aria-label="GitHub"><i class="bx bxl-github"></i></a>
+          <a href="mailto:goleaaryan7@gmail.com" class="google" aria-label="Email"><i class="bx bxl-gmail"></i></a>
+          <a href="https://drive.google.com/file/d/10KrIfKq4K8QF9l7Zqa0358hP4IAj_LSR/view?usp=sharing" target="_blank"
+            rel="noopener noreferrer" class="resume-link" aria-label="Resume"><i class="bx bxs-file-doc"></i></a>
         </div>
       </div>
 
@@ -134,9 +153,7 @@
           </p>
         </div>
 
-        <!-- Removed services section as requested -->
       </div>
-    </div>
     </div>
   </section>
 
@@ -209,21 +226,21 @@
         <div class="skill-bento-card">
           <div class="skill-bento-icon"><i class="bx bx-layer"></i></div>
           <h4>Frameworks</h4>
-          <p>Flask, Django, ReactJS, Postman, Figma, Power BI</p>
+          <p>Flask, Django, FastAPI, ReactJS, Postman, Figma, Power BI</p>
         </div>
 
         <!-- Skill Card 3 -->
         <div class="skill-bento-card">
           <div class="skill-bento-icon"><i class="bx bxs-brain"></i></div>
           <h4>AI / ML & Data</h4>
-          <p>TensorFlow, RNN, Transformers, RAG, NLP, Computer Vision</p>
+          <p>TensorFlow, Scikit-Learn, RNN, Transformers, RAG, NLP, Embeddings, Vector Search, Computer Vision</p>
         </div>
 
         <!-- Skill Card 4 -->
         <div class="skill-bento-card">
           <div class="skill-bento-icon"><i class="bx bx-broadcast"></i></div>
           <h4>Tools & DevOps</h4>
-          <p>Docker, Git, AWS (Basic), Linux Terminal, CI/CD</p>
+          <p>Docker, Git, Supabase, Pinecone, Gemini API, Groq API, AWS (Basic), Linux Terminal, CI/CD</p>
         </div>
 
       </div>
@@ -245,15 +262,47 @@
           <div class="timeline-item">
             <div class="timeline-marker"></div>
             <div class="timeline-content">
-              <h3><i class="bx bxs-briefcase"></i> Academic Intern</h3>
-              <h4>Citius Cloud | Jun 2024 – Jul 2024</h4>
-              <p>Implemented RNN, Transformers, and RAG models in TensorFlow to build a chatbot trained on web-scraped
-                data. Gained experience in building production-ready AI systems.</p>
+              <h3><i class="bx bxs-briefcase"></i> AI Engineer (Contractual)</h3>
+              <h4>Nexus AI | Aug 2026 – Present</h4>
+              <p>Developing and validating benchmark tasks, oracle solutions, automated test suites, and verification
+                environments to evaluate LLMs and AI coding agents on real-world software engineering work.</p>
+              <div class="timeline-tags">
+                <span>Python</span>
+                <span>Docker</span>
+                <span>Git</span>
+                <span>LLM Evaluation</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-marker"></div>
+            <div class="timeline-content">
+              <h3><i class="bx bxs-group"></i> Outreach Lead</h3>
+              <h4>Microsoft Learn Students Club, VCET | Jul 2024 – Jun 2026</h4>
+              <p>Progressed from Outreach Associate to Lead within 14 months, leading outreach across 4+ technical events
+                including Coherence '26, a national hackathon with 774 registrations.</p>
+              <div class="timeline-tags">
+                <span>Leadership</span>
+                <span>Partnerships</span>
+                <span>Community</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-marker"></div>
+            <div class="timeline-content">
+              <h3><i class="bx bxs-briefcase"></i> Generative AI Intern</h3>
+              <h4>Citius Cloud Services LLP | Jun 2024 – Jul 2024</h4>
+              <p>Built a prototype academic chatbot using TensorFlow-based RNN, Transformer, and RAG architectures, with
+                a web-scraping and knowledge-base pipeline indexed in Pinecone for semantic retrieval.</p>
               <div class="timeline-tags">
                 <span>TensorFlow</span>
                 <span>RNN</span>
                 <span>Transformers</span>
                 <span>RAG</span>
+                <span>Pinecone</span>
               </div>
             </div>
           </div>
@@ -303,7 +352,7 @@
               </div>
               <div class="achievement-tag">
                 <i class="bx bxs-trophy"></i>
-                <span>Ranked as Top 2 Student in Academic Performance</span>
+                <span>School Rank 2 | CBSE Certificate of Merit (Top 0.1% nationally in English)</span>
               </div>
             </div>
           </div>
@@ -312,11 +361,22 @@
         <div class="certifications">
           <h3><i class="bx bxs-certification"></i> Certifications</h3>
           <ul>
+            <li><i class="bx bxs-brain"></i> Machine Learning Specialization - DeepLearning.AI (Coursera)</li>
             <li><i class="bx bxl-microsoft"></i> Fundamentals of Machine Learning - Microsoft Learn</li>
-            <li><i class="bx bxs-data"></i> Data Analytics Program - Godrej Infotech Ltd. (Centum Foundation)</li>
+            <li><i class="bx bxs-data"></i> Data Analytics Program - Godrej Infotech Ltd. &amp; Centum Foundation</li>
             <li><i class="bx bxs-package"></i> MLOps with Data Version Control: CI/CD Using CML - Infosys Springboard
             </li>
             <li><i class="bx bxl-google"></i> GenAI Academy - Google Cloud (Hack2Skill)</li>
+          </ul>
+        </div>
+
+        <div class="certifications publications">
+          <h3><i class="bx bxs-book-content"></i> Publications</h3>
+          <ul>
+            <li><i class="bx bx-file"></i>
+              <span><a href="https://arxiv.org/abs/2502.16573" target="_blank" rel="noopener noreferrer">LawPal: A RAG-Based System for Enhanced Legal Accessibility in India</a> - arXiv:2502.16573, 2025 (20+ citations)</span></li>
+            <li><i class="bx bx-file"></i>
+              <span><a href="https://ieeexplore.ieee.org/abstract/document/11467510/" target="_blank" rel="noopener noreferrer">Towards Explainable Agentic Intelligence: A LangGraph-MCP Hybrid Framework for Scalable, Fair, &amp; Self-Improving Multi-Agent Systems</a> - IEEE IC3ET, 2026</span></li>
           </ul>
         </div>
       </div>
@@ -339,44 +399,48 @@
             <button class="filter-btn" data-filter="extra">Extra</button>
           </div>
           <nav class="projects-nav">
-            <div class="nav-item-wrapper active" data-project="1">
+            <div role="button" tabindex="0" class="nav-item-wrapper active" data-project="1">
               <span class="nav-no">01</span>
               <span class="nav-name">LawPal</span>
             </div>
-            <div class="nav-item-wrapper" data-project="2">
+            <div role="button" tabindex="0" class="nav-item-wrapper" data-project="2">
               <span class="nav-no">02</span>
               <span class="nav-name">Opti-AI</span>
             </div>
-            <div class="nav-item-wrapper" data-project="3">
+            <div role="button" tabindex="0" class="nav-item-wrapper" data-project="11">
               <span class="nav-no">03</span>
+              <span class="nav-name">RasoIQ</span>
+            </div>
+            <div role="button" tabindex="0" class="nav-item-wrapper" data-project="3">
+              <span class="nav-no">04</span>
               <span class="nav-name">FinSlash</span>
             </div>
-            <div class="nav-item-wrapper" data-project="4">
-              <span class="nav-no">04</span>
+            <div role="button" tabindex="0" class="nav-item-wrapper" data-project="4">
+              <span class="nav-no">05</span>
               <span class="nav-name">Rento</span>
             </div>
-            <div class="nav-item-wrapper" data-project="5">
-              <span class="nav-no">05</span>
+            <div role="button" tabindex="0" class="nav-item-wrapper" data-project="5">
+              <span class="nav-no">06</span>
               <span class="nav-name">CineSLEUTH</span>
             </div>
-            <div class="nav-item-wrapper" data-project="6">
-              <span class="nav-no">06</span>
+            <div role="button" tabindex="0" class="nav-item-wrapper" data-project="6">
+              <span class="nav-no">07</span>
               <span class="nav-name">DriveSense</span>
             </div>
-            <div class="nav-item-wrapper" data-project="7">
-              <span class="nav-no">07</span>
+            <div role="button" tabindex="0" class="nav-item-wrapper" data-project="7">
+              <span class="nav-no">08</span>
               <span class="nav-name">ArcadePy</span>
             </div>
-            <div class="nav-item-wrapper" data-project="8">
-              <span class="nav-no">08</span>
+            <div role="button" tabindex="0" class="nav-item-wrapper" data-project="8">
+              <span class="nav-no">09</span>
               <span class="nav-name">Collatz</span>
             </div>
-            <div class="nav-item-wrapper" data-project="9">
-              <span class="nav-no">09</span>
+            <div role="button" tabindex="0" class="nav-item-wrapper" data-project="9">
+              <span class="nav-no">10</span>
               <span class="nav-name">CGPA Calc</span>
             </div>
-            <div class="nav-item-wrapper" data-project="10">
-              <span class="nav-no">10</span>
+            <div role="button" tabindex="0" class="nav-item-wrapper" data-project="10">
+              <span class="nav-no">11</span>
               <span class="nav-name">LUME</span>
             </div>
           </nav>
@@ -389,38 +453,39 @@
         <div class="project-showcase" id="project-1" data-project="1" data-category="research" data-priority="top">
           <div class="showcase-visual">
             <div class="video-container" data-video="assets/videos/lawpal-demo.mp4">
-              <img src="assets/img/lawpal.jpg" alt="LawPal" class="showcase-img">
-              <video muted loop playsinline></video>
-              <div class="play-overlay-v2">
-                <i class="bx bx-play"></i>
-                <span>View Demo</span>
-              </div>
+              <img src="assets/img/lawpal.jpg" alt="LawPal" class="showcase-img" loading="lazy" decoding="async">
+              <video muted loop playsinline preload="none"></video>
+              <button type="button" class="play-overlay-v2" aria-label="Play LawPal demo video">
+                <span class="play-icon"><i class="bx bx-play"></i></span>
+                <span class="play-label">Watch Demo</span>
+              </button>
             </div>
           </div>
           <div class="showcase-info">
             <div class="info-content">
               <span class="info-tag">Research / Coursework</span>
               <h3>LawPal — Legal AI Assistant</h3>
-              <p class="project-summary">Built a <strong>scalable Flask backend</strong> with RAG retrieval over legal corpora, enabling low-latency legal guidance with grounded responses.</p>
+              <p class="project-summary">Built a <strong>Flask-based RAG legal assistant</strong> with semantic search over legal documents and text and voice queries. <strong>Published on arXiv</strong> with 14 citations.</p>
               <div class="project-impact-metrics">
-                <span class="metric-badge"><i class="bx bx-bolt-circle"></i> 35% faster responses</span>
-                <span class="metric-badge"><i class="bx bx-file"></i> 7k+ legal documents</span>
-                <span class="metric-badge"><i class="bx bx-search"></i> Semantic search</span>
+                <span class="metric-badge"><i class="bx bx-file"></i> 7,000+ document chunks</span>
+                <span class="metric-badge"><i class="bx bx-bolt-circle"></i> 80% smaller NLP model</span>
+                <span class="metric-badge"><i class="bx bx-world"></i> 22 Indian languages</span>
               </div>
               <div class="showcase-tags">
-                <span><i class="bx bxl-react"></i> React</span><span><i class="bx bx-camera"></i> OpenCV</span><span><i class="bx bx-brain"></i> NLP</span><span><i class="bx bxl-nodejs"></i> Express</span><span><i class="bx bx-network-chart"></i> RAG</span>
+                <span><i class="bx bxl-python"></i> Flask</span><span><i class="bx bx-network-chart"></i> RAG</span><span><i class="bx bx-data"></i> Pinecone</span><span><i class="bx bx-brain"></i> MiniLM</span><span><i class="bx bx-microphone"></i> Web Speech API</span><span><i class="bx bx-lock-alt"></i> Supabase</span>
               </div>
-              <p class="system-design-tag"><strong>System:</strong> RAG Pipeline | Vector DB | API Backend | Auth</p>
+              <p class="system-design-tag"><strong>System:</strong> RAG Pipeline | Pinecone Vector DB | Flask API | Supabase Auth</p>
+              <div class="showcase-actions">
+                <a href="https://github.com/AaryanGole26/lawpal" target="_blank" rel="noopener noreferrer" class="btn-action">
+                  <i class="bx bxl-github"></i> GitHub Code
+                </a>
+              </div>
               <p class="project-key-title">Key Features:</p>
               <ul class="project-key-features">
                 <li>Location-based <strong>legal updates</strong> with AI-generated summaries</li>
                 <li>Multilingual <strong>question answering</strong> for common legal scenarios</li>
                 <li>Document upload with <strong>legal analysis</strong> and quick recommendations</li>
               </ul>
-              <div class="showcase-actions">
-                <a href="https://github.com/AaryanGole26/lawpal" target="_blank" class="btn-action">Github <i
-                    class="bx bxl-github"></i></a>
-              </div>
             </div>
           </div>
         </div>
@@ -429,12 +494,12 @@
         <div class="project-showcase" id="project-2" data-project="2" data-category="research" data-priority="top">
           <div class="showcase-visual">
             <div class="video-container" data-video="assets/videos/optiresume-demo.mp4">
-              <img src="assets/img/optiresume.jpg" alt="OptiResume-AI" class="showcase-img">
-              <video muted loop playsinline></video>
-              <div class="play-overlay-v2">
-                <i class="bx bx-play"></i>
-                <span>View Demo</span>
-              </div>
+              <img src="assets/img/optiresume.jpg" alt="OptiResume-AI" class="showcase-img" loading="lazy" decoding="async">
+              <video muted loop playsinline preload="none"></video>
+              <button type="button" class="play-overlay-v2" aria-label="Play OptiResume-AI demo video">
+                <span class="play-icon"><i class="bx bx-play"></i></span>
+                <span class="play-label">Watch Demo</span>
+              </button>
             </div>
           </div>
           <div class="showcase-info">
@@ -451,16 +516,61 @@
                 <span><i class="bx bxl-react"></i> React</span><span><i class="bx bxl-python"></i> Flask</span><span><i class="bx bx-brain"></i> NLP</span><span><i class="bx bx-math"></i> LaTeX</span><span><i class="bx bx-globe"></i> Web Scraping</span>
               </div>
               <p class="system-design-tag"><strong>System:</strong> API Backend | NLP Scorer | Template Engine | Export Service</p>
+              <div class="showcase-actions">
+                <a href="https://github.com/AaryanGole26/OptiResume-AI" target="_blank" rel="noopener noreferrer" class="btn-action">
+                  <i class="bx bxl-github"></i> GitHub Code
+                </a>
+              </div>
               <p class="project-key-title">Key Features:</p>
               <ul class="project-key-features">
                 <li>Automated <strong>JD keyword matching</strong> and score feedback</li>
                 <li>AI-assisted <strong>content enhancement</strong> for stronger bullets</li>
                 <li>Export-ready <strong>ATS templates</strong> in PDF and LaTeX</li>
               </ul>
-              <div class="showcase-actions">
-                <a href="https://github.com/AaryanGole26/OptiResume-AI" target="_blank" class="btn-action">Github <i
-                    class="bx bxl-github"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 11 -->
+        <div class="project-showcase" id="project-11" data-project="11" data-category="research" data-priority="top">
+          <div class="showcase-visual">
+            <div class="video-container" data-video="assets/videos/rasoiq-demo.mp4">
+              <img src="assets/img/rasoiq.jpg" alt="RasoIQ" class="showcase-img" loading="lazy" decoding="async">
+              <video muted loop playsinline preload="none"></video>
+              <button type="button" class="play-overlay-v2" aria-label="Play RasoIQ demo video">
+                <span class="play-icon"><i class="bx bx-play"></i></span>
+                <span class="play-label">Watch Demo</span>
+              </button>
+            </div>
+          </div>
+          <div class="showcase-info">
+            <div class="info-content">
+              <span class="info-tag">Research / Coursework</span>
+              <h3>RasoIQ — Smart Recipe Recommender</h3>
+              <p class="project-summary">Built a <strong>Flask recommendation API</strong> that turns the ingredients you already have into ranked recipes, using weighted similarity scoring with penalties for missing items.</p>
+              <div class="project-impact-metrics">
+                <span class="metric-badge"><i class="bx bx-search"></i> Fuzzy ingredient matching</span>
+                <span class="metric-badge"><i class="bx bx-bar-chart-alt-2"></i> Weighted match scoring</span>
+                <span class="metric-badge"><i class="bx bx-filter-alt"></i> Diet &amp; cuisine filters</span>
               </div>
+              <div class="showcase-tags">
+                <span><i class="bx bxl-python"></i> Flask</span><span><i class="bx bx-git-compare"></i> Recommender Systems</span><span><i class="bx bxl-javascript"></i> JavaScript</span><span><i class="bx bx-data"></i> JSON Recipe Base</span>
+              </div>
+              <p class="system-design-tag"><strong>System:</strong> Flask API | Scoring Engine | Recipe Knowledge Base | Static Frontend</p>
+              <div class="showcase-actions">
+                <a href="https://rasoiq.netlify.app/" target="_blank" rel="noopener noreferrer" class="btn-action primary">
+                  <i class="bx bx-link-external"></i> Live Demo
+                </a>
+                <a href="https://github.com/AaryanGole26/RasoIQ" target="_blank" rel="noopener noreferrer" class="btn-action">
+                  <i class="bx bxl-github"></i> GitHub Code
+                </a>
+              </div>
+              <p class="project-key-title">Key Features:</p>
+              <ul class="project-key-features">
+                <li>Ingredient-first ranking with <strong>penalties for missing items</strong></li>
+                <li>Staple-aware scoring that <strong>assumes salt, water, and oil</strong></li>
+                <li>Vegetarian and cuisine filters with <strong>match scores and regional context</strong></li>
+              </ul>
             </div>
           </div>
         </div>
@@ -469,12 +579,12 @@
         <div class="project-showcase" id="project-3" data-project="3" data-category="extra">
           <div class="showcase-visual">
             <div class="video-container" data-video="assets/videos/finslash-demo.mp4">
-              <img src="assets/img/finslash.jpg" alt="FinSlash" class="showcase-img">
-              <video muted loop playsinline></video>
-              <div class="play-overlay-v2">
-                <i class="bx bx-play"></i>
-                <span>View Demo</span>
-              </div>
+              <img src="assets/img/finslash.jpg" alt="FinSlash" class="showcase-img" loading="lazy" decoding="async">
+              <video muted loop playsinline preload="none"></video>
+              <button type="button" class="play-overlay-v2" aria-label="Play FinSlash demo video">
+                <span class="play-icon"><i class="bx bx-play"></i></span>
+                <span class="play-label">Watch Demo</span>
+              </button>
             </div>
           </div>
           <div class="showcase-info">
@@ -486,19 +596,20 @@
                 <span><i class="bx bx-line-chart"></i> ML</span><span><i class="bx bx-bar-chart-alt-2"></i> EDA</span><span><i class="bx bx-trending-up"></i> Regression</span><span><i class="bx bx-window-alt"></i> Streamlit</span>
               </div>
               <p class="system-design-tag"><strong>System:</strong> ML Scoring API | Analytics Dashboard | Feature Pipeline</p>
+              <div class="showcase-actions">
+                <a href="https://finslash-3jt.streamlit.app/" target="_blank" rel="noopener noreferrer" class="btn-action primary">
+                  <i class="bx bx-link-external"></i> Live Demo
+                </a>
+                <a href="https://github.com/AaryanGole26/FinSlash" target="_blank" rel="noopener noreferrer" class="btn-action">
+                  <i class="bx bxl-github"></i> GitHub Code
+                </a>
+              </div>
               <p class="project-key-title">Key Features:</p>
               <ul class="project-key-features">
                 <li>End-to-end <strong>risk scoring</strong> from applicant attributes</li>
                 <li>Transparent <strong>feature-driven predictions</strong> for approvals</li>
                 <li>Interactive admin dashboard with <strong>real-time what-if analysis</strong></li>
               </ul>
-              <div class="showcase-actions">
-                <a href="https://github.com/AaryanGole26/FinSlash" target="_blank" class="btn-action">Github <i
-                    class="bx bxl-github"></i></a>
-                <a href="https://finslash-3jt.streamlit.app/" target="_blank" class="btn-action primary">Live <i
-                    class="bx bx-link-external"></i></a>
-                <span class="live-signal"><i class="bx bxs-circle"></i> Live System Available</span>
-              </div>
             </div>
           </div>
         </div>
@@ -507,12 +618,12 @@
         <div class="project-showcase" id="project-4" data-project="4" data-category="research" data-priority="top">
           <div class="showcase-visual">
             <div class="video-container" data-video="assets/videos/rento-demo.mp4">
-              <img src="assets/img/rento.jpg" alt="Rento" class="showcase-img">
-              <video muted loop playsinline></video>
-              <div class="play-overlay-v2">
-                <i class="bx bx-play"></i>
-                <span>View Demo</span>
-              </div>
+              <img src="assets/img/rento.jpg" alt="Rento" class="showcase-img" loading="lazy" decoding="async">
+              <video muted loop playsinline preload="none"></video>
+              <button type="button" class="play-overlay-v2" aria-label="Play Rento demo video">
+                <span class="play-icon"><i class="bx bx-play"></i></span>
+                <span class="play-label">Watch Demo</span>
+              </button>
             </div>
           </div>
           <div class="showcase-info">
@@ -529,19 +640,20 @@
                 <span><i class="bx bxl-django"></i> Django</span><span><i class="bx bxl-python"></i> Python</span><span><i class="bx bx-code-curly"></i> Web Dev</span><span><i class="bx bx-data"></i> SQL</span>
               </div>
               <p class="system-design-tag"><strong>System:</strong> API Backend | SQL Data Model | Booking Engine | Auth</p>
+              <div class="showcase-actions">
+                <a href="https://rento-srcr.onrender.com/" target="_blank" rel="noopener noreferrer" class="btn-action primary">
+                  <i class="bx bx-link-external"></i> Live Demo
+                </a>
+                <a href="https://github.com/AaryanGole26/Rento" target="_blank" rel="noopener noreferrer" class="btn-action">
+                  <i class="bx bxl-github"></i> GitHub Code
+                </a>
+              </div>
               <p class="project-key-title">Key Features:</p>
               <ul class="project-key-features">
                 <li>Search-first catalog with <strong>availability-aware booking</strong></li>
                 <li>Role-based flows for <strong>customers and inventory admins</strong></li>
                 <li>Booking lifecycle with <strong>checkout, return, and status tracking</strong></li>
               </ul>
-              <div class="showcase-actions">
-                <a href="https://github.com/AaryanGole26/Rento" target="_blank" class="btn-action">Github <i
-                    class="bx bxl-github"></i></a>
-                <a href="https://rento-srcr.onrender.com/" target="_blank" class="btn-action primary">Live <i
-                    class="bx bx-link-external"></i></a>
-                <span class="live-signal"><i class="bx bxs-circle"></i> Live System Available</span>
-              </div>
             </div>
           </div>
         </div>
@@ -550,12 +662,12 @@
         <div class="project-showcase" id="project-5" data-project="5" data-category="research">
           <div class="showcase-visual">
             <div class="video-container" data-video="assets/videos/cinesleuth-demo.mp4">
-              <img src="assets/img/cinesleuth.jpg" alt="CineSLEUTH" class="showcase-img">
-              <video muted loop playsinline></video>
-              <div class="play-overlay-v2">
-                <i class="bx bx-play"></i>
-                <span>View Demo</span>
-              </div>
+              <img src="assets/img/cinesleuth.jpg" alt="CineSLEUTH" class="showcase-img" loading="lazy" decoding="async">
+              <video muted loop playsinline preload="none"></video>
+              <button type="button" class="play-overlay-v2" aria-label="Play CineSLEUTH demo video">
+                <span class="play-icon"><i class="bx bx-play"></i></span>
+                <span class="play-label">Watch Demo</span>
+              </button>
             </div>
           </div>
           <div class="showcase-info">
@@ -567,19 +679,20 @@
                 <span><i class="bx bx-search-alt-2"></i> Fuzzy-search</span><span><i class="bx bx-text"></i> TF-IDF</span><span><i class="bx bx-shape-circle"></i> Cosine Similarity</span>
               </div>
               <p class="system-design-tag"><strong>System:</strong> Retrieval Engine | Ranking Pipeline | Recommendation API</p>
+              <div class="showcase-actions">
+                <a href="https://huggingface.co/spaces/ARYN26/CineSLEUTH" target="_blank" rel="noopener noreferrer" class="btn-action primary">
+                  <i class="bx bx-link-external"></i> Live Demo
+                </a>
+                <a href="https://github.com/AaryanGole26/CineSLEUTH" target="_blank" rel="noopener noreferrer" class="btn-action">
+                  <i class="bx bxl-github"></i> GitHub Code
+                </a>
+              </div>
               <p class="project-key-title">Key Features:</p>
               <ul class="project-key-features">
                 <li>Hybrid ranking with <strong>TF-IDF + cosine similarity</strong></li>
                 <li>Fast title matching using <strong>fuzzy search</strong> for typo tolerance</li>
                 <li>Smarter suggestions with <strong>Apriori collaborative patterns</strong></li>
               </ul>
-              <div class="showcase-actions">
-                <a href="https://github.com/AaryanGole26/CineSLEUTH" target="_blank" class="btn-action">Github <i
-                    class="bx bxl-github"></i></a>
-                <a href="https://huggingface.co/spaces/ARYN26/CineSLEUTH" target="_blank"
-                  class="btn-action primary">Live <i class="bx bx-link-external"></i></a>
-                <span class="live-signal"><i class="bx bxs-circle"></i> Live System Available</span>
-              </div>
             </div>
           </div>
         </div>
@@ -588,12 +701,12 @@
         <div class="project-showcase" id="project-6" data-project="6" data-category="extra" data-priority="top">
           <div class="showcase-visual">
             <div class="video-container" data-video="assets/videos/drivesense-demo.mp4">
-              <img src="assets/img/drivesense.jpg" alt="DriveSense" class="showcase-img">
-              <video muted loop playsinline></video>
-              <div class="play-overlay-v2">
-                <i class="bx bx-play"></i>
-                <span>View Demo</span>
-              </div>
+              <img src="assets/img/drivesense.jpg" alt="DriveSense" class="showcase-img" loading="lazy" decoding="async">
+              <video muted loop playsinline preload="none"></video>
+              <button type="button" class="play-overlay-v2" aria-label="Play DriveSense demo video">
+                <span class="play-icon"><i class="bx bx-play"></i></span>
+                <span class="play-label">Watch Demo</span>
+              </button>
             </div>
           </div>
           <div class="showcase-info">
@@ -610,16 +723,17 @@
                 <span><i class="bx bx-camera"></i> OpenCV</span><span><i class="bx bx-brain"></i> Deep Learning</span><span><i class="bx bx-network-chart"></i> TensorFlow</span>
               </div>
               <p class="system-design-tag"><strong>System:</strong> CV Inference Pipeline | Event Stream | Alert Engine</p>
+              <div class="showcase-actions">
+                <a href="https://github.com/AaryanGole26/DriveSense" target="_blank" rel="noopener noreferrer" class="btn-action">
+                  <i class="bx bxl-github"></i> GitHub Code
+                </a>
+              </div>
               <p class="project-key-title">Key Features:</p>
               <ul class="project-key-features">
                 <li>Live <strong>eye and face landmark tracking</strong> during driving</li>
                 <li>Risk detection for <strong>drowsiness, stress, and micro-sleeps</strong></li>
                 <li>Non-intrusive <strong>audio alerts</strong> to restore attention safely</li>
               </ul>
-              <div class="showcase-actions">
-                <a href="https://github.com/AaryanGole26/DriveSense" target="_blank" class="btn-action">Github <i
-                    class="bx bxl-github"></i></a>
-              </div>
             </div>
           </div>
         </div>
@@ -628,12 +742,12 @@
         <div class="project-showcase" id="project-7" data-project="7" data-category="extra">
           <div class="showcase-visual">
             <div class="video-container" data-video="assets/videos/arcadepy-demo.mp4">
-              <img src="assets/img/arcadepy.jpg" alt="ArcadePy" class="showcase-img">
-              <video muted loop playsinline></video>
-              <div class="play-overlay-v2">
-                <i class="bx bx-play"></i>
-                <span>View Demo</span>
-              </div>
+              <img src="assets/img/arcadepy.jpg" alt="ArcadePy" class="showcase-img" loading="lazy" decoding="async">
+              <video muted loop playsinline preload="none"></video>
+              <button type="button" class="play-overlay-v2" aria-label="Play ArcadePy demo video">
+                <span class="play-icon"><i class="bx bx-play"></i></span>
+                <span class="play-label">Watch Demo</span>
+              </button>
             </div>
           </div>
           <div class="showcase-info">
@@ -645,16 +759,17 @@
                 <span><i class="bx bxl-python"></i> PyGame</span><span><i class="bx bx-window"></i> Tkinter</span><span><i class="bx bx-joystick"></i> Game Dev</span>
               </div>
               <p class="system-design-tag"><strong>System:</strong> Modular Game Engine | UI Launcher | Input Loop</p>
+              <div class="showcase-actions">
+                <a href="https://github.com/AaryanGole26/ArcadePy" target="_blank" rel="noopener noreferrer" class="btn-action">
+                  <i class="bx bxl-github"></i> GitHub Code
+                </a>
+              </div>
               <p class="project-key-title">Key Features:</p>
               <ul class="project-key-features">
                 <li>Unified menu to launch <strong>Slither, Pong, UFO, and Hangman</strong></li>
                 <li>Lightweight local setup with <strong>single-entry execution</strong></li>
                 <li>Fun-focused design with <strong>replay-friendly gameplay loops</strong></li>
               </ul>
-              <div class="showcase-actions">
-                <a href="https://github.com/AaryanGole26/ArcadePy" target="_blank" class="btn-action">Github <i
-                    class="bx bxl-github"></i></a>
-              </div>
             </div>
           </div>
         </div>
@@ -663,12 +778,12 @@
         <div class="project-showcase" id="project-8" data-project="8" data-category="extra">
           <div class="showcase-visual">
             <div class="video-container" data-video="assets/videos/cc-demo.mp4">
-              <img src="assets/img/cc.jpg" alt="Collatz" class="showcase-img">
-              <video muted loop playsinline></video>
-              <div class="play-overlay-v2">
-                <i class="bx bx-play"></i>
-                <span>View Demo</span>
-              </div>
+              <img src="assets/img/cc.jpg" alt="Collatz" class="showcase-img" loading="lazy" decoding="async">
+              <video muted loop playsinline preload="none"></video>
+              <button type="button" class="play-overlay-v2" aria-label="Play Collatz demo video">
+                <span class="play-icon"><i class="bx bx-play"></i></span>
+                <span class="play-label">Watch Demo</span>
+              </button>
             </div>
           </div>
           <div class="showcase-info">
@@ -680,16 +795,17 @@
                 <span><i class="bx bxl-python"></i> Python</span><span><i class="bx bx-math"></i> Mathematics</span><span><i class="bx bx-scatter-chart"></i> Visualization</span>
               </div>
               <p class="system-design-tag"><strong>System:</strong> Computation Pipeline | Visualization Layer | Interactive Controls</p>
+              <div class="showcase-actions">
+                <a href="https://github.com/AaryanGole26/Collatz_Conjecture" target="_blank" rel="noopener noreferrer" class="btn-action">
+                  <i class="bx bxl-github"></i> GitHub Code
+                </a>
+              </div>
               <p class="project-key-title">Key Features:</p>
               <ul class="project-key-features">
                 <li>Computes complete <strong>3x + 1 progression</strong> for any natural input</li>
                 <li>Graph-based view for <strong>sequence growth and convergence</strong></li>
                 <li>Educational mode for <strong>algorithm intuition and exploration</strong></li>
               </ul>
-              <div class="showcase-actions">
-                <a href="https://github.com/AaryanGole26/Collatz_Conjecture" target="_blank" class="btn-action">Github
-                  <i class="bx bxl-github"></i></a>
-              </div>
             </div>
           </div>
         </div>
@@ -698,12 +814,12 @@
         <div class="project-showcase" id="project-9" data-project="9" data-category="extra">
           <div class="showcase-visual">
             <div class="video-container" data-video="assets/videos/cgpacalc-demo.mp4">
-              <img src="assets/img/cgpa.jpg" alt="CGPA Calculator" class="showcase-img">
-              <video muted loop playsinline></video>
-              <div class="play-overlay-v2">
-                <i class="bx bx-play"></i>
-                <span>View Demo</span>
-              </div>
+              <img src="assets/img/cgpa.jpg" alt="CGPA Calculator" class="showcase-img" loading="lazy" decoding="async">
+              <video muted loop playsinline preload="none"></video>
+              <button type="button" class="play-overlay-v2" aria-label="Play CGPA Calculator demo video">
+                <span class="play-icon"><i class="bx bx-play"></i></span>
+                <span class="play-label">Watch Demo</span>
+              </button>
             </div>
           </div>
           <div class="showcase-info">
@@ -715,20 +831,20 @@
                 <span><i class="bx bxl-html5"></i> HTML</span><span><i class="bx bxl-css3"></i> CSS</span><span><i class="bx bxl-javascript"></i> JavaScript</span><span><i class="bx bx-buildings"></i> Mumbai University</span>
               </div>
               <p class="system-design-tag"><strong>System:</strong> Client-side Calculator Engine | Rules Mapper | Report Generator</p>
+              <div class="showcase-actions">
+                <a href="https://aaryangole26.github.io/CGPA-Calculator/" target="_blank" rel="noopener noreferrer" class="btn-action primary">
+                  <i class="bx bx-link-external"></i> Live Demo
+                </a>
+                <a href="https://github.com/AaryanGole26/CGPA-Calculator" target="_blank" rel="noopener noreferrer" class="btn-action">
+                  <i class="bx bxl-github"></i> GitHub Code
+                </a>
+              </div>
               <p class="project-key-title">Key Features:</p>
               <ul class="project-key-features">
                 <li>Official formula-based <strong>CGPI and percentage calculations</strong></li>
                 <li>Semester trend graphs with <strong>downloadable progress reports</strong></li>
                 <li>Target planner for <strong>required SGPA prediction</strong></li>
               </ul>
-              <div class="showcase-actions">
-                <a href="https://github.com/AaryanGole26/CGPA-Calculator" target="_blank" class="btn-action">Github
-                  <i class="bx bxl-github"></i></a>
-                <a href="https://aaryangole26.github.io/CGPA-Calculator/" target="_blank" class="btn-action"
-                  style="background: var(--accent); color: white; border-color: var(--accent);">Live
-                  <i class="bx bx-link-external"></i></a>
-                <span class="live-signal"><i class="bx bxs-circle"></i> Live System Available</span>
-              </div>
             </div>
           </div>
         </div>
@@ -737,12 +853,12 @@
         <div class="project-showcase" id="project-10" data-project="10" data-category="extra">
           <div class="showcase-visual">
             <div class="video-container" data-video="assets/videos/lume-demo.mp4">
-              <img src="assets/img/lume.jpg" alt="LUME" class="showcase-img">
-              <video muted loop playsinline></video>
-              <div class="play-overlay-v2">
-                <i class="bx bx-play"></i>
-                <span>View Demo</span>
-              </div>
+              <img src="assets/img/lume.jpg" alt="LUME" class="showcase-img" loading="lazy" decoding="async">
+              <video muted loop playsinline preload="none"></video>
+              <button type="button" class="play-overlay-v2" aria-label="Play LUME demo video">
+                <span class="play-icon"><i class="bx bx-play"></i></span>
+                <span class="play-label">Watch Demo</span>
+              </button>
             </div>
           </div>
           <div class="showcase-info">
@@ -754,20 +870,20 @@
                 <span><i class="bx bx-bot"></i> AI</span><span><i class="bx bx-image-alt"></i> BLIP</span><span><i class="bx bx-chip"></i> Groq</span><span><i class="bx bx-camera"></i> Computer Vision</span><span><i class="bx bx-smile"></i> Meme Suite</span>
               </div>
               <p class="system-design-tag"><strong>System:</strong> Multimodal Inference API | Caption Pipeline | Media Renderer</p>
+              <div class="showcase-actions">
+                <a href="https://lume-ai-l9ji.onrender.com" target="_blank" rel="noopener noreferrer" class="btn-action primary">
+                  <i class="bx bx-link-external"></i> Live Demo
+                </a>
+                <a href="https://github.com/AaryanGole26/LUME" target="_blank" rel="noopener noreferrer" class="btn-action">
+                  <i class="bx bxl-github"></i> GitHub Code
+                </a>
+              </div>
               <p class="project-key-title">Key Features:</p>
               <ul class="project-key-features">
                 <li>Photo upload pipeline with <strong>context-aware caption generation</strong></li>
                 <li>Topic-conditioned outputs using <strong>BLIP + Groq inference</strong></li>
                 <li>One-click export for <strong>social-ready meme templates</strong></li>
               </ul>
-              <div class="showcase-actions">
-                <a href="https://github.com/AaryanGole26/LUME" target="_blank" class="btn-action">Github <i
-                    class="bx bxl-github"></i></a>
-                <a href="https://lume-ai-l9ji.onrender.com" target="_blank" class="btn-action primary"
-                  style="background: var(--accent); color: white; border-color: var(--accent);">Live
-                  <i class="bx bx-link-external"></i></a>
-                <span class="live-signal"><i class="bx bxs-circle"></i> Live System Available</span>
-              </div>
             </div>
           </div>
         </div>
@@ -795,7 +911,7 @@
               <i class="bx bxl-linkedin"></i>
               <div>
                 <h4>LinkedIn</h4>
-                <a href="https://www.linkedin.com/in/aaryan-gole" target="_blank">linkedin.com/in/aaryan-gole</a>
+                <a href="https://www.linkedin.com/in/aaryan-gole" target="_blank" rel="noopener noreferrer">linkedin.com/in/aaryan-gole</a>
               </div>
             </div>
 
@@ -803,7 +919,7 @@
               <i class="bx bxl-github"></i>
               <div>
                 <h4>GitHub</h4>
-                <a href="https://www.github.com/AaryanGole26" target="_blank">github.com/AaryanGole26</a>
+                <a href="https://www.github.com/AaryanGole26" target="_blank" rel="noopener noreferrer">github.com/AaryanGole26</a>
               </div>
             </div>
 
@@ -825,19 +941,26 @@
           </div>
         </div>
 
-        <form class="contact-form" id="contactForm">
+        <form class="contact-form" id="contactForm" name="contact" method="POST" data-netlify="true"
+          netlify-honeypot="bot-field">
+          <input type="hidden" name="form-name" value="contact">
+          <p class="form-honeypot" aria-hidden="true">
+            <label>Leave this field empty <input type="text" name="bot-field" tabindex="-1" autocomplete="off"></label>
+          </p>
           <div class="form-group">
-            <input type="text" name="name" placeholder="Your Name" required>
+            <input type="text" name="name" placeholder="Your Name" aria-label="Your name" autocomplete="name"
+              maxlength="100" required>
           </div>
           <div class="form-group">
-            <input type="email" name="email" placeholder="Your Email" required>
+            <input type="email" name="email" placeholder="Your Email" aria-label="Your email" autocomplete="email"
+              maxlength="200" required>
           </div>
           <div class="form-group">
-            <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
+            <textarea name="message" placeholder="Your Message" aria-label="Your message" rows="5" maxlength="5000"
+              required></textarea>
           </div>
           <button type="submit" class="btn-submit" id="submitBtn">Send Message</button>
-          <div id="formMessage"
-            style="margin-top: 15px; display: none; padding: 12px; border-radius: 5px; text-align: center;"></div>
+          <div id="formMessage" class="form-message" role="status" aria-live="polite" hidden></div>
         </form>
       </div>
     </div>
@@ -858,10 +981,10 @@
         <p>Made with ❤️ by <span class="name-accent">Aaryan Gole</span></p>
         <div class="footer-divider"></div>
         <div class="footer-socials-minimal">
-          <a href="https://www.linkedin.com/in/aaryan-gole" target="_blank" title="LinkedIn"><i
+          <a href="https://www.linkedin.com/in/aaryan-gole" target="_blank" rel="noopener noreferrer" title="LinkedIn"><i
               class="bx bxl-linkedin"></i></a>
-          <a href="https://www.github.com/AaryanGole26" target="_blank" title="GitHub"><i class="bx bxl-github"></i></a>
-          <a href="mailto:goleaaryan7@gmail.com" target="_blank" title="Email"><i class="bx bx-envelope"></i></a>
+          <a href="https://www.github.com/AaryanGole26" target="_blank" rel="noopener noreferrer" title="GitHub"><i class="bx bxl-github"></i></a>
+          <a href="mailto:goleaaryan7@gmail.com" title="Email"><i class="bx bx-envelope"></i></a>
         </div>
       </div>
     </div>
@@ -869,14 +992,14 @@
 
   <!-- CHATBOT -->
   <div class="chatbot-container">
-    <div class="chatbot-button" id="chatbotButton">
+    <button type="button" class="chatbot-button" id="chatbotButton" aria-label="Open portfolio assistant">
       <i class="bx bx-message-dots"></i>
-    </div>
+    </button>
 
     <div class="chatbot-window" id="chatbotWindow">
       <div class="chatbot-header">
         <h3>Portfolio Assistant</h3>
-        <button class="chatbot-close" id="chatbotClose">
+        <button type="button" class="chatbot-close" id="chatbotClose" aria-label="Close portfolio assistant">
           <i class="bx bx-x"></i>
         </button>
       </div>
@@ -884,7 +1007,7 @@
       <div class="chatbot-messages" id="chatbotMessages">
         <div class="message bot-message">
           <div class="message-content">
-            <p>Hi! I'm your portfolio assistant. I can help you navigate to:</p>
+            <p>Hi! Ask me about hiring Aaryan or freelance web projects, or jump to:</p>
             <div class="quick-actions">
               <button class="quick-btn" data-section="about">About Me</button>
               <button class="quick-btn" data-section="skills">Skills</button>
@@ -897,729 +1020,15 @@
       </div>
 
       <div class="chatbot-input">
-        <input type="text" id="chatbotInput" placeholder="Ask me anything..." />
-        <button id="chatbotSend">
+        <input type="text" id="chatbotInput" placeholder="Ask about hiring Aaryan..." aria-label="Ask the portfolio assistant" maxlength="500" />
+        <button type="button" id="chatbotSend" aria-label="Send message">
           <i class="bx bx-send"></i>
         </button>
       </div>
     </div>
   </div>
 
-  <script type="text/javascript">
-    document.addEventListener('DOMContentLoaded', function () {
-      const DEFAULT_BACKEND_ORIGIN = 'https://portfolio-backend-200p.onrender.com';
-
-      function getApiBaseCandidates() {
-        const candidates = [];
-        const explicitBackend = window.PORTFOLIO_BACKEND_URL || window.BACKEND_URL;
-        const hostname = window.location.hostname;
-
-        if (hostname.endsWith('netlify.app')) {
-          candidates.push('/api', '/.netlify/functions/api-proxy');
-        } else {
-          candidates.push('/api');
-        }
-
-        if (explicitBackend) {
-          candidates.push(`${String(explicitBackend).replace(/\/+$/, '')}/api`);
-        }
-
-        candidates.push(`${DEFAULT_BACKEND_ORIGIN}/api`);
-
-        if (['localhost', '127.0.0.1'].includes(hostname)) {
-          candidates.push('http://127.0.0.1:5000/api');
-        }
-
-        return [...new Set(candidates)];
-      }
-
-      async function fetchApiJson(path, options = {}) {
-        const apiBases = getApiBaseCandidates();
-        let lastError = null;
-
-        for (const base of apiBases) {
-          const url = `${base}${path}`;
-          try {
-            const response = await fetch(url, options);
-            const contentType = response.headers.get('content-type') || '';
-
-            if (!response.ok) {
-              lastError = new Error(`Request failed (${response.status}) at ${url}`);
-              continue;
-            }
-
-            if (!contentType.includes('application/json')) {
-              const preview = (await response.text()).slice(0, 120);
-              lastError = new Error(`Expected JSON from ${url}, got: ${preview}`);
-              continue;
-            }
-
-            const data = await response.json();
-            return { data, url };
-          } catch (error) {
-            lastError = error;
-          }
-        }
-
-        throw lastError || new Error('No API route is reachable.');
-      }
-
-      // Intersection Observer for scroll-triggered fade-in animations
-      const observerOptions = {
-        root: null,
-        rootMargin: '0px 0px -60px 0px',
-        threshold: 0.1
-      };
-
-      const fadeObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0)';
-            fadeObserver.unobserve(entry.target);
-          }
-        });
-      }, observerOptions);
-
-      document.querySelectorAll('.section-content, .project-card, .info-item, .skill-category, .timeline-item, .certifications').forEach(el => {
-        el.style.opacity = '0';
-        el.style.transform = 'translateY(30px)';
-        el.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
-        fadeObserver.observe(el);
-      });
-
-      // Active nav link highlight on scroll
-      const sections = document.querySelectorAll('section[id]');
-      const navLinks = document.querySelectorAll('.hero-nav a');
-
-      window.addEventListener('scroll', () => {
-        let current = '';
-        sections.forEach(section => {
-          const sectionTop = section.offsetTop - 120;
-          if (window.scrollY >= sectionTop) {
-            current = section.getAttribute('id');
-          }
-        });
-        navLinks.forEach(link => {
-          link.classList.remove('nav-active');
-          if (link.getAttribute('href') === '#' + current) {
-            link.classList.add('nav-active');
-          }
-        });
-      });
-
-      // ========================
-      // PROJECT VIDEO PLAY/PAUSE
-      // ========================
-      document.querySelectorAll('.video-container[data-video], .project-image[data-video]').forEach(container => {
-        const video = container.querySelector('video');
-        const overlay = container.querySelector('.play-overlay-v2, .play-overlay');
-        const videoSrc = container.dataset.video;
-        let isLoaded = false;
-
-        if (!video || !overlay || !videoSrc) {
-          return;
-        }
-
-        video.preload = 'metadata';
-
-        function playLoadedVideo() {
-          video.play().then(() => {
-            container.classList.add('video-active');
-          }).catch(() => {
-            // Keep UI stable when autoplay policies block playback.
-          });
-        }
-
-        // Click overlay to toggle play/pause
-        overlay.addEventListener('click', (e) => {
-          e.stopPropagation();
-
-          if (container.classList.contains('video-active')) {
-            // Pause
-            video.pause();
-            container.classList.remove('video-active');
-          } else {
-            // Load video source lazily on first play
-            if (!isLoaded) {
-              overlay.classList.add('loading');
-              video.src = videoSrc;
-              video.load();
-              isLoaded = true;
-
-              const onCanPlay = () => {
-                overlay.classList.remove('loading');
-                playLoadedVideo();
-              };
-
-              const onError = () => {
-                overlay.classList.remove('loading');
-              };
-
-              video.addEventListener('canplay', onCanPlay, { once: true });
-              video.addEventListener('error', onError, { once: true });
-              return;
-            }
-
-            playLoadedVideo();
-          }
-        });
-
-        // Pause video when mouse leaves the card image area
-        container.addEventListener('mouseleave', () => {
-          if (container.classList.contains('video-active')) {
-            video.pause();
-            container.classList.remove('video-active');
-          }
-        });
-      });
-
-      // Smooth scrolling for navigation links
-      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-          e.preventDefault();
-          const target = document.querySelector(this.getAttribute('href'));
-          if (target) {
-            target.scrollIntoView({
-              behavior: 'smooth',
-              block: 'start'
-            });
-          }
-        });
-      });
-
-      // Projects filter controls
-      const filterButtons = document.querySelectorAll('.projects-filters [data-filter]');
-      const projectCards = document.querySelectorAll('.projects-grid .project-card');
-
-      if (filterButtons.length && projectCards.length) {
-        const setFilter = (filter) => {
-          projectCards.forEach((card) => {
-            const category = card.dataset.category;
-            const isVisible = filter === 'all' || category === filter;
-            card.style.display = isVisible ? '' : 'none';
-          });
-
-          filterButtons.forEach((button) => {
-            const isActive = button.dataset.filter === filter;
-            button.classList.toggle('active', isActive);
-            button.setAttribute('aria-pressed', isActive ? 'true' : 'false');
-          });
-        };
-
-        filterButtons.forEach((button) => {
-          button.addEventListener('click', () => {
-            setFilter(button.dataset.filter);
-          });
-        });
-
-        setFilter('all');
-      }
-
-      // Contact form submission
-      const contactForm = document.getElementById('contactForm');
-      if (contactForm) {
-        contactForm.addEventListener('submit', async function (e) {
-          e.preventDefault();
-
-          const submitBtn = document.getElementById('submitBtn');
-          const formMessage = document.getElementById('formMessage');
-          const formData = new FormData(this);
-
-          // Show loading state
-          submitBtn.disabled = true;
-          submitBtn.textContent = 'Sending...';
-          formMessage.style.display = 'block';
-          formMessage.textContent = 'Processing...';
-          formMessage.style.color = '#7f9cff';
-          formMessage.style.backgroundColor = 'rgba(127, 156, 255, 0.2)';
-          formMessage.style.borderLeft = '4px solid #7f9cff';
-
-          try {
-            const payload = {
-              name: formData.get('name'),
-              email: formData.get('email'),
-              message: formData.get('message')
-            };
-
-            const { data } = await fetchApiJson('/contact', {
-              method: 'POST',
-              headers: {
-                'Content-Type': 'application/json',
-              },
-              body: JSON.stringify(payload)
-            });
-
-            if (data && data.success) {
-              console.log('Success response!');
-              formMessage.style.backgroundColor = 'rgba(127, 156, 255, 0.2)';
-              formMessage.style.color = '#7f9cff';
-              formMessage.style.borderLeft = '4px solid #7f9cff';
-              formMessage.textContent = '✓ Message sent successfully! I\'ll get back to you soon.';
-              formMessage.style.display = 'block';
-              this.reset();
-              setTimeout(() => {
-                formMessage.style.display = 'none';
-              }, 5000);
-            } else {
-              console.log('Error response payload:', data);
-              formMessage.style.backgroundColor = 'rgba(255, 100, 100, 0.2)';
-              formMessage.style.color = '#ff6464';
-              formMessage.style.borderLeft = '4px solid #ff6464';
-              formMessage.textContent = '✗ Error: ' + ((data && data.error) || 'Unexpected API response');
-              formMessage.style.display = 'block';
-            }
-          } catch (error) {
-            console.error('Catch block error:', error);
-            formMessage.style.backgroundColor = 'rgba(255, 100, 100, 0.2)';
-            formMessage.style.color = '#ff6464';
-            formMessage.style.borderLeft = '4px solid #ff6464';
-            formMessage.textContent = '✗ Error: ' + error.message;
-            formMessage.style.display = 'block';
-          } finally {
-            submitBtn.disabled = false;
-            submitBtn.textContent = 'Send Message';
-          }
-        });
-      }
-
-      // Chatbot functionality
-      const chatbotButton = document.getElementById('chatbotButton');
-      const chatbotWindow = document.getElementById('chatbotWindow');
-      const chatbotClose = document.getElementById('chatbotClose');
-      const chatbotMessages = document.getElementById('chatbotMessages');
-      const chatbotInput = document.getElementById('chatbotInput');
-      const chatbotSend = document.getElementById('chatbotSend');
-
-      // Toggle chatbot
-      chatbotButton.addEventListener('click', () => {
-        chatbotWindow.classList.add('active');
-        chatbotButton.style.display = 'none';
-        chatbotInput.focus();
-      });
-
-      chatbotClose.addEventListener('click', () => {
-        chatbotWindow.classList.remove('active');
-        chatbotButton.style.display = 'flex';
-      });
-
-      // Quick action buttons
-      document.querySelectorAll('.quick-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-          const section = btn.dataset.section;
-          navigateToSection(section);
-          addBotMessage(`Navigating to ${btn.textContent}...`);
-        });
-      });
-
-      // Send message
-      function sendMessage() {
-        const message = chatbotInput.value.trim();
-        if (!message) return;
-
-        addUserMessage(message);
-        chatbotInput.value = '';
-
-        setTimeout(() => {
-          handleUserQuery(message);
-        }, 500);
-      }
-
-      chatbotSend.addEventListener('click', sendMessage);
-      chatbotInput.addEventListener('keypress', (e) => {
-        if (e.key === 'Enter') sendMessage();
-      });
-
-      function addUserMessage(text) {
-        const messageDiv = document.createElement('div');
-        messageDiv.className = 'message user-message';
-        messageDiv.innerHTML = `<div class="message-content"><p>${text}</p></div>`;
-        chatbotMessages.appendChild(messageDiv);
-        chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
-      }
-
-      function addBotMessage(text) {
-        const messageDiv = document.createElement('div');
-        messageDiv.className = 'message bot-message';
-        messageDiv.innerHTML = `<div class="message-content"><p>${text}</p></div>`;
-        chatbotMessages.appendChild(messageDiv);
-        chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
-      }
-
-      function navigateToSection(section) {
-        const target = document.getElementById(section);
-        if (target) {
-          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          setTimeout(() => {
-            chatbotWindow.classList.remove('active');
-            chatbotButton.style.display = 'flex';
-          }, 800);
-        }
-      }
-
-      function handleUserQuery(query) {
-        const lowerQuery = query.toLowerCase();
-
-        // Keep greeting responses local to avoid irrelevant retrieval-based replies.
-        const isGreeting = ['hi', 'hello', 'hey', 'greetings'].some(word => {
-          const pattern = new RegExp(`\\b${word}\\b`, 'i');
-          return pattern.test(query);
-        });
-
-        if (isGreeting) {
-          addBotMessage("Hi there! I'm Aaryan Gole's portfolio assistant. I can help with his background, skills, projects, experience, and contact details.");
-          return;
-        }
-
-        // Check for navigation intents first
-        if (lowerQuery.includes('home')) {
-          addBotMessage('Taking you home!');
-          navigateToSection('home');
-          return;
-        } else if (lowerQuery.includes('about') && !lowerQuery.includes('project')) {
-          addBotMessage('Let me show you my about section!');
-          navigateToSection('about');
-          return;
-        } else if (lowerQuery.includes('skill')) {
-          addBotMessage('Check out my skills!');
-          navigateToSection('skills');
-          return;
-        } else if (lowerQuery.includes('experience')) {
-          addBotMessage('Here\'s my experience!');
-          navigateToSection('experience');
-          return;
-        } else if (lowerQuery.includes('project')) {
-          addBotMessage('Let me show you my projects!');
-          navigateToSection('projects');
-          return;
-        } else if (lowerQuery.includes('contact') || lowerQuery.includes('reach') || lowerQuery.includes('email')) {
-          addBotMessage('Let\'s get in touch!');
-          navigateToSection('contact');
-          return;
-        }
-
-        // Use RAG backend for intelligent responses
-        sendChatToBackend(query);
-      }
-
-      function sendChatToBackend(message) {
-        fetchApiJson('/chat', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ message: message })
-        })
-          .then(({ data }) => {
-            if (data && data.success) {
-              addBotMessage(data.message);
-            } else {
-              addBotMessage('Sorry, I encountered an issue. Could you rephrase your question?');
-            }
-          })
-          .catch(error => {
-            console.error('Chat error:', error);
-            addBotMessage('I\'m having trouble connecting to my knowledge base. Please try again later.');
-          });
-      }
-
-      // Theme Toggle Logic
-      const themeToggle = document.getElementById('themeToggle');
-      const themeIcon = document.getElementById('themeIcon');
-      const body = document.body;
-
-      // Check for saved theme preference or use OS preference
-      const savedTheme = localStorage.getItem('theme');
-      const prefersLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
-
-      if (savedTheme === 'light' || (!savedTheme && prefersLight)) {
-        body.classList.add('light-mode');
-        themeIcon.classList.replace('bx-sun', 'bx-moon');
-      }
-
-      themeToggle.addEventListener('click', () => {
-        body.classList.toggle('light-mode');
-        const isLight = body.classList.contains('light-mode');
-
-        if (isLight) {
-          themeIcon.classList.replace('bx-sun', 'bx-moon');
-          localStorage.setItem('theme', 'light');
-        } else {
-          themeIcon.classList.replace('bx-moon', 'bx-sun');
-          localStorage.setItem('theme', 'dark');
-        }
-      });
-
-      // Navbar & Logo Dynamic Logic
-      const nav = document.querySelector('.global-nav');
-      const logo = document.querySelector('.logo');
-
-      window.addEventListener('scroll', () => {
-        // Logo Transition (aryn.gole -> AG.)
-        if (window.scrollY > 50) {
-          logo.classList.add('compact');
-        } else {
-          logo.classList.remove('compact');
-        }
-
-        // Navbar Sticky Background
-        if (window.scrollY > 20) {
-          nav.classList.add('scrolled');
-        } else {
-          nav.classList.remove('scrolled');
-        }
-      });
-
-
-      // Hide Navbar in Projects Section (desktop only)
-      const projectsSection = document.querySelector('#projects');
-      const navHideObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          // Only hide on desktop — mobile nav must stay visible for "contact" link access
-          if (window.innerWidth > 1024) {
-            if (entry.isIntersecting) {
-              nav.style.transform = 'translateY(-100%)';
-              nav.style.opacity = '0';
-              nav.style.pointerEvents = 'none';
-            } else {
-              nav.style.transform = 'translateY(0)';
-              nav.style.opacity = '1';
-              nav.style.pointerEvents = 'all';
-            }
-          }
-        });
-      }, { threshold: 0 });
-      navHideObserver.observe(projectsSection);
-
-
-
-      // Projects V2.1 Logic (Filters & Stacking Sync)
-      const projectShowcases = document.querySelectorAll('.project-showcase');
-      const projectNavItems = document.querySelectorAll('.nav-item-wrapper');
-      const filterBtns = document.querySelectorAll('.filter-btn');
-
-      const projectObserverOptions = {
-        root: null,
-        threshold: 0.5
-      };
-
-      let projectObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            const id = entry.target.dataset.project;
-            projectNavItems.forEach(item => {
-              item.classList.toggle('active', item.dataset.project === id);
-            });
-          }
-        });
-      }, projectObserverOptions);
-
-      projectShowcases.forEach(showcase => projectObserver.observe(showcase));
-
-      // Filter Logic — reconnect observer to only visible cards to avoid glitches
-      filterBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-          const filter = btn.dataset.filter;
-
-          filterBtns.forEach(b => b.classList.remove('active'));
-          btn.classList.add('active');
-
-          // Disconnect observer to prevent stale intersection events
-          projectObserver.disconnect();
-
-          projectShowcases.forEach(card => {
-            const isTop = card.dataset.priority === 'top';
-            const isCategoryMatch = card.dataset.category === filter;
-            const shouldShow = filter === 'all' || (filter === 'top' ? isTop : isCategoryMatch);
-
-            if (shouldShow) {
-              card.style.display = 'flex';
-              projectObserver.observe(card);
-            } else {
-              card.style.display = 'none';
-            }
-          });
-
-          // Re-sync nav visibility
-          projectNavItems.forEach(navItem => {
-            const projectCard = document.getElementById(`project-${navItem.dataset.project}`);
-            navItem.style.display = (projectCard && projectCard.style.display === 'none') ? 'none' : 'flex';
-          });
-        });
-      });
-
-      const defaultFilterBtn = document.querySelector('.filter-btn.active') || document.querySelector('.filter-btn[data-filter="all"]');
-      if (defaultFilterBtn) defaultFilterBtn.click();
-
-      // Project Sidebar Click to Scroll — using offsetTop for accuracy with sticky elements
-      projectNavItems.forEach(item => {
-        item.addEventListener('click', () => {
-          const id = item.dataset.project;
-          const target = document.getElementById(`project-${id}`);
-          if (target) {
-            const navHeight = nav ? nav.offsetHeight : 0;
-            const top = target.getBoundingClientRect().top + window.scrollY - navHeight;
-            window.scrollTo({ top, behavior: 'smooth' });
-          }
-        });
-      });
-
-      // Video Click-to-Play Logic
-      const videoContainers = document.querySelectorAll('.video-container');
-      videoContainers.forEach(container => {
-        const video = container.querySelector('video');
-        const overlay = container.querySelector('.play-overlay-v2');
-        const defaultOverlayHtml = overlay ? overlay.innerHTML : '';
-        const videoSrc = container.dataset.video;
-        const localVideoSrc = container.dataset.videoLocal;
-
-        function resetVideoOverlay() {
-          if (overlay) {
-            overlay.innerHTML = defaultOverlayHtml;
-            overlay.style.opacity = '';
-            overlay.style.background = '';
-          }
-        }
-
-        function showVideoUnavailable() {
-          if (overlay) {
-            overlay.innerHTML = '<i class="bx bxs-error-circle"></i><span>Preview Unavailable</span>';
-            overlay.style.opacity = '1';
-            overlay.style.background = 'rgba(0,0,0,0.8)';
-          }
-        }
-
-        function tryLocalFallback() {
-          if (localVideoSrc && !container.dataset.fallbackTried) {
-            container.dataset.fallbackTried = 'true';
-            video.src = localVideoSrc;
-            return video.play().then(() => {
-              resetVideoOverlay();
-              container.classList.add('playing');
-            });
-          }
-          return Promise.reject(new Error('No fallback available'));
-        }
-
-        container.addEventListener('click', () => {
-          if (container.classList.contains('playing')) {
-            video.pause();
-            container.classList.remove('playing');
-          } else {
-            // Stop other playing videos
-            videoContainers.forEach(c => {
-              if (c !== container) {
-                const otherVideo = c.querySelector('video');
-                if (otherVideo) otherVideo.pause();
-                c.classList.remove('playing');
-              }
-            });
-
-            resetVideoOverlay();
-            if (!video.src && videoSrc) video.src = videoSrc;
-            video.play()
-              .then(() => {
-                container.classList.add('playing');
-              })
-              .catch(() => {
-                tryLocalFallback().catch(() => {
-                  container.classList.remove('playing');
-                  showVideoUnavailable();
-                });
-              });
-          }
-        });
-
-        // Error handling for video load
-        video.addEventListener('error', () => {
-          tryLocalFallback().catch(() => {
-            container.classList.remove('playing');
-            showVideoUnavailable();
-          });
-        });
-      });
-
-      // Custom Cursor Logic
-      const cursorDot = document.getElementById('cursor-dot');
-      const cursorRing = document.getElementById('cursor-ring');
-
-      let mouseX = 0;
-      let mouseY = 0;
-      let ringX = 0;
-      let ringY = 0;
-
-      window.addEventListener('mousemove', (e) => {
-        mouseX = e.clientX;
-        mouseY = e.clientY;
-        cursorDot.style.transform = `translate(${mouseX}px, ${mouseY}px)`;
-      });
-
-      function renderCursor() {
-        ringX += (mouseX - ringX) * 0.15;
-        ringY += (mouseY - ringY) * 0.15;
-        cursorRing.style.transform = `translate(${ringX}px, ${ringY}px)`;
-        requestAnimationFrame(renderCursor);
-      }
-      renderCursor();
-
-      // Custom Cursor Hover States
-      const interactables = document.querySelectorAll('a, button, .project-showcase, .btn-action, .nav-item-wrapper, .service-card, .nav-item, .theme-toggle');
-      interactables.forEach(el => {
-        el.addEventListener('mouseenter', () => {
-          cursorRing.classList.add('hovered');
-          cursorDot.style.opacity = '0';
-        });
-        el.addEventListener('mouseleave', () => {
-          cursorRing.classList.remove('hovered');
-          cursorDot.style.opacity = '1';
-        });
-      });
-
-      // Navbar Scroll Spy Logic
-      const navSections = document.querySelectorAll('section');
-      const navItemsList = document.querySelectorAll('.nav-item');
-
-      const navObserverOptions = {
-        root: null,
-        rootMargin: '-20% 0px -60% 0px',
-        threshold: 0
-      };
-
-      const navObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            navItemsList.forEach(item => {
-              item.classList.remove('nav-active');
-              if (item.getAttribute('href').substring(1) === entry.target.id) {
-                item.classList.add('nav-active');
-              }
-            });
-          }
-        });
-      }, navObserverOptions);
-
-      navSections.forEach(section => navObserver.observe(section));
-
-      // Live Clock Logic
-      function updateClock() {
-        const now = new Date();
-        // Offset for IST (UTC+5:30)
-        const istOffset = 5.5 * 60 * 60 * 1000;
-        const istTime = new Date(now.getTime() + (now.getTimezoneOffset() * 60000) + istOffset);
-
-        const hours = istTime.getHours();
-        const minutes = istTime.getMinutes();
-        const ampm = hours >= 12 ? 'PM' : 'AM';
-        const displayHours = hours % 12 || 12;
-
-        const timeString = `${displayHours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')} ${ampm}`;
-        document.getElementById('live-clock').textContent = timeString;
-      }
-      setInterval(updateClock, 60000);
-      updateClock();
-
-    });
-  </script>
+  <script src="assets/js/main.js" defer></script>
 
 </body>
 

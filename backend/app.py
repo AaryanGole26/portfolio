@@ -310,27 +310,6 @@ def contact():
         print(f"Error in contact endpoint: {str(e)}")
         return jsonify({'error': str(e)}), 500
 
-@app.route('/api/messages', methods=['GET'])
-def get_messages():
-    """Get all messages (admin only)"""
-    try:
-        # In production, add authentication here
-        messages = list(mongo.db.messages.find().sort('timestamp', -1))
-        
-        # Convert ObjectId to string for JSON serialization
-        for msg in messages:
-            msg['_id'] = str(msg['_id'])
-            msg['timestamp'] = msg['timestamp'].strftime('%Y-%m-%d %H:%M:%S')
-        
-        return jsonify({
-            'success': True,
-            'count': len(messages),
-            'messages': messages
-        }), 200
-
-    except Exception as e:
-        return jsonify({'error': str(e)}), 500
-
 @app.route('/api/chat', methods=['POST'])
 def chat():
     """RAG-based chatbot endpoint"""

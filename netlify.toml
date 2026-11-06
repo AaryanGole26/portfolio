@@ -1,11 +1,25 @@
 [build]
-  publish = "."
+  # Publish only the site itself, so backend/ and config files are not served.
+  command = "mkdir -p dist && cp -r index.html assets dist/"
+  publish = "dist"
 
-# Route all frontend API calls through a Netlify Function proxy.
-# Set BACKEND_URL in Netlify Environment Variables.
+[functions]
+  directory = "netlify/functions"
+  node_bundler = "esbuild"
+  external_node_modules = ["mongodb"]
+
+[functions."keep-alive"]
+  schedule = "@weekly"
+
 [[redirects]]
-  from = "/api/*"
-  to = "/.netlify/functions/api-proxy/:splat"
+  from = "/api/chat"
+  to = "/.netlify/functions/chat"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/api/health"
+  to = "/.netlify/functions/health"
   status = 200
   force = true
 

@@ -20,7 +20,8 @@
   --hero-grad-2: rgba(15, 10, 50, 0.4);
   --hero-glow-core: rgba(108, 92, 231, 0.12);
   --hero-glow-edge: rgba(60, 40, 160, 0.05);
-  --chatbot-shell-bg: rgba(16, 18, 35, 0.5);
+  --chatbot-shell-bg: rgba(16, 18, 35, 0.94);
+  --nav-bg: rgba(8, 11, 22, 0.78);
   --font: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
@@ -43,7 +44,8 @@
   --hero-grad-2: rgba(140, 120, 250, 0.05);
   --hero-glow-core: rgba(108, 92, 231, 0.15);
   --hero-glow-edge: rgba(108, 92, 231, 0.04);
-  --chatbot-shell-bg: rgba(255, 255, 255, 0.52);
+  --chatbot-shell-bg: rgba(255, 255, 255, 0.96);
+  --nav-bg: rgba(248, 249, 250, 0.82);
 }
 
 * {
@@ -80,14 +82,25 @@ body {
   background: var(--text-muted);
 }
 
-/* Custom Cursor */
-@media (pointer: fine) {
-  body {
-    cursor: none;
-  }
-  a, button, input, textarea, select {
-    cursor: none;
-  }
+/* Custom Cursor: enabled by JS only on devices with a real mouse */
+body.custom-cursor,
+body.custom-cursor *:not(video) {
+  cursor: none !important;
+}
+
+#cursor-dot,
+#cursor-ring {
+  display: none;
+}
+
+body.custom-cursor #cursor-dot,
+body.custom-cursor #cursor-ring {
+  display: block;
+}
+
+body.custom-cursor.cursor-over-video #cursor-dot,
+body.custom-cursor.cursor-over-video #cursor-ring {
+  opacity: 0 !important;
 }
 
 #cursor-dot {
@@ -115,7 +128,27 @@ body {
   pointer-events: none;
   z-index: 9998;
   transform: translate(-50%, -50%);
-  transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+  transition: width 0.25s ease, height 0.25s ease, background-color 0.25s ease, opacity 0.2s ease;
+}
+
+#cursor-ring.hovered {
+  width: 44px;
+  height: 44px;
+  background-color: var(--accent-glow);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
 
 /* Highlights Refined */
@@ -767,6 +800,8 @@ body.loaded {
 }
 
 .chatbot-button {
+  padding: 0;
+  font: inherit;
   width: 60px;
   height: 60px;
   border-radius: 50%;
@@ -930,6 +965,11 @@ body.loaded {
 
 .message-content p {
   margin: 0 0 10px 0;
+  overflow-wrap: anywhere;
+}
+
+.message.pending .message-content {
+  opacity: 0.6;
 }
 
 .message-content p:last-child {
@@ -1028,7 +1068,7 @@ body.loaded {
   }
 }
 
-@media (max-width: 900px) {
+@media (max-width: 820px) {
   .hero-topbar {
     padding: 20px 30px;
   }
