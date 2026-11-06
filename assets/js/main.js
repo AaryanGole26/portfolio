@@ -26,6 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initChatbot();
   initCursor();
   initClock();
+  initChatDock();
 
   function initFadeIn() {
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -683,7 +684,7 @@ document.addEventListener('DOMContentLoaded', () => {
       document.body.classList.add('chat-open');
       button.style.display = 'none';
       // On phones the keyboard would cover the sheet as it opens, so focus waits for a tap.
-      if (window.matchMedia('(min-width: 601px)').matches) input.focus();
+      if (window.matchMedia('(min-width: 601px) and (min-height: 501px)').matches) input.focus();
     };
 
     const closePanel = () => {
@@ -836,6 +837,98 @@ document.addEventListener('DOMContentLoaded', () => {
       ring.classList.toggle('hovered', interactive && !overVideo);
       dot.style.opacity = interactive ? '0' : '1';
     });
+  }
+
+  // Keeps the chat button off the footer, and on touch screens tucks it away while scrolling down.
+  function initChatDock() {
+    const container = document.querySelector('.chatbot-container');
+    const button = document.getElementById('chatbotButton');
+    const footer = document.querySelector('.footer');
+    const touch = window.matchMedia('(hover: none) and (pointer: coarse)');
+    const GAP = 16;
+    const SCROLL_THRESHOLD = 6;
+    const REVEAL_AFTER_MS = 900;
+    let lift = 0;
+    let lastY = window.scrollY;
+    let frame = null;
+    let revealTimer = null;
+
+    const CLICKABLE = 'a, button, input, textarea, select, label, .vp-controls';
+
+    // Where the button sits, from its resolved position, so a tuck animation never skews it.
+    const buttonBox = () => {
+      const style = getComputedStyle(container);
+      const bottom = window.innerHeight - parseFloat(style.bottom);
+      const right = window.innerWidth - parseFloat(style.right);
+      return { left: right - button.offsetWidth, right, top: bottom - button.offsetHeight, bottom };
+    };
+
+    // True when any visible, on-top clickable element touches the button's area.
+    const coversSomethingClickable = (box) => {
+      const margin = 4;
+      return [...document.querySelectorAll(CLICKABLE)].some((element) => {
+        if (container.contains(element)) return false;
+        const rect = element.getBoundingClientRect();
+        if (!rect.width || !rect.height) return false;
+        const left = Math.max(rect.left, box.left - margin);
+        const right = Math.min(rect.right, box.right + margin);
+        const top = Math.max(rect.top, box.top - margin);
+        const bottom = Math.min(rect.bottom, box.bottom + margin);
+        if (left >= right || top >= bottom) return false;
+        // Ignore links hidden beneath a stacked project card.
+        const topmost = document.elementsFromPoint((left + right) / 2, (top + bottom) / 2)
+          .find((hit) => !container.contains(hit));
+        return Boolean(topmost && (element === topmost || element.contains(topmost)));
+      });
+    };
+
+    const update = () => {
+      frame = null;
+      const chatOpen = document.body.classList.contains('chat-open');
+      if (chatOpen) {
+        container.classList.remove('tucked', 'blocked');
+        return;
+      }
+
+      // Raise the button clear of the footer.
+      const box = buttonBox();
+      const naturalBottom = box.bottom + lift;
+      const limit = footer.getBoundingClientRect().top - GAP;
+      const newLift = Math.max(0, Math.round(naturalBottom - limit));
+      if (newLift !== lift) {
+        lift = newLift;
+        container.style.setProperty('--chat-lift', `${lift}px`);
+      }
+      const shift = naturalBottom - lift - box.bottom;
+      const finalBox = { ...box, top: box.top + shift, bottom: box.bottom + shift };
+      container.classList.toggle('blocked', coversSomethingClickable(finalBox));
+
+      const y = window.scrollY;
+      if (touch.matches) {
+        if (y > lastY + SCROLL_THRESHOLD) container.classList.add('tucked');
+        else if (y < lastY - SCROLL_THRESHOLD) container.classList.remove('tucked');
+        clearTimeout(revealTimer);
+        revealTimer = setTimeout(() => {
+          container.classList.remove('tucked');
+          schedule();
+        }, REVEAL_AFTER_MS);
+      } else {
+        container.classList.remove('tucked');
+      }
+      lastY = y;
+    };
+
+    const schedule = () => {
+      if (!frame) frame = requestAnimationFrame(update);
+    };
+    window.addEventListener('scroll', schedule, { passive: true });
+    window.addEventListener('resize', schedule);
+    document.getElementById('chatbotClose').addEventListener('click', () => setTimeout(schedule, 50));
+    window.addEventListener('load', schedule);
+    // Hero content slides in, so check again once those entrance animations finish.
+    document.addEventListener('animationend', schedule);
+    setTimeout(schedule, 1600);
+    update();
   }
 
   function initClock() {
