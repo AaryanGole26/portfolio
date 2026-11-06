@@ -235,6 +235,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function initVideos() {
     const containers = [...document.querySelectorAll('.video-container[data-video]')];
+    const IDLE_MS = 2500;
+    const SEEK_STEP = 5;
+
+    const formatTime = (seconds) => {
+      if (!Number.isFinite(seconds)) return '0:00';
+      const minutes = Math.floor(seconds / 60);
+      return `${minutes}:${String(Math.floor(seconds % 60)).padStart(2, '0')}`;
+    };
 
     const pauseAll = (except) => {
       containers.forEach((container) => {
@@ -244,27 +252,182 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     };
 
+    const setIcon = (button, icon, label) => {
+      button.querySelector('i').className = `bx ${icon}`;
+      button.setAttribute('aria-label', label);
+    };
+
+    function buildControls(container, video) {
+      const bar = document.createElement('div');
+      bar.className = 'vp-controls';
+      bar.innerHTML = `
+        <button type="button" class="vp-btn vp-play" aria-label="Pause"><i class="bx bx-pause"></i></button>
+        <div class="vp-progress" role="slider" tabindex="0" aria-label="Seek" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+          <div class="vp-track"><div class="vp-buffered"></div><div class="vp-fill"></div></div>
+          <div class="vp-thumb"></div>
+        </div>
+        <span class="vp-time">0:00 / 0:00</span>
+        <button type="button" class="vp-btn vp-mute" aria-label="Unmute"><i class="bx bx-volume-mute"></i></button>
+        <button type="button" class="vp-btn vp-fs" aria-label="Full screen"><i class="bx bx-fullscreen"></i></button>`;
+      container.append(bar);
+
+      const playButton = bar.querySelector('.vp-play');
+      const muteButton = bar.querySelector('.vp-mute');
+      const fullscreenButton = bar.querySelector('.vp-fs');
+      const progress = bar.querySelector('.vp-progress');
+      const fill = bar.querySelector('.vp-fill');
+      const buffered = bar.querySelector('.vp-buffered');
+      const thumb = bar.querySelector('.vp-thumb');
+      const time = bar.querySelector('.vp-time');
+      let idleTimer = null;
+
+      const togglePlay = () => (video.paused ? video.play().catch(() => {}) : video.pause());
+
+      const wake = () => {
+        container.classList.remove('controls-idle');
+        clearTimeout(idleTimer);
+        idleTimer = setTimeout(() => {
+          if (!video.paused && !container.classList.contains('scrubbing')) container.classList.add('controls-idle');
+        }, IDLE_MS);
+      };
+
+      const renderTime = () => {
+        const ratio = video.duration ? video.currentTime / video.duration : 0;
+        fill.style.width = `${ratio * 100}%`;
+        thumb.style.left = `${ratio * 100}%`;
+        time.textContent = `${formatTime(video.currentTime)} / ${formatTime(video.duration)}`;
+        progress.setAttribute('aria-valuenow', String(Math.round(ratio * 100)));
+        progress.setAttribute('aria-valuetext', time.textContent);
+      };
+
+      const renderBuffered = () => {
+        if (!video.duration || !video.buffered.length) return;
+        buffered.style.width = `${(video.buffered.end(video.buffered.length - 1) / video.duration) * 100}%`;
+      };
+
+      const seekTo = (clientX) => {
+        if (!video.duration) return;
+        const rect = progress.getBoundingClientRect();
+        const ratio = Math.min(1, Math.max(0, (clientX - rect.left) / rect.width));
+        video.currentTime = ratio * video.duration;
+        renderTime();
+      };
+
+      playButton.addEventListener('click', togglePlay);
+      muteButton.addEventListener('click', () => {
+        video.muted = !video.muted;
+        if (!video.muted && video.volume === 0) video.volume = 1;
+      });
+      fullscreenButton.addEventListener('click', () => {
+        if (document.fullscreenElement) {
+          document.exitFullscreen();
+        } else if (container.requestFullscreen) {
+          container.requestFullscreen().catch(() => video.webkitEnterFullscreen?.());
+        } else {
+          // iPhone Safari can only make the video itself full screen.
+          video.webkitEnterFullscreen?.();
+        }
+      });
+
+      progress.addEventListener('pointerdown', (event) => {
+        progress.setPointerCapture(event.pointerId);
+        container.classList.add('scrubbing');
+        seekTo(event.clientX);
+      });
+      progress.addEventListener('pointermove', (event) => {
+        if (container.classList.contains('scrubbing')) seekTo(event.clientX);
+      });
+      const endScrub = () => {
+        container.classList.remove('scrubbing');
+        wake();
+      };
+      progress.addEventListener('pointerup', endScrub);
+      progress.addEventListener('pointercancel', endScrub);
+      progress.addEventListener('keydown', (event) => {
+        const moves = { ArrowRight: SEEK_STEP, ArrowLeft: -SEEK_STEP };
+        if (event.key in moves) video.currentTime = Math.max(0, video.currentTime + moves[event.key]);
+        else if (event.key === 'Home') video.currentTime = 0;
+        else if (event.key === 'End' && video.duration) video.currentTime = video.duration - 1;
+        else if (event.key === ' ' || event.key === 'k') togglePlay();
+        else return;
+        event.preventDefault();
+        wake();
+      });
+
+      // Mouse: a click on the video plays or pauses. Touch: a tap shows or hides the controls.
+      video.addEventListener('pointerup', (event) => {
+        if (event.pointerType === 'mouse') {
+          togglePlay();
+          wake();
+        } else if (container.classList.contains('controls-idle')) {
+          wake();
+        } else if (!video.paused) {
+          container.classList.add('controls-idle');
+        }
+      });
+      container.addEventListener('pointermove', (event) => {
+        if (event.pointerType === 'mouse') wake();
+      });
+      bar.addEventListener('pointerdown', wake);
+
+      video.addEventListener('play', () => {
+        setIcon(playButton, 'bx-pause', 'Pause');
+        container.classList.remove('is-paused');
+        wake();
+      });
+      video.addEventListener('pause', () => {
+        setIcon(playButton, 'bx-play', 'Play');
+        container.classList.add('is-paused');
+        container.classList.remove('controls-idle');
+      });
+      video.addEventListener('volumechange', () => {
+        const muted = video.muted || video.volume === 0;
+        setIcon(muteButton, muted ? 'bx-volume-mute' : 'bx-volume-full', muted ? 'Unmute' : 'Mute');
+      });
+      video.addEventListener('timeupdate', renderTime);
+      video.addEventListener('loadedmetadata', renderTime);
+      video.addEventListener('progress', renderBuffered);
+      document.addEventListener('fullscreenchange', () => {
+        const active = document.fullscreenElement === container;
+        setIcon(fullscreenButton, active ? 'bx-exit-fullscreen' : 'bx-fullscreen', active ? 'Exit full screen' : 'Full screen');
+      });
+      renderTime();
+    }
+
     containers.forEach((container) => {
       const video = container.querySelector('video');
       const overlay = container.querySelector('.play-overlay-v2');
       const label = overlay.querySelector('.play-label');
-      const defaultLabel = label.textContent;
       const poster = container.querySelector('.showcase-img');
+      let defaultLabel = label.textContent;
+      let controlsBuilt = false;
+
+      video.controls = false;
+
+      const loadSource = () => {
+        if (!video.getAttribute('src') || video.error) video.src = container.dataset.video;
+      };
 
       const showUnavailable = () => {
         container.classList.remove('playing', 'buffering');
-        video.controls = false;
-        label.textContent = 'Could not load. Tap to retry';
+        label.textContent = 'Could not load · tap to retry';
       };
+
+      // The label shows the demo length once its details have loaded.
+      video.addEventListener('loadedmetadata', () => {
+        defaultLabel = `Watch demo · ${formatTime(video.duration)}`;
+        if (!container.classList.contains('playing')) label.textContent = defaultLabel;
+      });
 
       overlay.addEventListener('click', () => {
         pauseAll(container);
         label.textContent = defaultLabel;
         if (poster) video.poster = poster.currentSrc || poster.src;
-        if (!video.getAttribute('src') || video.error) {
-          video.src = container.dataset.video;
+        loadSource();
+        if (!controlsBuilt) {
+          buildControls(container, video);
+          controlsBuilt = true;
         }
-        video.controls = true;
         container.classList.add('playing', 'buffering');
         video.play().catch((error) => {
           if (error.name !== 'AbortError') showUnavailable();
@@ -278,6 +441,19 @@ document.addEventListener('DOMContentLoaded', () => {
       video.addEventListener('play', () => pauseAll(container));
     });
 
+    // Fetch only each video's header when it nears the screen, to show its length.
+    const nearby = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        const video = entry.target.querySelector('video');
+        if (!video.getAttribute('src')) {
+          video.preload = 'metadata';
+          video.src = entry.target.dataset.video;
+        }
+        nearby.unobserve(entry.target);
+      });
+    }, { rootMargin: '400px 0px' });
+
     const visibility = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) return;
@@ -285,7 +461,10 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!video.paused) video.pause();
       });
     }, { threshold: 0.2 });
-    containers.forEach((container) => visibility.observe(container));
+    containers.forEach((container) => {
+      nearby.observe(container);
+      visibility.observe(container);
+    });
 
     return { pauseAll };
   }
