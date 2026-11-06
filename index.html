@@ -3,7 +3,8 @@
 
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" id="themeColor" content="#080b16">
   <title>Aaryan Gole | Backend &amp; AI Engineer</title>
   <meta name="description"
     content="Portfolio of Aaryan Gole, a backend-focused AI engineer building scalable systems with Flask, Django, FastAPI, and RAG pipelines.">
@@ -38,6 +39,7 @@
     })();
   </script>
 
+  <div class="preloader" aria-hidden="true"><div class="loader4" aria-hidden="true"><span></span><span></span><span></span><span></span></div></div>
   <div class="scroll-progress" aria-hidden="true"></div>
   <div class="grain" aria-hidden="true"></div>
 
@@ -58,9 +60,31 @@
       <a href="#projects" class="nav-item">projects</a>
       <a href="#contact" class="nav-item">contact</a>
     </nav>
-    <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark/light mode">
-      <i class="bx bx-sun" id="themeIcon"></i>
-    </button>
+    <label class="theme-switch" title="Toggle dark mode">
+      <input id="themeToggle" type="checkbox" role="switch" aria-label="Dark mode" checked>
+      <span class="slider">
+        <span class="sun-moon">
+          <svg class="moon-dot md-1" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="50"></circle></svg>
+          <svg class="moon-dot md-2" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="50"></circle></svg>
+          <svg class="moon-dot md-3" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="50"></circle></svg>
+          <svg class="light-ray lr-1" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="50"></circle></svg>
+          <svg class="light-ray lr-2" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="50"></circle></svg>
+          <svg class="light-ray lr-3" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="50"></circle></svg>
+          <svg class="cloud-dark cl-1" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="50"></circle></svg>
+          <svg class="cloud-dark cl-2" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="50"></circle></svg>
+          <svg class="cloud-dark cl-3" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="50"></circle></svg>
+          <svg class="cloud-light cl-4" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="50"></circle></svg>
+          <svg class="cloud-light cl-5" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="50"></circle></svg>
+          <svg class="cloud-light cl-6" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="50"></circle></svg>
+        </span>
+        <span class="stars">
+          <svg class="star st-1" viewBox="0 0 20 20" aria-hidden="true"><path d="M 0 10 C 10 10,10 10 ,0 10 C 10 10 , 10 10 , 10 20 C 10 10 , 10 10 , 20 10 C 10 10 , 10 10 , 10 0 C 10 10,10 10 ,0 10 Z"></path></svg>
+          <svg class="star st-2" viewBox="0 0 20 20" aria-hidden="true"><path d="M 0 10 C 10 10,10 10 ,0 10 C 10 10 , 10 10 , 10 20 C 10 10 , 10 10 , 20 10 C 10 10 , 10 10 , 10 0 C 10 10,10 10 ,0 10 Z"></path></svg>
+          <svg class="star st-3" viewBox="0 0 20 20" aria-hidden="true"><path d="M 0 10 C 10 10,10 10 ,0 10 C 10 10 , 10 10 , 10 20 C 10 10 , 10 10 , 20 10 C 10 10 , 10 10 , 10 0 C 10 10,10 10 ,0 10 Z"></path></svg>
+          <svg class="star st-4" viewBox="0 0 20 20" aria-hidden="true"><path d="M 0 10 C 10 10,10 10 ,0 10 C 10 10 , 10 10 , 10 20 C 10 10 , 10 10 , 20 10 C 10 10 , 10 10 , 10 0 C 10 10,10 10 ,0 10 Z"></path></svg>
+        </span>
+      </span>
+    </label>
   </header>
 
   <!-- HERO SECTION -->
@@ -71,7 +95,6 @@
     <!-- Main Content -->
     <div class="hero-content">
       <div class="hero-text">
-        <span class="status-chip"><span class="status-dot"></span> Open to roles &amp; freelance work</span>
         <!-- Tech Badges -->
         <div class="tech-badges">
           <span class="tech-badge">flask</span>
@@ -102,12 +125,15 @@
         </div>
 
         <div class="socials">
-          <a href="https://www.linkedin.com/in/aaryan-gole" target="_blank" rel="noopener noreferrer" class="linkedin" aria-label="LinkedIn"><i
-              class="bx bxl-linkedin"></i></a>
-          <a href="https://www.github.com/AaryanGole26" target="_blank" rel="noopener noreferrer" class="github" aria-label="GitHub"><i class="bx bxl-github"></i></a>
-          <a href="mailto:goleaaryan7@gmail.com" class="google" aria-label="Email"><i class="bx bxl-gmail"></i></a>
-          <a href="https://drive.google.com/file/d/10KrIfKq4K8QF9l7Zqa0358hP4IAj_LSR/view?usp=sharing" target="_blank"
-            rel="noopener noreferrer" class="resume-link" aria-label="Resume"><i class="bx bxs-file-doc"></i></a>
+          <a class="social-orb orb-linkedin" href="https://www.linkedin.com/in/aaryan-gole" target="_blank" rel="noopener noreferrer"
+            aria-label="LinkedIn" title="LinkedIn"><span class="orb-shine"></span><i class="bx bxl-linkedin"></i></a>
+          <a class="social-orb orb-github" href="https://www.github.com/AaryanGole26" target="_blank" rel="noopener noreferrer"
+            aria-label="GitHub" title="GitHub"><span class="orb-shine"></span><i class="bx bxl-github"></i></a>
+          <a class="social-orb orb-mail" href="mailto:goleaaryan7@gmail.com" aria-label="Email" title="Email"><span
+              class="orb-shine"></span><i class="bx bxl-gmail"></i></a>
+          <a class="social-orb orb-resume" href="https://drive.google.com/file/d/10KrIfKq4K8QF9l7Zqa0358hP4IAj_LSR/view?usp=sharing"
+            target="_blank" rel="noopener noreferrer" aria-label="Resume" title="Resume"><span class="orb-shine"></span><i
+              class="bx bxs-file-doc"></i></a>
         </div>
       </div>
 
@@ -985,15 +1011,21 @@
       <div class="footer-center">
         <p>Made with ❤️ by <span class="name-accent">Aaryan Gole</span></p>
         <div class="footer-divider"></div>
-        <div class="footer-socials-minimal">
-          <a href="https://www.linkedin.com/in/aaryan-gole" target="_blank" rel="noopener noreferrer" title="LinkedIn"><i
-              class="bx bxl-linkedin"></i></a>
-          <a href="https://www.github.com/AaryanGole26" target="_blank" rel="noopener noreferrer" title="GitHub"><i class="bx bxl-github"></i></a>
-          <a href="mailto:goleaaryan7@gmail.com" title="Email"><i class="bx bx-envelope"></i></a>
+        <div class="footer-socials">
+          <a class="social-orb orb-linkedin" href="https://www.linkedin.com/in/aaryan-gole" target="_blank" rel="noopener noreferrer"
+            aria-label="LinkedIn" title="LinkedIn"><span class="orb-shine"></span><i class="bx bxl-linkedin"></i></a>
+          <a class="social-orb orb-github" href="https://www.github.com/AaryanGole26" target="_blank" rel="noopener noreferrer"
+            aria-label="GitHub" title="GitHub"><span class="orb-shine"></span><i class="bx bxl-github"></i></a>
+          <button type="button" class="social-orb orb-discord" data-copy="acg26" aria-label="Copy Discord username acg26"
+            title="Discord: acg26"><span class="orb-shine"></span><i class="bx bxl-discord-alt"></i></button>
+          <a class="social-orb orb-mail" href="mailto:goleaaryan7@gmail.com" aria-label="Email" title="Email"><span
+              class="orb-shine"></span><i class="bx bx-envelope"></i></a>
         </div>
       </div>
     </div>
   </footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
 
   <!-- CHATBOT -->
   <div class="chatbot-container">
@@ -1001,9 +1033,17 @@
       <i class="bx bx-message-dots"></i>
     </button>
 
-    <div class="chatbot-window" id="chatbotWindow">
+    <div class="chat-backdrop" id="chatBackdrop" aria-hidden="true"></div>
+
+    <div class="chatbot-window" id="chatbotWindow" role="dialog" aria-label="Aaryan's assistant">
       <div class="chatbot-header">
-        <h3>Portfolio Assistant</h3>
+        <div class="chat-identity">
+          <span class="chat-avatar" aria-hidden="true">AG</span>
+          <div>
+            <h3>Aaryan's Assistant</h3>
+            <p class="chat-status"><span class="status-dot"></span> Online · ask about hiring</p>
+          </div>
+        </div>
         <button type="button" class="chatbot-close" id="chatbotClose" aria-label="Close portfolio assistant">
           <i class="bx bx-x"></i>
         </button>
@@ -1012,20 +1052,19 @@
       <div class="chatbot-messages" id="chatbotMessages">
         <div class="message bot-message">
           <div class="message-content">
-            <p>Hi! Ask me about hiring Aaryan or freelance web projects, or jump to:</p>
-            <div class="quick-actions">
-              <button class="quick-btn" data-section="about">About Me</button>
-              <button class="quick-btn" data-section="skills">Skills</button>
-              <button class="quick-btn" data-section="experience">Experience</button>
-              <button class="quick-btn" data-section="projects">Projects</button>
-              <button class="quick-btn" data-section="contact">Contact</button>
+            <p>Hi! I can tell you about Aaryan's experience, projects, and freelance work. Try one of these:</p>
+            <div class="suggest-chips">
+              <button type="button" class="suggest-chip" data-ask="Is he a good fit for a backend or AI role?">Is he a good fit?</button>
+              <button type="button" class="suggest-chip" data-ask="Can he build a website or web app for me?">Freelance web work</button>
+              <button type="button" class="suggest-chip" data-ask="What are his best projects?">Best projects</button>
+              <button type="button" class="suggest-chip" data-ask="How do I contact him?">Contact details</button>
             </div>
           </div>
         </div>
       </div>
 
       <div class="chatbot-input">
-        <input type="text" id="chatbotInput" placeholder="Ask about hiring Aaryan..." aria-label="Ask the portfolio assistant" maxlength="500" />
+        <input type="text" id="chatbotInput" placeholder="Message Aaryan's assistant..." aria-label="Ask the portfolio assistant" maxlength="500" />
         <button type="button" id="chatbotSend" aria-label="Send message">
           <i class="bx bx-send"></i>
         </button>

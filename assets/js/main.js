@@ -14,6 +14,8 @@ document.addEventListener('DOMContentLoaded', () => {
   initFadeIn();
   initSmoothAnchors();
   initTheme();
+  initPreloader();
+  initToastAndCopy();
   initNavbar();
   initScrollSpy();
   initScrollProgress();
@@ -59,23 +61,60 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function initTheme() {
     const toggle = document.getElementById('themeToggle');
-    const icon = document.getElementById('themeIcon');
 
-    const syncIcon = () => {
-      const isLight = document.body.classList.contains('light-mode');
-      icon.classList.toggle('bx-moon', isLight);
-      icon.classList.toggle('bx-sun', !isLight);
+    // The switch starts in the saved theme without animating into it.
+    document.body.classList.add('theme-init');
+    toggle.checked = !document.body.classList.contains('light-mode');
+    requestAnimationFrame(() => requestAnimationFrame(() => document.body.classList.remove('theme-init')));
+
+    // The browser bar on iPhone and Android takes the page colour.
+    const themeColor = document.getElementById('themeColor');
+    const syncThemeColor = () => {
+      themeColor.content = document.body.classList.contains('light-mode') ? '#f8f9fa' : '#080b16';
     };
+    syncThemeColor();
 
-    syncIcon();
-    toggle.addEventListener('click', () => {
-      const isLight = document.body.classList.toggle('light-mode');
+    toggle.addEventListener('change', () => {
+      const isLight = !toggle.checked;
+      document.body.classList.toggle('light-mode', isLight);
+      syncThemeColor();
       try {
         localStorage.setItem('theme', isLight ? 'light' : 'dark');
       } catch {
         // The choice still applies to this visit when storage is blocked.
       }
-      syncIcon();
+    });
+  }
+
+  function initPreloader() {
+    const preloader = document.querySelector('.preloader');
+    const hide = () => preloader.classList.add('done');
+    window.addEventListener('load', hide, { once: true });
+    // Slow fonts or icons from a CDN should never hold the page back.
+    setTimeout(hide, 1500);
+  }
+
+  function initToastAndCopy() {
+    const toast = document.getElementById('toast');
+    let timer = null;
+    const show = (text) => {
+      toast.textContent = text;
+      toast.hidden = false;
+      requestAnimationFrame(() => toast.classList.add('visible'));
+      clearTimeout(timer);
+      timer = setTimeout(() => toast.classList.remove('visible'), 2600);
+    };
+
+    document.querySelectorAll('[data-copy]').forEach((button) => {
+      button.addEventListener('click', async () => {
+        const value = button.dataset.copy;
+        try {
+          await navigator.clipboard.writeText(value);
+          show(`Discord username copied: ${value}`);
+        } catch {
+          show(`Discord: ${value}`);
+        }
+      });
     });
   }
 
@@ -266,16 +305,20 @@ document.addEventListener('DOMContentLoaded', () => {
     const cardTops = () => {
       let top = listTop();
       return visibleCards.map((card) => {
+        top += parseFloat(getComputedStyle(card).marginTop) || 0;
         const cardTop = top;
         top += card.offsetHeight;
         return cardTop;
       });
     };
 
+    // Where a card sticks: below the navbar on phones, or higher if it is taller than the screen.
+    const stickLimit = () => (isStackedLayout() ? 0 : nav.getBoundingClientRect().bottom + 10);
+
     // A card taller than the screen scrolls to its bottom edge before it sticks.
     const updateStickyOffsets = () => {
       visibleCards.forEach((card) => {
-        const offset = Math.min(0, window.innerHeight - card.offsetHeight);
+        const offset = Math.min(stickLimit(), window.innerHeight - card.offsetHeight);
         card.style.setProperty('--stick-top', `${offset}px`);
       });
     };
@@ -295,7 +338,7 @@ document.addEventListener('DOMContentLoaded', () => {
       activeId = id;
       sideItems.forEach((item) => item.classList.toggle('active', item.dataset.project === id));
       // A stuck card stays "in view" beneath the next one, so its video is paused here.
-      if (isStackedLayout()) videos.pauseAll(activeCard.querySelector('.video-container'));
+      if (getComputedStyle(activeCard).position === 'sticky') videos.pauseAll(activeCard.querySelector('.video-container'));
     };
 
     const scheduleLayoutUpdate = () => {
@@ -353,7 +396,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const scrollToProject = (id) => {
       const index = visibleCards.findIndex((card) => card.dataset.project === id);
       if (index === -1) return;
-      const navOffset = isStackedLayout() ? 0 : nav.offsetHeight;
+      const navOffset = stickLimit();
       window.scrollTo({ top: cardTops()[index] - navOffset, behavior: 'smooth' });
     };
 
@@ -458,12 +501,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const openPanel = () => {
       panel.classList.add('active');
+      document.body.classList.add('chat-open');
       button.style.display = 'none';
-      input.focus();
+      // On phones the keyboard would cover the sheet as it opens, so focus waits for a tap.
+      if (window.matchMedia('(min-width: 601px)').matches) input.focus();
     };
 
     const closePanel = () => {
       panel.classList.remove('active');
+      document.body.classList.remove('chat-open');
       button.style.display = 'flex';
     };
 
@@ -489,8 +535,9 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const askAssistant = async (question) => {
-      const pending = addMessage('Thinking...', 'bot');
+      const pending = addMessage('', 'bot');
       pending.wrapper.classList.add('pending');
+      pending.paragraph.innerHTML = '<span class="loader4 loader-sm" role="img" aria-label="Thinking"><span></span><span></span><span></span><span></span></span>';
       sendButton.disabled = true;
 
       try {
@@ -542,18 +589,23 @@ document.addEventListener('DOMContentLoaded', () => {
       if (event.key === 'Enter') handleMessage();
     });
 
-    document.querySelectorAll('.quick-btn').forEach((quickButton) => {
-      quickButton.addEventListener('click', () => {
-        addMessage(`Taking you to ${quickButton.textContent}...`, 'bot');
-        navigateTo(quickButton.dataset.section);
+    document.querySelectorAll('.suggest-chip').forEach((chip) => {
+      chip.addEventListener('click', () => {
+        if (sendButton.disabled) return;
+        input.value = chip.dataset.ask;
+        handleMessage();
       });
+    });
+
+    document.getElementById('chatBackdrop').addEventListener('click', closePanel);
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && panel.classList.contains('active')) closePanel();
     });
   }
 
+  // Only on large screens with a mouse. It re-checks when the window or device mode changes.
   function initCursor() {
-    const supportsCustomCursor = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
-    if (!supportsCustomCursor) return;
-
+    const query = window.matchMedia('(hover: hover) and (pointer: fine) and (min-width: 1025px)');
     const dot = document.getElementById('cursor-dot');
     const ring = document.getElementById('cursor-ring');
     const INTERACTIVE = 'a, button, input, textarea, select, label, .project-showcase, .nav-item-wrapper, .chatbot-button';
@@ -562,7 +614,34 @@ document.addEventListener('DOMContentLoaded', () => {
     let ringX = -100;
     let ringY = -100;
 
-    document.body.classList.add('custom-cursor');
+    let enabled = false;
+    let frame = null;
+
+    const animateRing = () => {
+      if (!enabled) {
+        frame = null;
+        return;
+      }
+      ringX += (mouseX - ringX) * 0.18;
+      ringY += (mouseY - ringY) * 0.18;
+      ring.style.transform = `translate(${ringX}px, ${ringY}px) translate(-50%, -50%)`;
+      frame = requestAnimationFrame(animateRing);
+    };
+
+    const setEnabled = (on) => {
+      enabled = on;
+      document.body.classList.toggle('custom-cursor', on);
+      if (on && !frame) frame = requestAnimationFrame(animateRing);
+    };
+
+    query.addEventListener('change', () => setEnabled(query.matches));
+    window.addEventListener('pointerdown', (event) => {
+      if (event.pointerType !== 'mouse') setEnabled(false);
+    }, { passive: true });
+    window.addEventListener('pointermove', (event) => {
+      if (event.pointerType === 'mouse' && query.matches && !enabled) setEnabled(true);
+    }, { passive: true });
+    setEnabled(query.matches);
 
     window.addEventListener('mousemove', (event) => {
       mouseX = event.clientX;
@@ -578,14 +657,6 @@ document.addEventListener('DOMContentLoaded', () => {
       ring.classList.toggle('hovered', interactive && !overVideo);
       dot.style.opacity = interactive ? '0' : '1';
     });
-
-    const animateRing = () => {
-      ringX += (mouseX - ringX) * 0.18;
-      ringY += (mouseY - ringY) * 0.18;
-      ring.style.transform = `translate(${ringX}px, ${ringY}px) translate(-50%, -50%)`;
-      requestAnimationFrame(animateRing);
-    };
-    animateRing();
   }
 
   function initClock() {
