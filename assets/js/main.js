@@ -16,6 +16,8 @@ document.addEventListener('DOMContentLoaded', () => {
   initTheme();
   initNavbar();
   initScrollSpy();
+  initScrollProgress();
+  initPointerEffects();
   const videos = initVideos();
   initProjects(videos);
   initContactForm();
@@ -90,7 +92,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // The stacked project cards fill the screen, so the navbar steps aside for them.
     const syncVisibility = () => {
       const hidden = projectsInView && isStackedLayout();
-      nav.style.transform = hidden ? 'translateY(-100%)' : 'translateY(0)';
+      nav.style.transform = hidden ? 'translateY(calc(-100% - 24px))' : 'translateY(0)';
       nav.style.opacity = hidden ? '0' : '1';
       nav.style.pointerEvents = hidden ? 'none' : 'all';
     };
@@ -106,17 +108,90 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function initScrollSpy() {
-    const links = document.querySelectorAll('.nav-item');
+    const container = document.querySelector('.nav-links');
+    const links = [...document.querySelectorAll('.nav-item')];
+    const indicator = document.createElement('span');
+    indicator.className = 'nav-indicator';
+    indicator.setAttribute('aria-hidden', 'true');
+    container.prepend(indicator);
+
+    // The indicator slides to a hovered link, then back to the current section.
+    const moveIndicator = (link) => {
+      if (!link) {
+        indicator.style.opacity = '0';
+        return;
+      }
+      indicator.style.width = `${link.offsetWidth}px`;
+      indicator.style.transform = `translate(${link.offsetLeft}px, ${link.offsetTop + link.offsetHeight / 2}px) translateY(-50%)`;
+      indicator.style.opacity = '1';
+    };
+    const activeLink = () => links.find((link) => link.classList.contains('nav-active'));
+
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (!entry.isIntersecting) return;
         links.forEach((link) => {
           link.classList.toggle('nav-active', link.getAttribute('href') === `#${entry.target.id}`);
         });
+        moveIndicator(activeLink());
       });
     }, { rootMargin: '-20% 0px -60% 0px', threshold: 0 });
 
     document.querySelectorAll('section[id]').forEach((section) => observer.observe(section));
+    links.forEach((link) => link.addEventListener('mouseenter', () => moveIndicator(link)));
+    container.addEventListener('mouseleave', () => moveIndicator(activeLink()));
+    window.addEventListener('resize', () => moveIndicator(activeLink()));
+    document.fonts?.ready.then(() => moveIndicator(activeLink()));
+  }
+
+  function initScrollProgress() {
+    const bar = document.querySelector('.scroll-progress');
+    let frame = null;
+    const update = () => {
+      frame = null;
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      bar.style.transform = `scaleX(${max > 0 ? Math.min(1, window.scrollY / max) : 0})`;
+    };
+    window.addEventListener('scroll', () => {
+      if (!frame) frame = requestAnimationFrame(update);
+    }, { passive: true });
+    update();
+  }
+
+  // Pointer effects: card spotlights, the hero grid glow, and the photo tilt.
+  function initPointerEffects() {
+    const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!finePointer) return;
+
+    const SPOTLIGHT = '.system-card, .skill-bento-card, .timeline-content, .certifications, .contact-form';
+    document.addEventListener('pointermove', (event) => {
+      const card = event.target.closest?.(SPOTLIGHT);
+      if (!card) return;
+      const rect = card.getBoundingClientRect();
+      card.style.setProperty('--mx', `${event.clientX - rect.left}px`);
+      card.style.setProperty('--my', `${event.clientY - rect.top}px`);
+    }, { passive: true });
+
+    const hero = document.querySelector('.hero');
+    const photo = document.querySelector('.hero-pic .image-clip');
+    hero.addEventListener('pointermove', (event) => {
+      const rect = hero.getBoundingClientRect();
+      hero.style.setProperty('--hx', `${event.clientX - rect.left}px`);
+      hero.style.setProperty('--hy', `${event.clientY - rect.top}px`);
+      hero.classList.add('pointer-active');
+      if (reduceMotion || !photo) return;
+      const box = photo.getBoundingClientRect();
+      const x = (event.clientX - (box.left + box.width / 2)) / rect.width;
+      const y = (event.clientY - (box.top + box.height / 2)) / rect.height;
+      photo.style.setProperty('--tilt-y', `${(x * 10).toFixed(2)}deg`);
+      photo.style.setProperty('--tilt-x', `${(-y * 10).toFixed(2)}deg`);
+    }, { passive: true });
+    hero.addEventListener('pointerleave', () => {
+      hero.classList.remove('pointer-active');
+      photo?.style.setProperty('--tilt-x', '0deg');
+      photo?.style.setProperty('--tilt-y', '0deg');
+    });
   }
 
   function initVideos() {

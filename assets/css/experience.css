@@ -1,0 +1,329 @@
+/* ============================================================
+   experience.css — "Aurora glass" layer
+   Loaded last. Remove its <link> in index.html to switch it off.
+   ============================================================ */
+
+:root {
+  --glass-bg: rgba(14, 16, 32, 0.38);
+  --glass-bg-strong: rgba(12, 14, 28, 0.62);
+  --glass-border: rgba(255, 255, 255, 0.10);
+  --glass-highlight: rgba(255, 255, 255, 0.07);
+  --glass-shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
+  --aurora-1: #8b7cf7;
+  --aurora-2: #5ec8ff;
+  --aurora-3: #c084fc;
+  --spotlight: rgba(139, 124, 247, 0.16);
+  --grain-opacity: 0.05;
+}
+
+body.light-mode {
+  --glass-bg: rgba(255, 255, 255, 0.55);
+  --glass-bg-strong: rgba(255, 255, 255, 0.78);
+  --glass-border: rgba(20, 20, 40, 0.08);
+  --glass-highlight: rgba(255, 255, 255, 0.7);
+  --glass-shadow: 0 12px 36px rgba(40, 40, 90, 0.10);
+  --aurora-1: #5b4bd6;
+  --aurora-2: #1f86c9;
+  --aurora-3: #9b4fd6;
+  --spotlight: rgba(108, 92, 231, 0.10);
+  --grain-opacity: 0.035;
+}
+
+/* ---------- Floating glass navbar ---------- */
+.global-nav,
+.global-nav.scrolled {
+  top: 14px;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  width: min(1180px, calc(100% - 32px));
+  padding: 8px 10px 8px 24px;
+  border-radius: 999px;
+  background: var(--glass-bg);
+  -webkit-backdrop-filter: blur(18px) saturate(170%);
+  backdrop-filter: blur(18px) saturate(170%);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow), inset 0 1px 0 var(--glass-highlight);
+}
+
+.global-nav.scrolled {
+  background: var(--glass-bg-strong);
+}
+
+.nav-links {
+  position: relative;
+  gap: 2px;
+}
+
+.nav-item,
+.nav-item.nav-active {
+  margin: 0;
+  padding: 8px 14px;
+  border-radius: 999px;
+  font-weight: 500;
+  position: relative;
+  z-index: 1;
+}
+
+.nav-item.nav-active {
+  color: var(--text-primary);
+}
+
+.nav-item.nav-active::after {
+  display: none;
+}
+
+/* The pill that slides between links (positioned by main.js). */
+.nav-indicator {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 34px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, rgba(139, 124, 247, 0.26), rgba(94, 200, 255, 0.14));
+  border: 1px solid rgba(139, 124, 247, 0.38);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.10), 0 0 18px rgba(108, 92, 231, 0.22);
+  opacity: 0;
+  pointer-events: none;
+  transition: transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1), width 0.45s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.3s ease;
+}
+
+body.light-mode .nav-indicator {
+  background: linear-gradient(135deg, rgba(108, 92, 231, 0.14), rgba(31, 134, 201, 0.08));
+  border-color: rgba(108, 92, 231, 0.28);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8), 0 4px 14px rgba(108, 92, 231, 0.14);
+}
+
+.theme-toggle {
+  background: var(--glass-highlight);
+  border-color: var(--glass-border);
+}
+
+/* ---------- Scroll progress ---------- */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  z-index: 1001;
+  background: linear-gradient(90deg, var(--aurora-1), var(--aurora-2), var(--aurora-3));
+  transform: scaleX(0);
+  transform-origin: left;
+  pointer-events: none;
+}
+
+/* ---------- Film grain ---------- */
+.grain {
+  position: fixed;
+  inset: 0;
+  z-index: 9990;
+  pointer-events: none;
+  opacity: var(--grain-opacity);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ---------- Hero ---------- */
+.status-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  margin-bottom: 18px;
+  padding: 7px 14px 7px 11px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-primary);
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  animation: fadeSlideUp 0.8s ease-out 0.1s both;
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #34d399;
+  box-shadow: 0 0 0 0 rgba(52, 211, 153, 0.6);
+  animation: statusPulse 2.2s ease-out infinite;
+}
+
+@keyframes statusPulse {
+  0% { box-shadow: 0 0 0 0 rgba(52, 211, 153, 0.55); }
+  70% { box-shadow: 0 0 0 9px rgba(52, 211, 153, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(52, 211, 153, 0); }
+}
+
+.hero-text h1 .name-accent,
+.accent-text {
+  background: linear-gradient(100deg, var(--aurora-1), var(--aurora-2), var(--aurora-3), var(--aurora-1));
+  background-size: 300% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.hero-text h1 .name-accent {
+  animation: auroraShift 9s linear infinite;
+}
+
+@keyframes auroraShift {
+  to { background-position: 300% 0; }
+}
+
+/* A brighter grid that lights up around the pointer (position set by main.js). */
+.hero-grid-overlay::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(139, 124, 247, 0.22) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(139, 124, 247, 0.22) 1px, transparent 1px);
+  background-size: 80px 80px;
+  -webkit-mask-image: radial-gradient(260px circle at var(--hx, 50%) var(--hy, 50%), #000, transparent 70%);
+  mask-image: radial-gradient(260px circle at var(--hx, 50%) var(--hy, 50%), #000, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.hero.pointer-active .hero-grid-overlay::after {
+  opacity: 1;
+}
+
+.hero-pic .image-clip {
+  transform: perspective(900px) rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg));
+  transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+/* ---------- Buttons ---------- */
+.btn-primary {
+  background: linear-gradient(135deg, var(--accent), #7a6af0);
+  box-shadow: 0 8px 24px var(--accent-glow);
+}
+
+.btn-primary::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -60%;
+  width: 40%;
+  height: 100%;
+  background: linear-gradient(100deg, transparent, rgba(255, 255, 255, 0.35), transparent);
+  transform: skewX(-20deg);
+  transition: left 0.6s ease;
+  pointer-events: none;
+}
+
+.btn-primary:hover::after {
+  left: 120%;
+}
+
+.btn-secondary {
+  background: var(--glass-bg);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+}
+
+/* ---------- Cursor spotlight on cards (position set by main.js) ---------- */
+.certifications,
+.contact-form {
+  position: relative;
+}
+
+.system-card::after,
+.skill-bento-card::after,
+.timeline-content::after,
+.certifications::after,
+.contact-form::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(380px circle at var(--mx, 50%) var(--my, 50%), var(--spotlight), transparent 45%);
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  pointer-events: none;
+}
+
+.system-card:hover::after,
+.skill-bento-card:hover::after,
+.timeline-content:hover::after,
+.certifications:hover::after,
+.contact-form:hover::after {
+  opacity: 1;
+}
+
+/* ---------- Glass contact form and chat ---------- */
+.contact-form {
+  padding: 28px;
+  border-radius: 24px;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow), inset 0 1px 0 var(--glass-highlight);
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
+}
+
+.chatbot-button {
+  background: var(--glass-bg-strong);
+  border-color: var(--glass-border);
+  -webkit-backdrop-filter: blur(16px) saturate(160%);
+  backdrop-filter: blur(16px) saturate(160%);
+}
+
+/* ---------- Phones and tablets ---------- */
+@media (max-width: 820px) {
+  .global-nav,
+  .global-nav.scrolled {
+    top: 10px;
+    width: calc(100% - 20px);
+    padding: 10px 12px 6px 18px;
+    border-radius: 22px;
+  }
+
+  .nav-links {
+    padding: 6px 0 2px;
+  }
+
+  .nav-item,
+  .nav-item.nav-active {
+    padding: 6px 11px;
+  }
+
+  .nav-indicator {
+    height: 30px;
+  }
+
+  .contact-form {
+    padding: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .global-nav,
+  .global-nav.scrolled {
+    padding: 8px 10px 4px 14px;
+  }
+
+  .nav-item,
+  .nav-item.nav-active {
+    padding: 5px 8px;
+  }
+
+  .status-chip {
+    font-size: 12px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-text h1 .name-accent,
+  .status-dot {
+    animation: none;
+  }
+
+  .hero-pic .image-clip {
+    transform: none;
+  }
+}
